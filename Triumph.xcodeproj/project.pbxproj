@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D503AFBC1639AF5A0019DEFC /* courier.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D503AFB91639AF5A0019DEFC /* courier.bmp */; };
 		D503AFBD1639AF5A0019DEFC /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D503AFBA1639AF5A0019DEFC /* Font.cpp */; };
+		D503AFC2163B501B0019DEFC /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D503AFC0163B501B0019DEFC /* Texture.cpp */; };
+		D503AFC4163B5CF00019DEFC /* globe.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D503AFC3163B5CF00019DEFC /* globe.bmp */; };
 		D56A7DA0163856C700B563F1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D56A7D9F163856C700B563F1 /* Cocoa.framework */; };
 		D56A7DAA163856C700B563F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D56A7DA8163856C700B563F1 /* InfoPlist.strings */; };
 		D56A7DB0163856C700B563F1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D56A7DAE163856C700B563F1 /* Credits.rtf */; };
@@ -25,6 +27,9 @@
 		D503AFB91639AF5A0019DEFC /* courier.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = courier.bmp; sourceTree = "<group>"; };
 		D503AFBA1639AF5A0019DEFC /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
 		D503AFBB1639AF5A0019DEFC /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
+		D503AFC0163B501B0019DEFC /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		D503AFC1163B501B0019DEFC /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		D503AFC3163B5CF00019DEFC /* globe.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = globe.bmp; sourceTree = "<group>"; };
 		D56A7D9B163856C700B563F1 /* Triumph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Triumph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D56A7D9F163856C700B563F1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D56A7DA2163856C700B563F1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -109,6 +114,7 @@
 		D56A7DA5163856C700B563F1 /* Triumph */ = {
 			isa = PBXGroup;
 			children = (
+				D503AFC3163B5CF00019DEFC /* globe.bmp */,
 				D503AFBF1639AF760019DEFC /* Resources */,
 				D503AFBA1639AF5A0019DEFC /* Font.cpp */,
 				D503AFBB1639AF5A0019DEFC /* Font.h */,
@@ -121,6 +127,8 @@
 				D56A7DD11638892800B563F1 /* GameInput.h */,
 				D56A7DD3163890DC00B563F1 /* Console.cpp */,
 				D56A7DD4163890DC00B563F1 /* Console.h */,
+				D503AFC0163B501B0019DEFC /* Texture.cpp */,
+				D503AFC1163B501B0019DEFC /* Texture.h */,
 			);
 			path = Triumph;
 			sourceTree = "<group>";
@@ -191,6 +199,7 @@
 				D56A7DB0163856C700B563F1 /* Credits.rtf in Resources */,
 				D56A7DB6163856C700B563F1 /* MainMenu.xib in Resources */,
 				D503AFBC1639AF5A0019DEFC /* courier.bmp in Resources */,
+				D503AFC4163B5CF00019DEFC /* globe.bmp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +215,7 @@
 				D56A7DD21638892800B563F1 /* GameInput.cpp in Sources */,
 				D56A7DD5163890DC00B563F1 /* Console.cpp in Sources */,
 				D503AFBD1639AF5A0019DEFC /* Font.cpp in Sources */,
+				D503AFC2163B501B0019DEFC /* Texture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -82,17 +82,21 @@
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameInput.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TriumphGame.cpp" />
     <ClCompile Include="TriumphMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bitmap.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameInput.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="TriumphGame.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="courier.bmp" />
+    <None Include="globe.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

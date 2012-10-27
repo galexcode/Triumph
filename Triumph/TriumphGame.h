@@ -37,6 +37,7 @@
 #include <GL/glfw.h>
 
 #include "GameInput.h"
+#include "Texture.h"
 
 class TriumphGame
 {
@@ -60,6 +61,9 @@ protected:
     
 private:
     static TriumphGame *m_pInstance;
+    
+    int m_meshGlobe;
+    Texture *m_texGlobe;
     
     int m_cursorX, m_cursorY;
     int m_windowWidth, m_windowHeight;

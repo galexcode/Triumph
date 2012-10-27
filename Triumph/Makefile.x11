@@ -1,0 +1,60 @@
+all: triumph
+
+PREFIX=/usr/local
+LIBS=${PREFIX}/lib
+
+CC     = g++
+DEBUG  = -g
+CFLAGS = -Wall -c $(DEBUG)
+LFLAGS = -Wall $(DEBUG) ${LIBS}/libglfw.a -lrt -lX11 -lGLU -lGL -lm
+
+OBJS = \
+	TriumphGame.o \
+	Console.o \
+	Font.o \
+	GameInput.o \
+    Texture.o
+    
+##########################################################################
+# Rule for building triumph
+##########################################################################
+
+triumph: TriumphMain.cpp TriumphGame.h $(OBJS)
+	$(CC) TriumphMain.cpp $(OBJS) -o triumph $(LFLAGS)
+
+##########################################################################
+# Header Dependencies
+##########################################################################
+
+TriumphGame.h: GameInput.h
+Console.h: Font.h
+
+##########################################################################
+# Static Objects
+##########################################################################
+
+TriumphGame.o: TriumphGame.cpp TriumphGame.h Console.h Texture.h
+	$(CC) $(CFLAGS) TriumphGame.cpp
+
+Console.o: Console.cpp Console.h TriumphGame.h
+	$(CC) $(CFLAGS) Console.cpp
+
+Font.o: Font.cpp Font.h
+	$(CC) $(CFLAGS) Font.cpp
+
+GameInput.o: GameInput.cpp GameInput.h TriumphGame.h
+	$(CC) $(CFLAGS) GameInput.cpp
+
+Texture.o: Texture.cpp Texture.h Bitmap.h
+    $(CC) $(CFLAGS) Texture.cpp
+
+#TriumphMain.o: TriumphMain.cpp TriumphGame.h
+#	$(CC) $(CFLAGS) TriumphMain.cpp
+    
+
+##########################################################################
+# Clean
+##########################################################################
+
+clean:
+	rm -f $(OBJS) triumph

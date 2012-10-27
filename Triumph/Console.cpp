@@ -53,10 +53,10 @@ void Console::message(int type, const char *fmt, ...)
 	char *buf = new char[LOG_MSG_LIMIT];
     va_list args;
     va_start(args, fmt);
-    vsprintf(&tmpBuf[0], fmt, args);
+    vsprintf(&(tmpBuf[0]), fmt, args);
     va_end(args);
 
-	sprintf(buf, "Sys: %s", &tmpBuf); 
+	sprintf(buf, "Sys: %s", &(tmpBuf[0]));
 
 	writeln(buf);
 }

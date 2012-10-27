@@ -7,7 +7,6 @@
 //
 
 #include "TriumphGame.h"
-#include "GameInput.h"
 #include <GL/glfw.h>
 
 #include "Console.h"
@@ -90,6 +89,20 @@ int TriumphGame::init()
     
     Console::getInstance()->initScreenDisplay();
     
+    m_texGlobe = Texture::CreateFromFile("globe.bmp");
+    
+    // prep earth sphere display list
+    GLUquadricObj *sphere = NULL;
+    sphere = gluNewQuadric();
+    gluQuadricDrawStyle(sphere, GLU_FILL);
+    gluQuadricTexture(sphere, true);
+    gluQuadricNormals(sphere, GLU_SMOOTH);
+    m_meshGlobe = glGenLists(1);
+    glNewList(m_meshGlobe, GL_COMPILE);
+    gluSphere(sphere, 0.5, 200, 200);
+    glEndList();
+    gluDeleteQuadric(sphere);
+    
     glClearColor(0, 0, 0, 0);
     
     return INIT_SUCCESS;
@@ -115,20 +128,15 @@ void TriumphGame::draw(float dTime)
     gluOrtho2D(0.f, 1.f, 0.f, 1.f);
     
     glLoadIdentity();
-    glTranslatef(0.5f, 0.f, 0.f);
-    glRotatef(m_elapsedTime, 0.f, 0.f, 1.f);
+    glRotatef(m_elapsedTime * 8, 0.2f, 0.3f, 0.4f);
     
-    glEnable(GL_MULTISAMPLE_ARB);
-    glColor3f(1.f, 1.f, 1.f);
-    glRectf(-0.25f, -0.25f, 0.25f, 0.25f);
+    //glEnable(GL_MULTISAMPLE_ARB);
+	glEnable(GL_TEXTURE_2D);
+
+    glCallList(m_meshGlobe);
     
-    glLoadIdentity();
-    glTranslatef(-0.5f, 0.f, 0.f);
-    glRotatef(m_elapsedTime, 0.f, 0.f, 1.f);
-    
-    glDisable(GL_MULTISAMPLE_ARB);
-    glColor3f(1.f, 1.f, 1.f);
-    glRectf(-0.25f, -0.25f, 0.25f, 0.25f);
+    glDisable(GL_TEXTURE_2D);
+    //glDisable(GL_MULTISAMPLE_ARB);
 }
 
 void TriumphGame::update(float dTime)
@@ -169,6 +177,9 @@ float TriumphGame::getElapsedTime()
 
 void TriumphGame::clean()
 {
+    glDeleteLists(m_meshGlobe, 1);
+    delete m_texGlobe;
+    
     glfwTerminate();
     
     // kill singleton

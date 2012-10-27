@@ -7,7 +7,11 @@ engine based only on the simple GLFW base.
 Installation
 ------------
 
-	First you need to ensure you have the glfw library installed
+First you need to ensure you have the [glfw](http://www.glfw.org) library installed.
+
+For linux systems, run:
 	
-	There is a Visual Studio 2010 project as well as an xcode
-	project already set up. Linux coming soon.s
+	make x11
+
+For Windows and Mac OS X, there is a Visual Studio 2010 and an XCode 4 project
+ready to go.
