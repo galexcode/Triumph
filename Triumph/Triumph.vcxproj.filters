@@ -61,5 +61,8 @@
     <None Include="globe.bmp">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="earth_hires.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

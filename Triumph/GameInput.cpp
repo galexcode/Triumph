@@ -24,3 +24,12 @@ void GLFWCALL keyboard_callback(int key, int state)
 {
     TriumphGame::getInstance()->keyEvent(key, state);
 }
+
+void GLFWCALL mouse_button_callback(int button, int state)
+{
+	TriumphGame::getInstance()->mouseButtonEvent(button, state);
+}
+void GLFWCALL mouse_wheel_callback(int pos)
+{
+	TriumphGame::getInstance()->mouseWheelEvent(pos);
+}

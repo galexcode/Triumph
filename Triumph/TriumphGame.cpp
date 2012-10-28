@@ -27,6 +27,7 @@ TriumphGame::TriumphGame()
     Console::getInstance()->message(CONSOLE_MSG_SYS, "Starting Triumph");
 
 	m_pInputManager = new InputManager();
+	m_fLeftMouseDown = false;
 }
 
 void TriumphGame::windowResize(int width, int height)
@@ -50,6 +51,22 @@ void TriumphGame::mouseMove(int x, int y)
 void TriumphGame::keyEvent(int key, int state)
 {
     Console::getInstance()->message(CONSOLE_MSG_SYS, "%d %d", key, state);
+}
+
+void TriumphGame::mouseButtonEvent(int button, int state)
+{
+	switch (button)
+	{
+		case INPUTBTN_MOUSELEFT:
+		{
+			m_fLeftMouseDown = state == INPUTSTATE_PRESS;
+		}
+	}
+}
+
+void TriumphGame::mouseWheelEvent(int pos)
+{
+	Console::getInstance()->message(CONSOLE_MSG_SYS, "%d", pos);
 }
 
 int TriumphGame::init()
@@ -79,6 +96,8 @@ int TriumphGame::init()
     glfwSetWindowSizeCallback(window_size_callback);
     glfwSetMousePosCallback(mouse_position_callback);
     glfwSetKeyCallback(keyboard_callback);
+	glfwSetMouseButtonCallback(mouse_button_callback);
+	glfwSetMouseWheelCallback(mouse_wheel_callback);
     glfwSwapInterval(1);
     
     int samples = glfwGetWindowParam(GLFW_FSAA_SAMPLES);
@@ -86,35 +105,41 @@ int TriumphGame::init()
     {
         Console::getInstance()->message(CONSOLE_MSG_SYS, "%s %i", "Context reports FSAA sample size is", samples);
     }
+
+    glClearColor(0, 0, 0, 0);
+	glViewport(0, 0, m_windowWidth, m_windowHeight);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+	glEnable ( GL_CULL_FACE );
     
     Console::getInstance()->initScreenDisplay();
+
+	m_font = new Font("courier.bmp");
+	m_font->init();
     
-    m_texGlobe = Texture::CreateFromFile("globe.bmp");
+    m_texGlobe = Texture::CreateFromFile("earth_hires.bmp");
     
     // prep earth sphere display list
     GLUquadricObj *sphere = NULL;
     sphere = gluNewQuadric();
     gluQuadricDrawStyle(sphere, GLU_FILL);
-    gluQuadricTexture(sphere, true);
+    gluQuadricTexture(sphere, GL_TRUE);
     gluQuadricNormals(sphere, GLU_SMOOTH);
+	gluQuadricOrientation(sphere, GLU_OUTSIDE);
     m_meshGlobe = glGenLists(1);
     glNewList(m_meshGlobe, GL_COMPILE);
     gluSphere(sphere, 0.5, 200, 200);
     glEndList();
     gluDeleteQuadric(sphere);
-    
-    glClearColor(0, 0, 0, 0);
+	m_meshGlobeRot = 0;
     
     return INIT_SUCCESS;
 }
 
-void TriumphGame::draw(float dTime)
+void TriumphGame::drawUI(float dTime)
 {
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    
-    glClear(GL_COLOR_BUFFER_BIT);
-    
     glColor3f(1.f, 1.f, 1.f);
     
     glBegin(GL_LINES);
@@ -123,41 +148,75 @@ void TriumphGame::draw(float dTime)
     glVertex2f((GLfloat) m_cursorX, 0.f);
     glVertex2f((GLfloat) m_cursorX, (GLfloat) m_windowHeight);
     glEnd();
-    
-    glMatrixMode(GL_PROJECTION);
-    gluOrtho2D(0.f, 1.f, 0.f, 1.f);
-    
-    glLoadIdentity();
-    glRotatef(m_elapsedTime * 8, 0.2f, 0.3f, 0.4f);
-    
-    //glEnable(GL_MULTISAMPLE_ARB);
-	glEnable(GL_TEXTURE_2D);
 
+	char buf[256];
+	sprintf(buf, "%d", (int)m_fps);
+	m_font->print(buf, m_windowWidth - 30, m_windowHeight - 20);
+}
+
+void TriumphGame::draw(float dTime)
+{   
+    glTranslatef(0, 0, -2);
+	glRotatef(-90, 1.0f, 0.0f, 0.0f);
+	glRotatef(m_meshGlobeRot, 0.0f, 0.0f, 1.0f);
+
+	glEnable(GL_TEXTURE_2D);
     glCallList(m_meshGlobe);
-    
     glDisable(GL_TEXTURE_2D);
-    //glDisable(GL_MULTISAMPLE_ARB);
 }
 
 void TriumphGame::update(float dTime)
 {
+    if (m_fLeftMouseDown)
+	{
+		m_meshGlobeRot += (float)(m_cursorX - m_lastCursorX);
+	}
+
+	m_lastCursorX = m_cursorX;
+	m_lastCursorY = m_cursorY;
+}
+
+void TriumphGame::set3D()
+{
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(45, 1, 0.1, 1000);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+}
+
+void TriumphGame::set2D()
+{
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(0, m_windowWidth, 0, m_windowHeight, -1.0, 1.0);
     
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 }
 
 void TriumphGame::run()
-{
-    m_elapsedTime = (float) glfwGetTime();
+{	
+	m_elapsedTime = (float) glfwGetTime();
     
     while (glfwGetWindowParam(GLFW_OPENED))
     {
         float dTime = (float) glfwGetTime() - m_elapsedTime;
+		m_fps = 1 / dTime;
         m_elapsedTime += dTime;
         Console *console = Console::getInstance();
         
         update(dTime);
         console->update(dTime);
-        
+
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		set3D();
         draw(dTime);
+
+		set2D();
+		drawUI(dTime);
         console->draw(dTime);
         
         glfwSwapBuffers();

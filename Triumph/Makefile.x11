@@ -26,14 +26,14 @@ triumph: TriumphMain.cpp TriumphGame.h $(OBJS)
 # Header Dependencies
 ##########################################################################
 
-TriumphGame.h: GameInput.h
+TriumphGame.h: GameInput.h Texture.h Font.h
 Console.h: Font.h
 
 ##########################################################################
 # Static Objects
 ##########################################################################
 
-TriumphGame.o: TriumphGame.cpp TriumphGame.h Console.h Texture.h
+TriumphGame.o: TriumphGame.cpp TriumphGame.h Console.h
 	$(CC) $(CFLAGS) TriumphGame.cpp
 
 Console.o: Console.cpp Console.h TriumphGame.h

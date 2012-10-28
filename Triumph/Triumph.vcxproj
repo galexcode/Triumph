@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="courier.bmp" />
+    <None Include="earth_hires.bmp" />
     <None Include="globe.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

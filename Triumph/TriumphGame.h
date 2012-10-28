@@ -38,6 +38,7 @@
 
 #include "GameInput.h"
 #include "Texture.h"
+#include "Font.h"
 
 class TriumphGame
 {
@@ -55,6 +56,11 @@ public:
     void mouseMove(int x, int y);
     void windowResize(int width, int height);
     void keyEvent(int key, int state);
+	void mouseButtonEvent(int button, int state);
+	void mouseWheelEvent(int pos);
+
+	void set2D();
+	void set3D();
     
 protected:
     TriumphGame();
@@ -62,15 +68,24 @@ protected:
 private:
     static TriumphGame *m_pInstance;
     
+	float m_fps;
+
     int m_meshGlobe;
+	float m_meshGlobeRot;
     Texture *m_texGlobe;
+
+	Font *m_font;
     
     int m_cursorX, m_cursorY;
+	int m_lastCursorX, m_lastCursorY;
+	bool m_fLeftMouseDown;
+
     int m_windowWidth, m_windowHeight;
     float m_elapsedTime;
     
     void update(float dTime);
     void draw(float dTime);
+	void drawUI(float dTime);
     
 };
 

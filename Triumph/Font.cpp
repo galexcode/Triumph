@@ -123,7 +123,7 @@ void Font::makeRasterFont()
     {
         glNewList(i + m_fontOffset, GL_COMPILE);
         glBitmap(8, 13, 0.0, 2.0, 10.0, 0.0, rasters[i-32]);
-        glEndList();
+		glEndList();
     }
 }
 
@@ -133,10 +133,10 @@ void Font::print(const char *text, int x, int y)
     
     glRasterPos2i(x, y);
     
-    //glPushAttrib (GL_LIST_BIT);
+    glPushAttrib (GL_LIST_BIT);
     glListBase(m_fontOffset);
     glCallLists((int)strlen(text), GL_UNSIGNED_BYTE, (GLubyte *) text);
-    //glPopAttrib ();
+    glPopAttrib ();
     
 }
 

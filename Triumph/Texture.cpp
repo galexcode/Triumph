@@ -11,7 +11,6 @@
 #include <fstream>
 #include <vector>
 
-#include "Console.h"
 #include "Bitmap.h"
 
 Texture * Texture::CreateFromFile(const char *file)
@@ -32,7 +31,7 @@ Texture * Texture::CreateFromFile(const char *file)
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //NEAREST);
-		//glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); 
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); 
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, tex->m_width, tex->m_height, 0,
 			GL_BGR_EXT, GL_UNSIGNED_BYTE, tex->m_pImage);

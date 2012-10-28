@@ -42,7 +42,7 @@ void Console::initScreenDisplay()
 {
     m_font = new Font(LOG_FONTFILE);
     m_font->init();
-    m_fScreenDisplay = true;
+	m_fScreenDisplay = true;
 }
 
 void Console::message(int type, const char *fmt, ...)
@@ -112,12 +112,6 @@ void Console::draw(float dTime)
     {
         int w, h;
         TriumphGame::getInstance()->getWindowSize(&w, &h);
-        
-        glViewport(0, 0, w, h);
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        glOrtho(0, w, 0, h, -1.0, 1.0);
-        glMatrixMode(GL_MODELVIEW);
         
         for (int i = 0; i < LOG_BUFFER_SIZE; ++i)
         {
