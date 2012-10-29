@@ -28,6 +28,8 @@ TriumphGame::TriumphGame()
 
 	m_pInputManager = new InputManager();
 	m_fLeftMouseDown = false;
+	m_lastWheel = 0;
+	m_meshGlobeZoom = 0;
 }
 
 void TriumphGame::windowResize(int width, int height)
@@ -67,6 +69,8 @@ void TriumphGame::mouseButtonEvent(int button, int state)
 void TriumphGame::mouseWheelEvent(int pos)
 {
 	Console::getInstance()->message(CONSOLE_MSG_SYS, "%d", pos);
+	m_meshGlobeZoom += pos - m_lastWheel;
+	m_lastWheel = pos;
 }
 
 int TriumphGame::init()
@@ -156,7 +160,7 @@ void TriumphGame::drawUI(float dTime)
 
 void TriumphGame::draw(float dTime)
 {   
-    glTranslatef(0, 0, -2);
+    glTranslatef(0, 0, -2 + m_meshGlobeZoom / 20);
 	glRotatef(-90, 1.0f, 0.0f, 0.0f);
 	glRotatef(m_meshGlobeRot, 0.0f, 0.0f, 1.0f);
 

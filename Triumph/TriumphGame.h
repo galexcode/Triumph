@@ -72,12 +72,14 @@ private:
 
     int m_meshGlobe;
 	float m_meshGlobeRot;
+	float m_meshGlobeZoom;
     Texture *m_texGlobe;
 
 	Font *m_font;
     
     int m_cursorX, m_cursorY;
 	int m_lastCursorX, m_lastCursorY;
+	int m_lastWheel;
 	bool m_fLeftMouseDown;
 
     int m_windowWidth, m_windowHeight;
