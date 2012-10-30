@@ -11,15 +11,6 @@
 #ifndef __Triumph__TriumphGame__
 #define __Triumph__TriumphGame__
 
-#define SOL_PLATFORM_WIN32 0
-#define SOL_PLATFORM_MAC32 1
-
-#if defined(__WIN32__)
-#define SOL_PLATFORM SOL_PLATFORM_WIN32
-#elif defined(__APPLE__)
-#define SOL_PLATFORM SOL_PLATFORM_MAC32
-#endif
-
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 #define WINDOW_TITLE "Triumph"
@@ -39,6 +30,7 @@
 #include "GameInput.h"
 #include "Texture.h"
 #include "Font.h"
+#include "GameObject.h"
 
 class TriumphGame
 {
@@ -74,6 +66,7 @@ private:
 	float m_meshGlobeRot;
 	float m_meshGlobeZoom;
     Texture *m_texGlobe;
+    GameObject *m_globe;
 
 	Font *m_font;
     

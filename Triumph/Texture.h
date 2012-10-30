@@ -11,6 +11,14 @@
 
 #include <GL/glfw.h>
 
+#include "Platform.h"
+
+#if PLATFORM == PLATFORM_WIN32
+#define FORMAT_BGR GL_BGR_EXT
+#else
+#define FORMAT_BGR GL_BGR
+#endif
+
 class Texture
 {
 public:

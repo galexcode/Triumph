@@ -23,7 +23,7 @@ Texture * Texture::CreateFromFile(const char *file)
     
 	if (tex->m_fLoaded)
 	{
-
+        
 		glGenTextures(1, &tex->m_gid);
 		glBindTexture(GL_TEXTURE_2D, tex->m_gid);
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -34,7 +34,7 @@ Texture * Texture::CreateFromFile(const char *file)
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); 
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, tex->m_width, tex->m_height, 0,
-			GL_BGR_EXT, GL_UNSIGNED_BYTE, tex->m_pImage);
+			FORMAT_BGR, GL_UNSIGNED_BYTE, tex->m_pImage);
 
 	}
     

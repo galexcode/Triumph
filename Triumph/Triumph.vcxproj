@@ -82,6 +82,8 @@
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameInput.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TriumphGame.cpp" />
     <ClCompile Include="TriumphMain.cpp" />
@@ -91,6 +93,9 @@
     <ClInclude Include="Console.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameInput.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Geometry.h" />
+    <ClInclude Include="Platform.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TriumphGame.h" />
   </ItemGroup>

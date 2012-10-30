@@ -139,6 +139,10 @@ int TriumphGame::init()
     gluDeleteQuadric(sphere);
 	m_meshGlobeRot = 0;
     
+    m_globe = new GameObject();
+    m_globe->translate(Vector3::zero);
+	m_globe->rotate(Vector3::right, PI / 2);
+
     return INIT_SUCCESS;
 }
 
@@ -159,9 +163,11 @@ void TriumphGame::drawUI(float dTime)
 }
 
 void TriumphGame::draw(float dTime)
-{   
+{
     glTranslatef(0, 0, -2 + m_meshGlobeZoom / 20);
-	glRotatef(-90, 1.0f, 0.0f, 0.0f);
+	
+
+	glMultMatrixf(m_globe->m_rotation.getMatrix().v);
 	glRotatef(m_meshGlobeRot, 0.0f, 0.0f, 1.0f);
 
 	glEnable(GL_TEXTURE_2D);

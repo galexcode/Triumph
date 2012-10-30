@@ -21,11 +21,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/TriumphGame.cpp"
-         timestampString = "372986655.460018"
+         timestampString = "373224449.67033"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "189"
-         endingLineNumber = "189">
+         endingLineNumber = "189"
+         landmarkName = "TriumphGame::set3D()"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -71,12 +73,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/TriumphGame.cpp"
-         timestampString = "372986655.460018"
+         timestampString = "373224449.67033"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "165"
          endingLineNumber = "165"
-         landmarkName = "TriumphGame::run()"
+         landmarkName = "TriumphGame::draw(float dTime)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -102,7 +104,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "22"
          endingLineNumber = "22"
-         landmarkName = "Texture::load(const char *file, int width, int height)"
+         landmarkName = "Texture::CreateFromFile(const char *file)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -115,7 +117,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "53"
          endingLineNumber = "53"
-         landmarkName = "Texture::byteArrayFromBMP(const char *file)"
+         landmarkName = "Texture::loadBMP(const char *filename)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -128,7 +130,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "52"
          endingLineNumber = "52"
-         landmarkName = "Texture::byteArrayFromBMP(const char *file)"
+         landmarkName = "Texture::loadBMP(const char *filename)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
