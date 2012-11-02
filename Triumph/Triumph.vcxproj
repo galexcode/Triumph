@@ -81,6 +81,7 @@
   <ItemGroup>
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Font.cpp" />
+    <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameInput.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Geometry.cpp" />
@@ -92,6 +93,7 @@
     <ClInclude Include="Bitmap.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Font.h" />
+    <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameInput.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Geometry.h" />

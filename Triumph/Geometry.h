@@ -31,13 +31,44 @@ public:
     Vector3();
     Vector3(float x, float y, float z);
     
-    Vector3 operator+(const Vector3 &vec);
+    Vector3 operator+(const Vector3 &vec) const;
     Vector3 & operator+=(const Vector3 &vec);
+    Vector3 operator-(const Vector3 &vec) const;
+    Vector3 & operator-=(const Vector3 &vec);
+    
+    friend Vector3 operator*(const Vector3 &vec, const float f);
+    friend Vector3 operator*(const float f, const Vector3 &vec);
+    
+    float dot(const Vector3 &vec) const;
+    Vector3 cross(const Vector3 &vec) const;
     
     void normalize();
-    float sqrMagnitude();
-    float magnitude();
+    float sqrMagnitude() const;
+    float magnitude() const;
+    float angleBetween(const Vector3 &vec) const;
+    bool equals(const Vector3 &vec) const;
 };
+
+class Sphere
+{
+public:
+    Vector3 m_pos;
+    float m_radius;
+    
+    Sphere(const Vector3 &pos, const float r);
+};
+
+class Ray3
+{
+public:
+    Vector3 m_pos;
+    Vector3 m_dir;
+    
+    Ray3(const Vector3 &pos, const Vector3 &dir);
+    bool intersects(const Sphere &s, Vector3 *loc);
+};
+
+
 
 class Quaternion
 {

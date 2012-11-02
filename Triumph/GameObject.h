@@ -18,6 +18,8 @@ public:
     Vector3 m_position;
     Quaternion m_rotation;
     
+    float m_boundingRadius;
+    
 	GameObject();
 
     void translate(Vector3 v);

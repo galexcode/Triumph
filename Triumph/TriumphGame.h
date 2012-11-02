@@ -31,6 +31,7 @@
 #include "Texture.h"
 #include "Font.h"
 #include "GameObject.h"
+#include "GameCamera.h"
 
 class TriumphGame
 {
@@ -63,10 +64,16 @@ private:
 	float m_fps;
 
     int m_meshGlobe;
+    int m_meshSkybox;
 	float m_meshGlobeRot;
 	float m_meshGlobeZoom;
     Texture *m_texGlobe;
+    Texture *m_texSkybox;
     GameObject *m_globe;
+    GameObject *m_skybox;
+    Vector3 m_dragGlobeStart;
+    
+	GameCamera m_cam;
 
 	Font *m_font;
     
@@ -74,13 +81,23 @@ private:
 	int m_lastCursorX, m_lastCursorY;
 	int m_lastWheel;
 	bool m_fLeftMouseDown;
+    bool m_fLeftDown;
+    bool m_fRightDown;
+    bool m_fUpDown;
+    bool m_fDownDown;
 
     int m_windowWidth, m_windowHeight;
     float m_elapsedTime;
     
+    void initGlobe();
+    void initSkybox();
+    
     void update(float dTime);
+    void updateCamera();
     void draw(float dTime);
 	void drawUI(float dTime);
+    
+    Ray3 getMouseRay();
     
 };
 

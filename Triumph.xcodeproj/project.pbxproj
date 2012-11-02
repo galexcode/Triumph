@@ -21,6 +21,8 @@
 		D56A7DCF1638810A00B563F1 /* TriumphGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D56A7DCD1638810A00B563F1 /* TriumphGame.cpp */; };
 		D56A7DD21638892800B563F1 /* GameInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D56A7DD01638892800B563F1 /* GameInput.cpp */; };
 		D56A7DD5163890DC00B563F1 /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D56A7DD3163890DC00B563F1 /* Console.cpp */; };
+		D58D7FA91641DCD30082B92D /* GameCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D58D7FA71641DCD30082B92D /* GameCamera.cpp */; };
+		D5DBD06816437D3D00784842 /* sky.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D5DBD06716437D3D00784842 /* sky.bmp */; };
 		D5E588C1163EF01D005DEF0A /* earth_hires.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D5E588C0163EF01D005DEF0A /* earth_hires.bmp */; };
 		D5E588C8163EFC16005DEF0A /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E588C6163EFC16005DEF0A /* GameObject.cpp */; };
 		D5E588CB163F266C005DEF0A /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E588CA163F266C005DEF0A /* Geometry.cpp */; };
@@ -52,6 +54,9 @@
 		D56A7DD11638892800B563F1 /* GameInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameInput.h; sourceTree = "<group>"; };
 		D56A7DD3163890DC00B563F1 /* Console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Console.cpp; sourceTree = "<group>"; };
 		D56A7DD4163890DC00B563F1 /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
+		D58D7FA71641DCD30082B92D /* GameCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCamera.cpp; sourceTree = "<group>"; };
+		D58D7FA81641DCD30082B92D /* GameCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCamera.h; sourceTree = "<group>"; };
+		D5DBD06716437D3D00784842 /* sky.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = sky.bmp; sourceTree = "<group>"; };
 		D5E588BF163EF01D005DEF0A /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
 		D5E588C0163EF01D005DEF0A /* earth_hires.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = earth_hires.bmp; sourceTree = "<group>"; };
 		D5E588C5163EF3DE005DEF0A /* Platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
@@ -78,6 +83,7 @@
 		D503AFBF1639AF760019DEFC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D5DBD06716437D3D00784842 /* sky.bmp */,
 				D503AFC3163B5CF00019DEFC /* globe.bmp */,
 				D5E588C0163EF01D005DEF0A /* earth_hires.bmp */,
 				D503AFB91639AF5A0019DEFC /* courier.bmp */,
@@ -149,6 +155,7 @@
 		D5E588C3163EF029005DEF0A /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				D58D7FA81641DCD30082B92D /* GameCamera.h */,
 				D5E588C7163EFC16005DEF0A /* GameObject.h */,
 				D5E588C9163F2511005DEF0A /* Geometry.h */,
 				D5E588BF163EF01D005DEF0A /* Bitmap.h */,
@@ -165,6 +172,7 @@
 		D5E588C4163EF03B005DEF0A /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D58D7FA71641DCD30082B92D /* GameCamera.cpp */,
 				D503AFBA1639AF5A0019DEFC /* Font.cpp */,
 				D56A7DC21638577000B563F1 /* TriumphMain.cpp */,
 				D56A7DCD1638810A00B563F1 /* TriumphGame.cpp */,
@@ -234,6 +242,7 @@
 				D503AFBC1639AF5A0019DEFC /* courier.bmp in Resources */,
 				D503AFC4163B5CF00019DEFC /* globe.bmp in Resources */,
 				D5E588C1163EF01D005DEF0A /* earth_hires.bmp in Resources */,
+				D5DBD06816437D3D00784842 /* sky.bmp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +261,7 @@
 				D503AFC2163B501B0019DEFC /* Texture.cpp in Sources */,
 				D5E588C8163EFC16005DEF0A /* GameObject.cpp in Sources */,
 				D5E588CB163F266C005DEF0A /* Geometry.cpp in Sources */,
+				D58D7FA91641DCD30082B92D /* GameCamera.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,8 +357,10 @@
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = "Triumph/Triumph-Info.plist";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-lglfw";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -362,8 +374,10 @@
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = "Triumph/Triumph-Info.plist";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-lglfw";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
