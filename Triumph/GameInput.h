@@ -18,6 +18,8 @@
 #define INPUTBTN_MOUSERIGHT  GLFW_MOUSE_BUTTON_RIGHT
 #define INPUTBTN_MOUSEMIDDLE GLFW_MOUSE_BUTTON_MIDDLE
 
+#define NUMBEROFKEYS 256
+
 void GLFWCALL mouse_position_callback(int x, int y);
 void GLFWCALL window_size_callback(int width, int height);
 void GLFWCALL keyboard_callback(int key, int state);
@@ -27,9 +29,29 @@ void GLFWCALL mouse_wheel_callback(int pos);
 class InputManager
 {
 public:
-	bool m_fCmdDown;
-	bool m_fShiftDown;
-	bool m_fAltDown;
+	bool m_fCmd;
+	bool m_fShift;
+	bool m_fAlt;
+    
+    bool m_fMouseLeft;
+    bool m_fMouseMiddle;
+    bool m_fMouseRight;
+    
+    bool m_fLeft;
+    bool m_fRight;
+    bool m_fUp;
+    bool m_fDown;
+    
+    int m_lastWheel;
+    int m_wheel;
+    
+    bool m_fKeys[256];
+    
+    int m_cursorX, m_cursorY;
+	int m_lastCursorX, m_lastCursorY;
+    
+    InputManager();
+    void update(float dTime);
 };
 
 #endif /* defined(__Triumph__Input__) */

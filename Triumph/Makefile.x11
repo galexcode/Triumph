@@ -13,7 +13,10 @@ OBJS = \
 	Console.o \
 	Font.o \
 	GameInput.o \
-    Texture.o
+    Texture.o \
+    Geometry.o \
+    GameObject.o \
+    GameCamera.o
     
 ##########################################################################
 # Rule for building triumph
@@ -58,7 +61,7 @@ Geometry.o: Geometry.cpp Geometry.h
 	$(CC) $(CFLAGS) Geometry.cpp
 	
 Texture.o: Texture.cpp Texture.h Bitmap.h
-    $(CC) $(CFLAGS) Texture.cpp
+	$(CC) $(CFLAGS) Texture.cpp
 
 #TriumphMain.o: TriumphMain.cpp TriumphGame.h
 #	$(CC) $(CFLAGS) TriumphMain.cpp

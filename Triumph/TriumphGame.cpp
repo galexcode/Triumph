@@ -26,13 +26,7 @@ TriumphGame::TriumphGame()
 {
     Console::getInstance()->message(CONSOLE_MSG_SYS, "Starting Triumph");
 
-	m_pInputManager = new InputManager();
-	m_fLeftMouseDown = false;
-    m_fLeftDown = false;
-    m_fRightDown = false;
-    m_fUpDown = false;
-    m_fDownDown = false;
-	m_lastWheel = 0;
+	m_input = new InputManager();
 	m_meshGlobeZoom = 0;
 }
 
@@ -53,11 +47,13 @@ int TriumphGame::init()
         return INIT_FAIL;
     }
     
+    
     if (!glfwExtensionSupported("GL_ARB_multisample"))
     {
         Console::getInstance()->message(CONSOLE_MSG_SYS, "Context reports GL_ARB_multisample is not supported");
         return INIT_FAIL;
     }
+    
     
     // init GLFW settings
     glfwSetWindowTitle(WINDOW_TITLE);
@@ -94,7 +90,6 @@ int TriumphGame::init()
     initGlobe();
     initSkybox();
     
-    
     return INIT_SUCCESS;
 }
 
@@ -108,20 +103,12 @@ void TriumphGame::windowResize(int width, int height)
 
 void TriumphGame::mouseMove(int x, int y)
 {
-    m_cursorX = x;
-    m_cursorY = y;
+
 }
 
 void TriumphGame::keyEvent(int key, int state)
 {
-    if (key == (int)'A')
-        m_fLeftDown = !m_fLeftDown;
-    else if (key == (int)'D')
-        m_fRightDown = !m_fRightDown;
-    else if (key == (int)'W')
-        m_fUpDown = !m_fUpDown;
-    else if (key == (int)'S')
-        m_fDownDown = !m_fDownDown;
+
 }
 
 void TriumphGame::mouseButtonEvent(int button, int state)
@@ -130,8 +117,7 @@ void TriumphGame::mouseButtonEvent(int button, int state)
 	{
 		case INPUTBTN_MOUSELEFT:
 		{
-			m_fLeftMouseDown = state == INPUTSTATE_PRESS;
-            if (!m_fLeftMouseDown)
+            if (!m_input->m_fMouseLeft)
             {
                 m_dragGlobeStart = Vector3::zero;
             }
@@ -139,15 +125,14 @@ void TriumphGame::mouseButtonEvent(int button, int state)
 	}
 }
 
-void TriumphGame::mouseWheelEvent(int pos)
+void TriumphGame::mouseWheelEvent(int dir)
 {
-	m_meshGlobeZoom += pos - m_lastWheel;
+	m_meshGlobeZoom += dir;
     if (m_meshGlobeZoom < 1)
         m_meshGlobeZoom = 1;
     Vector3 eyeNorm = m_cam.m_eye;
     eyeNorm.normalize();
-	m_cam.m_eye += (pos - m_lastWheel) * eyeNorm * -10;
-    m_lastWheel = pos;
+	m_cam.m_eye += (dir) * eyeNorm * -10;
     m_dragGlobeStart = Vector3::zero;
 }
 
@@ -167,7 +152,6 @@ void TriumphGame::initGlobe()
     gluSphere(sphere, radius, 200, 200);
     glEndList();
     gluDeleteQuadric(sphere);
-	m_meshGlobeRot = 0;
     
     m_globe = new GameObject();
 	m_globe->rotate(Vector3::right, PI / 2);
@@ -176,23 +160,12 @@ void TriumphGame::initGlobe()
 
 void TriumphGame::initSkybox()
 {
-    float radius = 4000.0f;
-    m_texSkybox = Texture::CreateFromFile("sky2.bmp");
-    
-    GLUquadricObj *sphere = NULL;
-    sphere = gluNewQuadric();
-    gluQuadricDrawStyle(sphere, GLU_FILL);
-    gluQuadricTexture(sphere, GL_TRUE);
-    gluQuadricNormals(sphere, GLU_SMOOTH);
-	gluQuadricOrientation(sphere, GLU_INSIDE);
-    m_meshSkybox = glGenLists(1);
-    glNewList(m_meshSkybox, GL_COMPILE);
-    gluSphere(sphere, radius, 200, 200);
-    glEndList();
-    gluDeleteQuadric(sphere);
-    
-    m_skybox = new GameObject();
-    m_skybox->m_boundingRadius = radius;
+    m_texSkybox[TOP_ID] = Texture::CreateFromFile("skyboxhigh_top.bmp");
+    m_texSkybox[BOTTOM_ID] = Texture::CreateFromFile("skyboxhigh_bottom.bmp");
+    m_texSkybox[LEFT_ID] = Texture::CreateFromFile("skyboxhigh_left.bmp");
+    m_texSkybox[RIGHT_ID] = Texture::CreateFromFile("skyboxhigh_right.bmp");
+    m_texSkybox[FRONT_ID] = Texture::CreateFromFile("skyboxhigh_front.bmp");
+    m_texSkybox[BACK_ID] = Texture::CreateFromFile("skyboxhigh_back.bmp");
 }
 
 void TriumphGame::drawUI(float dTime)
@@ -219,21 +192,14 @@ void TriumphGame::updateCamera()
 void TriumphGame::draw(float dTime)
 {
     glEnable(GL_TEXTURE_2D);
-
+    
     glPushMatrix();
     glTranslatef(m_globe->m_position.m_x, m_globe->m_position.m_y, m_globe->m_position.m_z);
     glMultMatrixf(m_globe->m_rotation.getMatrix().v);
-    glRotatef(m_meshGlobeRot, 0.0f, 0.0f, 1.0f);
     glBindTexture(GL_TEXTURE_2D, m_texGlobe->gid());
     glCallList(m_meshGlobe);
     glPopMatrix();
-    
-    glPushMatrix();
-    glTranslated(m_cam.m_eye.m_x, m_cam.m_eye.m_y, m_cam.m_eye.m_z);
-    glBindTexture(GL_TEXTURE_2D, m_texSkybox->gid());
-    glCallList(m_meshSkybox);
-    glPopMatrix();
-    
+     
     glDisable(GL_TEXTURE_2D);
 }
 
@@ -250,15 +216,15 @@ Ray3 TriumphGame::getMouseRay()
     glGetDoublev(GL_PROJECTION_MATRIX,projMatrix);
     
     //unproject to find actual coordinates
-    gluUnProject(m_cursorX,
-                 m_windowHeight - m_cursorY,
+    gluUnProject(m_input->m_cursorX,
+                 m_windowHeight - m_input->m_cursorY,
                  0.0f,
                  mvMatrix,
                  projMatrix,
                  viewport,
                  &m1x,&m1y,&m1z);
-    gluUnProject(m_cursorX,
-                 m_windowHeight - m_cursorY,
+    gluUnProject(m_input->m_cursorX,
+                 m_windowHeight - m_input->m_cursorY,
                  1.0f,
                  mvMatrix,
                  projMatrix,
@@ -279,28 +245,28 @@ void TriumphGame::update(float dTime)
     float angle = 0;
     Vector3 vec;
     Vector3 dir = m_cam.m_target - m_cam.m_eye;
-    if (m_fLeftDown || m_fRightDown)
+    if (m_input->m_fLeft || m_input->m_fRight)
     {
-        if (m_fLeftDown)
+        if (m_input->m_fLeft)
         {
             angle = -0.02f; // / m_meshGlobeZoom;
             vec = Vector3::up;
         }
-        if (m_fRightDown)
+        if (m_input->m_fRight)
         {
             angle += 0.02f; // / m_meshGlobeZoom;
             vec = Vector3::up;
         }
         m_cam.m_eye = Quaternion::CreateFromAxis(vec, angle) * m_cam.m_eye;
     }
-    if (m_fUpDown || m_fDownDown)
+    if (m_input->m_fUp || m_input->m_fDown)
     {
-        if (m_fUpDown)
+        if (m_input->m_fUp)
         {
             angle = -0.02f; // / m_meshGlobeZoom;
             vec = dir.cross(m_cam.m_up);
         }
-        if (m_fDownDown)
+        if (m_input->m_fDown)
         {
             angle += 0.02f; // / m_meshGlobeZoom;
             vec = dir.cross(m_cam.m_up);
@@ -308,7 +274,7 @@ void TriumphGame::update(float dTime)
         m_cam.m_eye = Quaternion::CreateFromAxis(vec, angle) * m_cam.m_eye;
     }
     
-    if (m_fLeftMouseDown)
+    if (m_input->m_fMouseLeft)
 	{
         // this seems pretty sloppy, but it will allow us to
         // rotate the camera about the mouse drag of the globe
@@ -339,10 +305,7 @@ void TriumphGame::update(float dTime)
             }
         }
 	}
-    
-    
-	m_lastCursorX = m_cursorX;
-	m_lastCursorY = m_cursorY;
+
 }
 
 void TriumphGame::set3D()
@@ -382,8 +345,10 @@ void TriumphGame::run()
         
         update(dTime);
         console->update(dTime);
+        m_input->update(dTime);
         
         draw(dTime);
+        drawSkybox(dTime);
 
 		set2D();
 		drawUI(dTime);
@@ -391,6 +356,76 @@ void TriumphGame::run()
         
         glfwSwapBuffers();
     }
+}
+
+void TriumphGame::drawSkybox(float dTime)
+{
+    /*
+     All this function does is create 6 squares and distance them according to the measurements
+     provided by the user. Mess around with it if you want.
+     */
+    
+    
+    glEnable(GL_TEXTURE_2D);
+    
+    // Bind the BACK texture of the sky map to the BACK side of the cube
+    glBindTexture(GL_TEXTURE_2D, m_texSkybox[BACK_ID]->gid());
+    
+    float size = 10000.0f;
+    float width, height, length;
+    width = height = length = size;
+    
+    // Center the skybox
+    float x = m_cam.m_eye.m_x - width / 2;
+    float y = m_cam.m_eye.m_y - height / 2;
+    float z = m_cam.m_eye.m_z - length / 2;
+    glBegin(GL_QUADS);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(x + width, y,			z);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(x + width, y + height, z);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(x,			y + height, z);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(x,			y,			z);
+    
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, m_texSkybox[FRONT_ID]->gid());
+    glBegin(GL_QUADS);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(x,			y,			z + length);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(x,			y + height, z + length);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(x + width, y + height, z + length);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(x + width, y,			z + length);
+    glEnd();
+    
+    glBindTexture(GL_TEXTURE_2D, m_texSkybox[BOTTOM_ID]->gid());
+    glBegin(GL_QUADS);
+    
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(x,			y,			z);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(x,			y,			z + length);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(x + width, y,			z + length);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(x + width, y,			z);
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, m_texSkybox[TOP_ID]->gid());
+    glBegin(GL_QUADS);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(x + width, y + height, z);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(x + width, y + height, z + length);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(x,			y + height,	z + length);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(x,			y + height,	z);
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, m_texSkybox[RIGHT_ID]->gid());
+    glBegin(GL_QUADS);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(x,			y + height,	z);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(x,			y + height,	z + length);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(x,			y,			z + length);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(x,			y,			z);
+    
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, m_texSkybox[LEFT_ID]->gid());
+    glBegin(GL_QUADS);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(x + width, y,			z);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(x + width, y,			z + length);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(x + width, y + height,	z + length);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(x + width, y + height,	z);
+    glEnd();
+    
+    glDisable(GL_TEXTURE_2D);
 }
 
 void TriumphGame::getWindowSize(int *w, int *h)
@@ -407,9 +442,16 @@ float TriumphGame::getElapsedTime()
 void TriumphGame::clean()
 {
     glDeleteLists(m_meshGlobe, 1);
-    glDeleteLists(m_meshSkybox, 1);
+    
     delete m_texGlobe;
-    delete m_texSkybox;
+    delete m_texSkybox[TOP_ID];
+    delete m_texSkybox[BOTTOM_ID];
+    delete m_texSkybox[LEFT_ID];
+    delete m_texSkybox[RIGHT_ID];
+    delete m_texSkybox[FRONT_ID];
+    delete m_texSkybox[BACK_ID];
+    
+    delete m_globe;
     
     glfwTerminate();
     

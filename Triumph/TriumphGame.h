@@ -23,6 +23,13 @@
 #define INIT_SUCCESS 0
 #define INIT_FAIL 1
 
+#define BACK_ID 0
+#define FRONT_ID 1
+#define RIGHT_ID 2
+#define LEFT_ID 3
+#define TOP_ID 4
+#define BOTTOM_ID 5
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <GL/glfw.h>
@@ -36,7 +43,7 @@
 class TriumphGame
 {
 public:
-	InputManager *m_pInputManager;
+	InputManager *m_input;
 
     static TriumphGame* getInstance();
     int init();
@@ -50,7 +57,7 @@ public:
     void windowResize(int width, int height);
     void keyEvent(int key, int state);
 	void mouseButtonEvent(int button, int state);
-	void mouseWheelEvent(int pos);
+	void mouseWheelEvent(int dir);
 
 	void set2D();
 	void set3D();
@@ -64,27 +71,15 @@ private:
 	float m_fps;
 
     int m_meshGlobe;
-    int m_meshSkybox;
-	float m_meshGlobeRot;
 	float m_meshGlobeZoom;
     Texture *m_texGlobe;
-    Texture *m_texSkybox;
+    Texture *m_texSkybox[6];
     GameObject *m_globe;
-    GameObject *m_skybox;
     Vector3 m_dragGlobeStart;
     
 	GameCamera m_cam;
 
 	Font *m_font;
-    
-    int m_cursorX, m_cursorY;
-	int m_lastCursorX, m_lastCursorY;
-	int m_lastWheel;
-	bool m_fLeftMouseDown;
-    bool m_fLeftDown;
-    bool m_fRightDown;
-    bool m_fUpDown;
-    bool m_fDownDown;
 
     int m_windowWidth, m_windowHeight;
     float m_elapsedTime;
@@ -95,6 +90,7 @@ private:
     void update(float dTime);
     void updateCamera();
     void draw(float dTime);
+    void drawSkybox(float dTime);
 	void drawUI(float dTime);
     
     Ray3 getMouseRay();

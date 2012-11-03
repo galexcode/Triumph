@@ -20,7 +20,7 @@ default:
 # X11 on Unix-like Systems
 #################################################################################
 
-MAKEFILE_X11    = Makefile.x11
+MAKEFILE_X11    = Triumph/Makefile.x11
 
 # Cleanup for X11
 x11-clean: $(MAKEFILE_X11)

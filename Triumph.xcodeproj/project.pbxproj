@@ -11,6 +11,13 @@
 		D503AFBD1639AF5A0019DEFC /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D503AFBA1639AF5A0019DEFC /* Font.cpp */; };
 		D503AFC2163B501B0019DEFC /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D503AFC0163B501B0019DEFC /* Texture.cpp */; };
 		D503AFC4163B5CF00019DEFC /* globe.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D503AFC3163B5CF00019DEFC /* globe.bmp */; };
+		D54654FF1644553400971200 /* sky2.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D54654FE1644553400971200 /* sky2.bmp */; };
+		D54655071644793A00971200 /* Back.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D54655011644793A00971200 /* Back.bmp */; };
+		D54655081644793A00971200 /* Bottom.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D54655021644793A00971200 /* Bottom.bmp */; };
+		D54655091644793A00971200 /* Front.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D54655031644793A00971200 /* Front.bmp */; };
+		D546550A1644793A00971200 /* Left.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D54655041644793A00971200 /* Left.bmp */; };
+		D546550B1644793A00971200 /* Right.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D54655051644793A00971200 /* Right.bmp */; };
+		D546550C1644793A00971200 /* Top.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D54655061644793A00971200 /* Top.bmp */; };
 		D56A7DA0163856C700B563F1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D56A7D9F163856C700B563F1 /* Cocoa.framework */; };
 		D56A7DAA163856C700B563F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D56A7DA8163856C700B563F1 /* InfoPlist.strings */; };
 		D56A7DB0163856C700B563F1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D56A7DAE163856C700B563F1 /* Credits.rtf */; };
@@ -35,6 +42,13 @@
 		D503AFC0163B501B0019DEFC /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		D503AFC1163B501B0019DEFC /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		D503AFC3163B5CF00019DEFC /* globe.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = globe.bmp; sourceTree = "<group>"; };
+		D54654FE1644553400971200 /* sky2.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = sky2.bmp; sourceTree = "<group>"; };
+		D54655011644793A00971200 /* Back.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Back.bmp; sourceTree = "<group>"; };
+		D54655021644793A00971200 /* Bottom.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Bottom.bmp; sourceTree = "<group>"; };
+		D54655031644793A00971200 /* Front.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Front.bmp; sourceTree = "<group>"; };
+		D54655041644793A00971200 /* Left.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Left.bmp; sourceTree = "<group>"; };
+		D54655051644793A00971200 /* Right.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Right.bmp; sourceTree = "<group>"; };
+		D54655061644793A00971200 /* Top.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Top.bmp; sourceTree = "<group>"; };
 		D56A7D9B163856C700B563F1 /* Triumph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Triumph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D56A7D9F163856C700B563F1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D56A7DA2163856C700B563F1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -83,6 +97,13 @@
 		D503AFBF1639AF760019DEFC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D54655011644793A00971200 /* Back.bmp */,
+				D54655021644793A00971200 /* Bottom.bmp */,
+				D54655031644793A00971200 /* Front.bmp */,
+				D54655041644793A00971200 /* Left.bmp */,
+				D54655051644793A00971200 /* Right.bmp */,
+				D54655061644793A00971200 /* Top.bmp */,
+				D54654FE1644553400971200 /* sky2.bmp */,
 				D5DBD06716437D3D00784842 /* sky.bmp */,
 				D503AFC3163B5CF00019DEFC /* globe.bmp */,
 				D5E588C0163EF01D005DEF0A /* earth_hires.bmp */,
@@ -243,6 +264,13 @@
 				D503AFC4163B5CF00019DEFC /* globe.bmp in Resources */,
 				D5E588C1163EF01D005DEF0A /* earth_hires.bmp in Resources */,
 				D5DBD06816437D3D00784842 /* sky.bmp in Resources */,
+				D54654FF1644553400971200 /* sky2.bmp in Resources */,
+				D54655071644793A00971200 /* Back.bmp in Resources */,
+				D54655081644793A00971200 /* Bottom.bmp in Resources */,
+				D54655091644793A00971200 /* Front.bmp in Resources */,
+				D546550A1644793A00971200 /* Left.bmp in Resources */,
+				D546550B1644793A00971200 /* Right.bmp in Resources */,
+				D546550C1644793A00971200 /* Top.bmp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
