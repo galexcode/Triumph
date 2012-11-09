@@ -16,7 +16,8 @@ OBJS = \
     Texture.o \
     Geometry.o \
     GameObject.o \
-    GameCamera.o
+    GameCamera.o \
+    GameEngine.o
     
 ##########################################################################
 # Rule for building triumph
@@ -29,7 +30,8 @@ triumph: TriumphMain.cpp TriumphGame.h $(OBJS)
 # Header Dependencies
 ##########################################################################
 
-TriumphGame.h: GameInput.h Texture.h Font.h GameObject.h GameCamera.h
+GameEngine.h: GameInput.h Texture.h Game.h
+TriumphGame.h: Game.h Texture.h Font.h GameObject.h GameCamera.h GameEngine.h
 Console.h: Font.h
 GameCamera.h: Geometry.h
 GameObject.h: Geometry.h
@@ -47,6 +49,9 @@ Console.o: Console.cpp Console.h TriumphGame.h
 
 Font.o: Font.cpp Font.h
 	$(CC) $(CFLAGS) Font.cpp
+
+GameEngine.o: GameEngine.cpp GameEngine.h Console.h
+	$(CC) $(CFLAGS) GameEngine.cpp
 
 GameInput.o: GameInput.cpp GameInput.h TriumphGame.h
 	$(CC) $(CFLAGS) GameInput.cpp

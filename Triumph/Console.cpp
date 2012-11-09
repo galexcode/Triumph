@@ -7,7 +7,7 @@
 //
 
 #include "Console.h"
-#include "TriumphGame.h"
+#include "GameEngine.h"
 #include <string.h>
 
 Console* Console::getInstance()
@@ -111,7 +111,7 @@ void Console::draw(float dTime)
     if (m_fScreenDisplay)
     {
         int w, h;
-        TriumphGame::getInstance()->getWindowSize(&w, &h);
+        GameEngine::getInstance()->getWindowSize(&w, &h);
         
         for (int i = 0; i < LOG_BUFFER_SIZE; ++i)
         {

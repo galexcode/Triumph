@@ -1,0 +1,19 @@
+OBJS = \
+    TriumphGame.o \
+    Console.o \
+    Font.o \
+    GameInput.o \
+    Texture.o \
+    Geometry.o \
+	GameObject.o \
+	GameCamera.o \
+	GameEngine.o
+
+
+
+##########################################################################
+# Clean
+##########################################################################
+
+clean:
+	rm -f $(OBJS) triumph

@@ -1,15 +1,17 @@
+#include "GameEngine.h"
 #include "TriumphGame.h"
 
 int main(void)
 {
     
-    TriumphGame *game = TriumphGame::getInstance();
+    GameEngine *engine = GameEngine::getInstance();
+    Game *game = new TriumphGame();
     
-    if (game->init() == INIT_SUCCESS)
+    if (engine->init(game) == INIT_SUCCESS)
     {
-        game->run();
+        engine->run();
     }
-    game->clean();
+    engine->clean();
     
 	exit(EXIT_SUCCESS);
 }

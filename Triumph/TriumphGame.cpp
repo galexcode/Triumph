@@ -11,75 +11,17 @@
 
 #include "Console.h"
 
-TriumphGame* TriumphGame::m_pInstance = NULL;
-
-TriumphGame* TriumphGame::getInstance()
-{
-    if (m_pInstance == NULL)
-    {
-        m_pInstance = new TriumphGame();
-    }
-    return m_pInstance;
-}
 
 TriumphGame::TriumphGame()
 {
     Console::getInstance()->message(CONSOLE_MSG_SYS, "Starting Triumph");
 
-	m_input = new InputManager();
+    m_engine = GameEngine::getInstance();
 	m_meshGlobeZoom = 0;
 }
 
 int TriumphGame::init()
 {
-    
-    if (!glfwInit())
-    {
-        Console::getInstance()->message(CONSOLE_MSG_SYS, "Failed to Initialize GLFW");
-        return INIT_FAIL;
-    }
-    
-    glfwOpenWindowHint(GLFW_FSAA_SAMPLES, FSAA_SAMPLES);
-    
-    if (!glfwOpenWindow(WINDOW_WIDTH, WINDOW_HEIGHT, 8, 8, 8, 8, 8, 8, GLFW_WINDOW))
-    {
-        Console::getInstance()->message(CONSOLE_MSG_SYS, "Failed to open GLFW window");
-        return INIT_FAIL;
-    }
-    
-    
-    if (!glfwExtensionSupported("GL_ARB_multisample"))
-    {
-        Console::getInstance()->message(CONSOLE_MSG_SYS, "Context reports GL_ARB_multisample is not supported");
-        return INIT_FAIL;
-    }
-    
-    
-    // init GLFW settings
-    glfwSetWindowTitle(WINDOW_TITLE);
-    glfwSetWindowSizeCallback(window_size_callback);
-    glfwSetMousePosCallback(mouse_position_callback);
-    glfwSetKeyCallback(keyboard_callback);
-	glfwSetMouseButtonCallback(mouse_button_callback);
-	glfwSetMouseWheelCallback(mouse_wheel_callback);
-    glfwSwapInterval(1);
-
-    // init OPENGL settings
-    glClearColor(0, 0, 0, 0);
-    glClearDepth(1.0f);
-	glViewport(0, 0, m_windowWidth, m_windowHeight);
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LEQUAL);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glClearDepth(1.0f);
-	glEnable(GL_BLEND);
-	glEnable (GL_CULL_FACE);
-    glShadeModel(GL_SMOOTH);
-    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); 
-    
-    // init the visual console
-    Console::getInstance()->initScreenDisplay();
-
     // init the debug font
 	m_font = new Font("courier.bmp");
 	m_font->init();
@@ -93,31 +35,13 @@ int TriumphGame::init()
     return INIT_SUCCESS;
 }
 
-void TriumphGame::windowResize(int width, int height)
-{
-    m_windowWidth = width;
-    m_windowHeight = height;
-    
-    glViewport(0, 0, m_windowWidth, m_windowHeight);
-}
-
-void TriumphGame::mouseMove(int x, int y)
-{
-
-}
-
-void TriumphGame::keyEvent(int key, int state)
-{
-
-}
-
 void TriumphGame::mouseButtonEvent(int button, int state)
 {
 	switch (button)
 	{
 		case INPUTBTN_MOUSELEFT:
 		{
-            if (!m_input->m_fMouseLeft)
+            if (!m_engine->m_input->m_fMouseLeft)
             {
                 m_dragGlobeStart = Vector3::zero;
             }
@@ -171,8 +95,8 @@ void TriumphGame::initSkybox()
 void TriumphGame::drawUI(float dTime)
 {
 	char buf[256];
-	sprintf(buf, "%d", (int)m_fps);
-	m_font->print(buf, m_windowWidth - 30, m_windowHeight - 20);
+	sprintf(buf, "%d", (int)m_engine->m_fps);
+	m_font->print(buf, m_engine->m_windowWidth - 30, m_engine->m_windowHeight - 20);
 }
 
 // use this function to get the camera positioned properly
@@ -182,7 +106,7 @@ void TriumphGame::updateCamera()
 	
     // camera is based on a 3d system, so make sure the 3d
     // perspective is set before the lookat transform is done
-    set3D();
+    m_engine->set3D();
     
 	gluLookAt(m_cam.m_eye.m_x, m_cam.m_eye.m_y, m_cam.m_eye.m_z,
 		m_cam.m_target.m_x, m_cam.m_target.m_y, m_cam.m_target.m_z,
@@ -199,8 +123,10 @@ void TriumphGame::draw(float dTime)
     glBindTexture(GL_TEXTURE_2D, m_texGlobe->gid());
     glCallList(m_meshGlobe);
     glPopMatrix();
-     
+    
     glDisable(GL_TEXTURE_2D);
+    
+    drawSkybox(dTime);
 }
 
 Ray3 TriumphGame::getMouseRay()
@@ -216,15 +142,15 @@ Ray3 TriumphGame::getMouseRay()
     glGetDoublev(GL_PROJECTION_MATRIX,projMatrix);
     
     //unproject to find actual coordinates
-    gluUnProject(m_input->m_cursorX,
-                 m_windowHeight - m_input->m_cursorY,
+    gluUnProject(m_engine->m_input->m_cursorX,
+                 m_engine->m_windowHeight - m_engine->m_input->m_cursorY,
                  0.0f,
                  mvMatrix,
                  projMatrix,
                  viewport,
                  &m1x,&m1y,&m1z);
-    gluUnProject(m_input->m_cursorX,
-                 m_windowHeight - m_input->m_cursorY,
+    gluUnProject(m_engine->m_input->m_cursorX,
+                 m_engine->m_windowHeight - m_engine->m_input->m_cursorY,
                  1.0f,
                  mvMatrix,
                  projMatrix,
@@ -242,31 +168,33 @@ Ray3 TriumphGame::getMouseRay()
 // prepared for the scene
 void TriumphGame::update(float dTime)
 {
+    updateCamera();
+    
     float angle = 0;
     Vector3 vec;
     Vector3 dir = m_cam.m_target - m_cam.m_eye;
-    if (m_input->m_fLeft || m_input->m_fRight)
+    if (m_engine->m_input->m_fLeft || m_engine->m_input->m_fRight)
     {
-        if (m_input->m_fLeft)
+        if (m_engine->m_input->m_fLeft)
         {
             angle = -0.02f; // / m_meshGlobeZoom;
             vec = Vector3::up;
         }
-        if (m_input->m_fRight)
+        if (m_engine->m_input->m_fRight)
         {
             angle += 0.02f; // / m_meshGlobeZoom;
             vec = Vector3::up;
         }
         m_cam.m_eye = Quaternion::CreateFromAxis(vec, angle) * m_cam.m_eye;
     }
-    if (m_input->m_fUp || m_input->m_fDown)
+    if (m_engine->m_input->m_fUp || m_engine->m_input->m_fDown)
     {
-        if (m_input->m_fUp)
+        if (m_engine->m_input->m_fUp)
         {
             angle = -0.02f; // / m_meshGlobeZoom;
             vec = dir.cross(m_cam.m_up);
         }
-        if (m_input->m_fDown)
+        if (m_engine->m_input->m_fDown)
         {
             angle += 0.02f; // / m_meshGlobeZoom;
             vec = dir.cross(m_cam.m_up);
@@ -274,7 +202,7 @@ void TriumphGame::update(float dTime)
         m_cam.m_eye = Quaternion::CreateFromAxis(vec, angle) * m_cam.m_eye;
     }
     
-    if (m_input->m_fMouseLeft)
+    if (m_engine->m_input->m_fMouseLeft)
 	{
         // this seems pretty sloppy, but it will allow us to
         // rotate the camera about the mouse drag of the globe
@@ -306,56 +234,6 @@ void TriumphGame::update(float dTime)
         }
 	}
 
-}
-
-void TriumphGame::set3D()
-{
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(45, m_windowWidth / m_windowHeight, 0.1, 10000);
-
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-}
-
-void TriumphGame::set2D()
-{
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(0, m_windowWidth, 0, m_windowHeight, -1.0, 1.0);
-    
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-}
-
-void TriumphGame::run()
-{	
-	m_elapsedTime = (float) glfwGetTime();
-    
-    while (glfwGetWindowParam(GLFW_OPENED))
-    {
-        float dTime = (float) glfwGetTime() - m_elapsedTime;
-		m_fps = 1 / dTime;
-        m_elapsedTime += dTime;
-        Console *console = Console::getInstance();
-        
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        
-		updateCamera(); // also sets 3d mode
-        
-        update(dTime);
-        console->update(dTime);
-        m_input->update(dTime);
-        
-        draw(dTime);
-        drawSkybox(dTime);
-
-		set2D();
-		drawUI(dTime);
-        console->draw(dTime);
-        
-        glfwSwapBuffers();
-    }
 }
 
 void TriumphGame::drawSkybox(float dTime)
@@ -428,17 +306,6 @@ void TriumphGame::drawSkybox(float dTime)
     glDisable(GL_TEXTURE_2D);
 }
 
-void TriumphGame::getWindowSize(int *w, int *h)
-{
-    *w = m_windowWidth;
-    *h = m_windowHeight;
-}
-
-float TriumphGame::getElapsedTime()
-{
-    return m_elapsedTime;
-}
-
 void TriumphGame::clean()
 {
     glDeleteLists(m_meshGlobe, 1);
@@ -452,10 +319,5 @@ void TriumphGame::clean()
     delete m_texSkybox[BACK_ID];
     
     delete m_globe;
-    
-    glfwTerminate();
-    
-    // kill singleton
-    delete m_pInstance;
 }
 

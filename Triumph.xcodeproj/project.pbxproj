@@ -10,14 +10,7 @@
 		D503AFBC1639AF5A0019DEFC /* courier.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D503AFB91639AF5A0019DEFC /* courier.bmp */; };
 		D503AFBD1639AF5A0019DEFC /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D503AFBA1639AF5A0019DEFC /* Font.cpp */; };
 		D503AFC2163B501B0019DEFC /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D503AFC0163B501B0019DEFC /* Texture.cpp */; };
-		D503AFC4163B5CF00019DEFC /* globe.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D503AFC3163B5CF00019DEFC /* globe.bmp */; };
-		D54654FF1644553400971200 /* sky2.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D54654FE1644553400971200 /* sky2.bmp */; };
-		D54655071644793A00971200 /* Back.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D54655011644793A00971200 /* Back.bmp */; };
-		D54655081644793A00971200 /* Bottom.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D54655021644793A00971200 /* Bottom.bmp */; };
-		D54655091644793A00971200 /* Front.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D54655031644793A00971200 /* Front.bmp */; };
-		D546550A1644793A00971200 /* Left.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D54655041644793A00971200 /* Left.bmp */; };
-		D546550B1644793A00971200 /* Right.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D54655051644793A00971200 /* Right.bmp */; };
-		D546550C1644793A00971200 /* Top.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D54655061644793A00971200 /* Top.bmp */; };
+		D51D7D39164C3A8E006470AC /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D51D7D37164C3A8E006470AC /* GameEngine.cpp */; };
 		D56A7DA0163856C700B563F1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D56A7D9F163856C700B563F1 /* Cocoa.framework */; };
 		D56A7DAA163856C700B563F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D56A7DA8163856C700B563F1 /* InfoPlist.strings */; };
 		D56A7DB0163856C700B563F1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D56A7DAE163856C700B563F1 /* Credits.rtf */; };
@@ -28,8 +21,13 @@
 		D56A7DCF1638810A00B563F1 /* TriumphGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D56A7DCD1638810A00B563F1 /* TriumphGame.cpp */; };
 		D56A7DD21638892800B563F1 /* GameInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D56A7DD01638892800B563F1 /* GameInput.cpp */; };
 		D56A7DD5163890DC00B563F1 /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D56A7DD3163890DC00B563F1 /* Console.cpp */; };
+		D56D6842164B3132003DB314 /* skyboxhigh_back.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D56D683C164B3132003DB314 /* skyboxhigh_back.bmp */; };
+		D56D6843164B3132003DB314 /* skyboxhigh_bottom.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D56D683D164B3132003DB314 /* skyboxhigh_bottom.bmp */; };
+		D56D6844164B3132003DB314 /* skyboxhigh_front.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D56D683E164B3132003DB314 /* skyboxhigh_front.bmp */; };
+		D56D6845164B3132003DB314 /* skyboxhigh_left.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D56D683F164B3132003DB314 /* skyboxhigh_left.bmp */; };
+		D56D6846164B3132003DB314 /* skyboxhigh_right.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D56D6840164B3132003DB314 /* skyboxhigh_right.bmp */; };
+		D56D6847164B3132003DB314 /* skyboxhigh_top.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D56D6841164B3132003DB314 /* skyboxhigh_top.bmp */; };
 		D58D7FA91641DCD30082B92D /* GameCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D58D7FA71641DCD30082B92D /* GameCamera.cpp */; };
-		D5DBD06816437D3D00784842 /* sky.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D5DBD06716437D3D00784842 /* sky.bmp */; };
 		D5E588C1163EF01D005DEF0A /* earth_hires.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D5E588C0163EF01D005DEF0A /* earth_hires.bmp */; };
 		D5E588C8163EFC16005DEF0A /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E588C6163EFC16005DEF0A /* GameObject.cpp */; };
 		D5E588CB163F266C005DEF0A /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E588CA163F266C005DEF0A /* Geometry.cpp */; };
@@ -41,14 +39,9 @@
 		D503AFBB1639AF5A0019DEFC /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
 		D503AFC0163B501B0019DEFC /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		D503AFC1163B501B0019DEFC /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
-		D503AFC3163B5CF00019DEFC /* globe.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = globe.bmp; sourceTree = "<group>"; };
-		D54654FE1644553400971200 /* sky2.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = sky2.bmp; sourceTree = "<group>"; };
-		D54655011644793A00971200 /* Back.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Back.bmp; sourceTree = "<group>"; };
-		D54655021644793A00971200 /* Bottom.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Bottom.bmp; sourceTree = "<group>"; };
-		D54655031644793A00971200 /* Front.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Front.bmp; sourceTree = "<group>"; };
-		D54655041644793A00971200 /* Left.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Left.bmp; sourceTree = "<group>"; };
-		D54655051644793A00971200 /* Right.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Right.bmp; sourceTree = "<group>"; };
-		D54655061644793A00971200 /* Top.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Top.bmp; sourceTree = "<group>"; };
+		D51D7D37164C3A8E006470AC /* GameEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEngine.cpp; sourceTree = "<group>"; };
+		D51D7D38164C3A8E006470AC /* GameEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngine.h; sourceTree = "<group>"; };
+		D51D7D3C164C3B56006470AC /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		D56A7D9B163856C700B563F1 /* Triumph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Triumph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D56A7D9F163856C700B563F1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D56A7DA2163856C700B563F1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -68,9 +61,14 @@
 		D56A7DD11638892800B563F1 /* GameInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameInput.h; sourceTree = "<group>"; };
 		D56A7DD3163890DC00B563F1 /* Console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Console.cpp; sourceTree = "<group>"; };
 		D56A7DD4163890DC00B563F1 /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
+		D56D683C164B3132003DB314 /* skyboxhigh_back.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = skyboxhigh_back.bmp; sourceTree = "<group>"; };
+		D56D683D164B3132003DB314 /* skyboxhigh_bottom.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = skyboxhigh_bottom.bmp; sourceTree = "<group>"; };
+		D56D683E164B3132003DB314 /* skyboxhigh_front.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = skyboxhigh_front.bmp; sourceTree = "<group>"; };
+		D56D683F164B3132003DB314 /* skyboxhigh_left.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = skyboxhigh_left.bmp; sourceTree = "<group>"; };
+		D56D6840164B3132003DB314 /* skyboxhigh_right.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = skyboxhigh_right.bmp; sourceTree = "<group>"; };
+		D56D6841164B3132003DB314 /* skyboxhigh_top.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = skyboxhigh_top.bmp; sourceTree = "<group>"; };
 		D58D7FA71641DCD30082B92D /* GameCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCamera.cpp; sourceTree = "<group>"; };
 		D58D7FA81641DCD30082B92D /* GameCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCamera.h; sourceTree = "<group>"; };
-		D5DBD06716437D3D00784842 /* sky.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = sky.bmp; sourceTree = "<group>"; };
 		D5E588BF163EF01D005DEF0A /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
 		D5E588C0163EF01D005DEF0A /* earth_hires.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = earth_hires.bmp; sourceTree = "<group>"; };
 		D5E588C5163EF3DE005DEF0A /* Platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
@@ -97,17 +95,14 @@
 		D503AFBF1639AF760019DEFC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D54655011644793A00971200 /* Back.bmp */,
-				D54655021644793A00971200 /* Bottom.bmp */,
-				D54655031644793A00971200 /* Front.bmp */,
-				D54655041644793A00971200 /* Left.bmp */,
-				D54655051644793A00971200 /* Right.bmp */,
-				D54655061644793A00971200 /* Top.bmp */,
-				D54654FE1644553400971200 /* sky2.bmp */,
-				D5DBD06716437D3D00784842 /* sky.bmp */,
-				D503AFC3163B5CF00019DEFC /* globe.bmp */,
-				D5E588C0163EF01D005DEF0A /* earth_hires.bmp */,
 				D503AFB91639AF5A0019DEFC /* courier.bmp */,
+				D5E588C0163EF01D005DEF0A /* earth_hires.bmp */,
+				D56D683C164B3132003DB314 /* skyboxhigh_back.bmp */,
+				D56D683D164B3132003DB314 /* skyboxhigh_bottom.bmp */,
+				D56D683E164B3132003DB314 /* skyboxhigh_front.bmp */,
+				D56D683F164B3132003DB314 /* skyboxhigh_left.bmp */,
+				D56D6840164B3132003DB314 /* skyboxhigh_right.bmp */,
+				D56D6841164B3132003DB314 /* skyboxhigh_top.bmp */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -176,16 +171,18 @@
 		D5E588C3163EF029005DEF0A /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				D5E588BF163EF01D005DEF0A /* Bitmap.h */,
+				D56A7DD4163890DC00B563F1 /* Console.h */,
+				D503AFBB1639AF5A0019DEFC /* Font.h */,
+				D51D7D3C164C3B56006470AC /* Game.h */,
 				D58D7FA81641DCD30082B92D /* GameCamera.h */,
+				D51D7D38164C3A8E006470AC /* GameEngine.h */,
+				D56A7DD11638892800B563F1 /* GameInput.h */,
 				D5E588C7163EFC16005DEF0A /* GameObject.h */,
 				D5E588C9163F2511005DEF0A /* Geometry.h */,
-				D5E588BF163EF01D005DEF0A /* Bitmap.h */,
-				D503AFBB1639AF5A0019DEFC /* Font.h */,
-				D56A7DCE1638810A00B563F1 /* TriumphGame.h */,
-				D56A7DD11638892800B563F1 /* GameInput.h */,
-				D56A7DD4163890DC00B563F1 /* Console.h */,
-				D503AFC1163B501B0019DEFC /* Texture.h */,
 				D5E588C5163EF3DE005DEF0A /* Platform.h */,
+				D503AFC1163B501B0019DEFC /* Texture.h */,
+				D56A7DCE1638810A00B563F1 /* TriumphGame.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -193,15 +190,16 @@
 		D5E588C4163EF03B005DEF0A /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				D58D7FA71641DCD30082B92D /* GameCamera.cpp */,
-				D503AFBA1639AF5A0019DEFC /* Font.cpp */,
-				D56A7DC21638577000B563F1 /* TriumphMain.cpp */,
-				D56A7DCD1638810A00B563F1 /* TriumphGame.cpp */,
-				D56A7DD01638892800B563F1 /* GameInput.cpp */,
 				D56A7DD3163890DC00B563F1 /* Console.cpp */,
-				D503AFC0163B501B0019DEFC /* Texture.cpp */,
+				D503AFBA1639AF5A0019DEFC /* Font.cpp */,
+				D58D7FA71641DCD30082B92D /* GameCamera.cpp */,
+				D51D7D37164C3A8E006470AC /* GameEngine.cpp */,
+				D56A7DD01638892800B563F1 /* GameInput.cpp */,
 				D5E588C6163EFC16005DEF0A /* GameObject.cpp */,
 				D5E588CA163F266C005DEF0A /* Geometry.cpp */,
+				D503AFC0163B501B0019DEFC /* Texture.cpp */,
+				D56A7DCD1638810A00B563F1 /* TriumphGame.cpp */,
+				D56A7DC21638577000B563F1 /* TriumphMain.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -261,16 +259,13 @@
 				D56A7DB0163856C700B563F1 /* Credits.rtf in Resources */,
 				D56A7DB6163856C700B563F1 /* MainMenu.xib in Resources */,
 				D503AFBC1639AF5A0019DEFC /* courier.bmp in Resources */,
-				D503AFC4163B5CF00019DEFC /* globe.bmp in Resources */,
 				D5E588C1163EF01D005DEF0A /* earth_hires.bmp in Resources */,
-				D5DBD06816437D3D00784842 /* sky.bmp in Resources */,
-				D54654FF1644553400971200 /* sky2.bmp in Resources */,
-				D54655071644793A00971200 /* Back.bmp in Resources */,
-				D54655081644793A00971200 /* Bottom.bmp in Resources */,
-				D54655091644793A00971200 /* Front.bmp in Resources */,
-				D546550A1644793A00971200 /* Left.bmp in Resources */,
-				D546550B1644793A00971200 /* Right.bmp in Resources */,
-				D546550C1644793A00971200 /* Top.bmp in Resources */,
+				D56D6842164B3132003DB314 /* skyboxhigh_back.bmp in Resources */,
+				D56D6843164B3132003DB314 /* skyboxhigh_bottom.bmp in Resources */,
+				D56D6844164B3132003DB314 /* skyboxhigh_front.bmp in Resources */,
+				D56D6845164B3132003DB314 /* skyboxhigh_left.bmp in Resources */,
+				D56D6846164B3132003DB314 /* skyboxhigh_right.bmp in Resources */,
+				D56D6847164B3132003DB314 /* skyboxhigh_top.bmp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +285,7 @@
 				D5E588C8163EFC16005DEF0A /* GameObject.cpp in Sources */,
 				D5E588CB163F266C005DEF0A /* Geometry.cpp in Sources */,
 				D58D7FA91641DCD30082B92D /* GameCamera.cpp in Sources */,
+				D51D7D39164C3A8E006470AC /* GameEngine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

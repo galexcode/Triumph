@@ -8,9 +8,9 @@ default:
 	@echo "---------------------------------------------------------------------"
 	@echo " $(MAKE) x11            to compile for X11 on Unix-like systems"
 	@echo " $(MAKE) x11-clean      to remove any files generated for this target"
-#	@echo "---------------------------------------------------------------------"
+	@echo "---------------------------------------------------------------------"
 #	@echo " $(MAKE) cocoa          to compile for Mac OS X"
-#	@echo " $(MAKE) cocoa-clean    to remove any files generated for this target"
+	@echo " $(MAKE) cocoa-clean    to remove any files generated for this target"
 	@echo "---------------------------------------------------------------------"
 	@echo " There are also Microsoft Visual C++ 2010 and XCode 4 project files  "
 	@echo " available in this directory"
@@ -21,18 +21,16 @@ default:
 #################################################################################
 
 MAKEFILE_X11    = Triumph/Makefile.x11
+MAKEFILE_OSX    = Triumph/Makefile.osx
 
-# Cleanup for X11
 x11-clean: $(MAKEFILE_X11)
 	cd Triumph && $(MAKE) -f Makefile.x11 clean
 
 x11: $(MAKEFILE_X11)
 	cd Triumph && $(MAKE) -f Makefile.x11
     
-    
-    
-    
-    
+cocoa-clean: $(MAKEFILE_OSX)
+	cd Triumph && $(MAKE) -f Makefile.osx clean    
     
     
     

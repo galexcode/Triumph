@@ -7,7 +7,7 @@
 //
 
 #include "GameInput.h"
-#include "TriumphGame.h"
+#include "GameEngine.h"
 #include <GL/glfw.h>
 
 InputManager::InputManager()
@@ -35,7 +35,7 @@ void InputManager::update(float dTime)
 
 void GLFWCALL mouse_position_callback(int x, int y)
 {
-    TriumphGame *engine = TriumphGame::getInstance();
+    GameEngine *engine = GameEngine::getInstance();
     engine->m_input->m_cursorX = x;
 	engine->m_input->m_cursorY = y;
     
@@ -44,12 +44,12 @@ void GLFWCALL mouse_position_callback(int x, int y)
 
 void GLFWCALL window_size_callback(int width, int height)
 {
-    TriumphGame::getInstance()->windowResize(width, height);
+    GameEngine::getInstance()->windowResize(width, height);
 }
 
 void GLFWCALL keyboard_callback(int key, int state)
 {
-    TriumphGame *engine = TriumphGame::getInstance();
+    GameEngine *engine = GameEngine::getInstance();
     
     engine->m_input->m_fKeys[key] = state;
     
@@ -67,7 +67,7 @@ void GLFWCALL keyboard_callback(int key, int state)
 
 void GLFWCALL mouse_button_callback(int button, int state)
 {
-    TriumphGame *engine = TriumphGame::getInstance();
+    GameEngine *engine = GameEngine::getInstance();
 	switch (button)
 	{
 		case INPUTBTN_MOUSELEFT:
@@ -88,7 +88,7 @@ void GLFWCALL mouse_button_callback(int button, int state)
 }
 void GLFWCALL mouse_wheel_callback(int pos)
 {
-    TriumphGame *engine = TriumphGame::getInstance();
+    GameEngine *engine = GameEngine::getInstance();
     int dir = pos - engine->m_input->m_lastWheel;
     
     engine->m_input->m_wheel = pos;

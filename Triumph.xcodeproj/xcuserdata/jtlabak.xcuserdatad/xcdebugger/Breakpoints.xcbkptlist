@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/TriumphGame.cpp"
-         timestampString = "373591382.85373"
+         timestampString = "374098917.858825"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "237"
-         endingLineNumber = "237"
+         startingLineNumber = "163"
+         endingLineNumber = "163"
          landmarkName = "TriumphGame::getMouseRay()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/TriumphGame.cpp"
-         timestampString = "373591382.85373"
+         timestampString = "374098408.073392"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "184"
-         endingLineNumber = "184"
+         startingLineNumber = "108"
+         endingLineNumber = "108"
          landmarkName = "TriumphGame::updateCamera()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/TriumphGame.cpp"
-         timestampString = "373591382.85373"
+         timestampString = "374098408.073392"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "201"
-         endingLineNumber = "201"
+         startingLineNumber = "125"
+         endingLineNumber = "125"
          landmarkName = "TriumphGame::draw(float dTime)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/TriumphGame.cpp"
-         timestampString = "373591382.85373"
+         timestampString = "374098408.073392"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "162"
-         endingLineNumber = "162"
+         startingLineNumber = "86"
+         endingLineNumber = "86"
          landmarkName = "TriumphGame::initSkybox()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -183,6 +183,45 @@
          startingLineNumber = "50"
          endingLineNumber = "50"
          landmarkName = "Texture::loadBMP(const char *filename)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/TriumphGame.cpp"
+         timestampString = "374097604.046675"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "98"
+         endingLineNumber = "98"
+         landmarkName = "TriumphGame::drawUI(float dTime)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/GameEngine.cpp"
+         timestampString = "374098600.322343"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "69"
+         endingLineNumber = "69"
+         landmarkName = "GameEngine::init(Game *game)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/TriumphGame.cpp"
+         timestampString = "374098646.247265"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "118"
+         endingLineNumber = "118"
+         landmarkName = "TriumphGame::draw(float dTime)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
