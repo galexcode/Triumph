@@ -32,9 +32,11 @@ Texture * Texture::CreateFromFile(const char *file)
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+		glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE); 
+        //glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
         
-        gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, tex->m_width, tex->m_height, FORMAT_BGR, GL_UNSIGNED_BYTE, tex->m_pImage);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, tex->m_width, tex->m_height, 0, FORMAT_BGR, GL_UNSIGNED_BYTE, tex->m_pImage);
+        //gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, tex->m_width, tex->m_height, FORMAT_BGR, GL_UNSIGNED_BYTE, tex->m_pImage);
 
 	}
     

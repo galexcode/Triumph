@@ -16,6 +16,7 @@
 #if PLATFORM == PLATFORM_WIN32
 #define FORMAT_BGR GL_BGR_EXT
 #define GL_CLAMP_TO_EDGE 0x812F // windows does not support gl 1.2+
+#define GL_GENERATE_MIPMAP 0x8191 // windows does not support gl 1.2+
 #else
 #define FORMAT_BGR GL_BGR
 #endif
