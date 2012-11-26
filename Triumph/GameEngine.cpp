@@ -96,24 +96,40 @@ void GameEngine::windowResize(int width, int height)
     m_game->windowResize(width, height);
 }
 
+void GameEngine::registerScene(Scene *s) {
+	m_registered_scenes.push_back(s);
+}
+
 void GameEngine::mouseMove(int x, int y)
 {
     m_game->mouseMove(x, y);
+	for (size_t i = 0; i < m_registered_scenes.size(); ++i) {
+		m_registered_scenes[i]->mouseMove(x, y);
+	}
 }
 
 void GameEngine::keyEvent(int key, int state)
 {
     m_game->keyEvent(key, state);
+	for (size_t i = 0; i < m_registered_scenes.size(); ++i) {
+		m_registered_scenes[i]->keyEvent(key, state);
+	}
 }
 
 void GameEngine::mouseButtonEvent(int button, int state)
 {
     m_game->mouseButtonEvent(button, state);
+	for (size_t i = 0; i < m_registered_scenes.size(); ++i) {
+		m_registered_scenes[i]->mouseButtonEvent(button, state);
+	}
 }
 
 void GameEngine::mouseWheelEvent(int dir)
 {
     m_game->mouseWheelEvent(dir);
+	for (size_t i = 0; i < m_registered_scenes.size(); ++i) {
+		m_registered_scenes[i]->mouseWheelEvent(dir);
+	}
 }
 
 

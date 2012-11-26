@@ -10,10 +10,8 @@
 #include "GameEngine.h"
 #include <GL/glfw.h>
 
-InputManager::InputManager()
-{
-    for (int i = 0; i < NUMBEROFKEYS; ++i)
-    {
+InputManager::InputManager() {
+    for (int i = 0; i < NUMBEROFKEYS; ++i) {
         m_fKeys[i] = false;
     }
     m_lastWheel = 0;
@@ -26,15 +24,13 @@ InputManager::InputManager()
     m_fShift = false;
 }
 
-void InputManager::update(float dTime)
-{
+void InputManager::update(float dTime) {
     m_lastCursorX = m_cursorX;
     m_lastCursorY = m_cursorY;
     m_lastWheel = m_wheel;
 }
 
-void GLFWCALL mouse_position_callback(int x, int y)
-{
+void GLFWCALL mouse_position_callback(int x, int y) {
     GameEngine *engine = GameEngine::getInstance();
     engine->m_input->m_cursorX = x;
 	engine->m_input->m_cursorY = y;

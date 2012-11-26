@@ -11,21 +11,10 @@
 #ifndef __Triumph__TriumphGame__
 #define __Triumph__TriumphGame__
 
-#define BACK_ID 0
-#define FRONT_ID 1
-#define RIGHT_ID 2
-#define LEFT_ID 3
-#define TOP_ID 4
-#define BOTTOM_ID 5
-
-#include <GL/glfw.h>
-
 #include "Game.h"
-#include "Texture.h"
 #include "Font.h"
-#include "GameObject.h"
-#include "GameCamera.h"
 #include "GameEngine.h"
+#include "Scene.h"
 
 class TriumphGame : public Game
 {
@@ -47,26 +36,16 @@ private:
     
     GameEngine *m_engine;
 
-    int m_meshGlobe;
-	float m_meshGlobeZoom;
-    Texture *m_texGlobe;
-    Texture *m_texSkybox[6];
-    GameObject *m_globe;
-    Vector3 m_dragGlobeStart;
-    
-	GameCamera m_cam;
-
 	Font *m_font;
     
-    void initGlobe();
-    void initSkybox();
+	enum ENState {
+		world,
+		battle
+	};
+	enum ENState m_state;
+
+	Scene *m_scene;
     
-    void updateCamera();
-    
-    void drawSkybox(float dTime);
-	
-    
-    Ray3 getMouseRay();
     
 };
 

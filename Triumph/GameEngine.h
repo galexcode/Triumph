@@ -16,6 +16,9 @@
 #include "GameInput.h"
 #include "Texture.h"
 #include "Game.h"
+#include "Scene.h"
+
+#include <vector>
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
@@ -47,6 +50,8 @@ public:
     void getWindowSize(int *w, int *h);
     float getElapsedTime();
     
+	void registerScene(Scene *scene);
+
     void mouseMove(int x, int y);
     void windowResize(int width, int height);
     void keyEvent(int key, int state);
@@ -65,6 +70,7 @@ private:
     void update(float dTime);
     void draw(float dTime);
     
+	std::vector<Scene*> m_registered_scenes;
 };
 
 #endif /* defined(__Triumph__GameEngine__) */

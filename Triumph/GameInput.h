@@ -10,6 +10,7 @@
 #define __Triumph__GameInput__
 
 #include <GL/glfw.h>
+#include "Game.h"
 
 #define INPUTSTATE_PRESS   GLFW_PRESS
 #define INPUTSTATE_RELEASE GLFW_RELEASE
