@@ -16,13 +16,6 @@
 #include "Texture.h"
 #include "GameEngine.h"
 
-#define BACK_ID 0
-#define FRONT_ID 1
-#define RIGHT_ID 2
-#define LEFT_ID 3
-#define TOP_ID 4
-#define BOTTOM_ID 5
-
 class WorldScene : public Scene
 {
     
@@ -53,11 +46,7 @@ private:
     void initGlobe();
     void initSkybox();
 
-	Ray3 getMouseRay();
-
     void updateCamera();
-    
-    void drawSkybox(float dTime);
 
 };
 

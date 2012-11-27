@@ -19,6 +19,11 @@ InputManager::InputManager() {
     m_fMouseMiddle = false;
     m_fMouseRight = false;
     
+	m_fLeft = false;
+	m_fRight = false;
+	m_fUp = false;
+	m_fDown = false;
+
     m_fAlt = false;
     m_fCmd = false;
     m_fShift = false;

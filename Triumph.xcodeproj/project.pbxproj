@@ -27,7 +27,11 @@
 		D56D6845164B3132003DB314 /* skyboxhigh_left.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D56D683F164B3132003DB314 /* skyboxhigh_left.bmp */; };
 		D56D6846164B3132003DB314 /* skyboxhigh_right.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D56D6840164B3132003DB314 /* skyboxhigh_right.bmp */; };
 		D56D6847164B3132003DB314 /* skyboxhigh_top.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D56D6841164B3132003DB314 /* skyboxhigh_top.bmp */; };
+		D579F2EB1663E7B100B6C7CD /* WorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D579F2EA1663E7B100B6C7CD /* WorldScene.cpp */; };
+		D579F2F21663E86C00B6C7CD /* GLUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D579F2F01663E86C00B6C7CD /* GLUtil.cpp */; };
+		D579F2F4166412FA00B6C7CD /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D579F2F3166412FA00B6C7CD /* BattleScene.cpp */; };
 		D58D7FA91641DCD30082B92D /* GameCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D58D7FA71641DCD30082B92D /* GameCamera.cpp */; };
+		D5BEB2981664325900ACCC15 /* terrain.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D5BEB2971664325900ACCC15 /* terrain.bmp */; };
 		D5E588C1163EF01D005DEF0A /* earth_hires.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D5E588C0163EF01D005DEF0A /* earth_hires.bmp */; };
 		D5E588C8163EFC16005DEF0A /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E588C6163EFC16005DEF0A /* GameObject.cpp */; };
 		D5E588CB163F266C005DEF0A /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E588CA163F266C005DEF0A /* Geometry.cpp */; };
@@ -67,8 +71,17 @@
 		D56D683F164B3132003DB314 /* skyboxhigh_left.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = skyboxhigh_left.bmp; sourceTree = "<group>"; };
 		D56D6840164B3132003DB314 /* skyboxhigh_right.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = skyboxhigh_right.bmp; sourceTree = "<group>"; };
 		D56D6841164B3132003DB314 /* skyboxhigh_top.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = skyboxhigh_top.bmp; sourceTree = "<group>"; };
+		D579F2EA1663E7B100B6C7CD /* WorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorldScene.cpp; sourceTree = "<group>"; };
+		D579F2ED1663E7BD00B6C7CD /* WorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldScene.h; sourceTree = "<group>"; };
+		D579F2EE1663E7BD00B6C7CD /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleScene.h; sourceTree = "<group>"; };
+		D579F2EF1663E7BD00B6C7CD /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		D579F2F01663E86C00B6C7CD /* GLUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLUtil.cpp; sourceTree = "<group>"; };
+		D579F2F11663E86C00B6C7CD /* GLUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLUtil.h; sourceTree = "<group>"; };
+		D579F2F3166412FA00B6C7CD /* BattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleScene.cpp; sourceTree = "<group>"; };
 		D58D7FA71641DCD30082B92D /* GameCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCamera.cpp; sourceTree = "<group>"; };
 		D58D7FA81641DCD30082B92D /* GameCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCamera.h; sourceTree = "<group>"; };
+		D5BEB2941664225500ACCC15 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/GLUT.framework; sourceTree = DEVELOPER_DIR; };
+		D5BEB2971664325900ACCC15 /* terrain.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = terrain.bmp; sourceTree = "<group>"; };
 		D5E588BF163EF01D005DEF0A /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
 		D5E588C0163EF01D005DEF0A /* earth_hires.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = earth_hires.bmp; sourceTree = "<group>"; };
 		D5E588C5163EF3DE005DEF0A /* Platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
@@ -95,6 +108,7 @@
 		D503AFBF1639AF760019DEFC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D5BEB2971664325900ACCC15 /* terrain.bmp */,
 				D503AFB91639AF5A0019DEFC /* courier.bmp */,
 				D5E588C0163EF01D005DEF0A /* earth_hires.bmp */,
 				D56D683C164B3132003DB314 /* skyboxhigh_back.bmp */,
@@ -110,6 +124,7 @@
 		D56A7D90163856C700B563F1 = {
 			isa = PBXGroup;
 			children = (
+				D5BEB2941664225500ACCC15 /* GLUT.framework */,
 				D56A7DCA1638584F00B563F1 /* OpenGL.framework */,
 				D56A7DC81638584600B563F1 /* IOKit.framework */,
 				D56A7DA5163856C700B563F1 /* Triumph */,
@@ -171,6 +186,10 @@
 		D5E588C3163EF029005DEF0A /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				D579F2F11663E86C00B6C7CD /* GLUtil.h */,
+				D579F2ED1663E7BD00B6C7CD /* WorldScene.h */,
+				D579F2EE1663E7BD00B6C7CD /* BattleScene.h */,
+				D579F2EF1663E7BD00B6C7CD /* Scene.h */,
 				D5E588BF163EF01D005DEF0A /* Bitmap.h */,
 				D56A7DD4163890DC00B563F1 /* Console.h */,
 				D503AFBB1639AF5A0019DEFC /* Font.h */,
@@ -190,6 +209,7 @@
 		D5E588C4163EF03B005DEF0A /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D579F2EA1663E7B100B6C7CD /* WorldScene.cpp */,
 				D56A7DD3163890DC00B563F1 /* Console.cpp */,
 				D503AFBA1639AF5A0019DEFC /* Font.cpp */,
 				D58D7FA71641DCD30082B92D /* GameCamera.cpp */,
@@ -200,6 +220,8 @@
 				D503AFC0163B501B0019DEFC /* Texture.cpp */,
 				D56A7DCD1638810A00B563F1 /* TriumphGame.cpp */,
 				D56A7DC21638577000B563F1 /* TriumphMain.cpp */,
+				D579F2F01663E86C00B6C7CD /* GLUtil.cpp */,
+				D579F2F3166412FA00B6C7CD /* BattleScene.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -266,6 +288,7 @@
 				D56D6845164B3132003DB314 /* skyboxhigh_left.bmp in Resources */,
 				D56D6846164B3132003DB314 /* skyboxhigh_right.bmp in Resources */,
 				D56D6847164B3132003DB314 /* skyboxhigh_top.bmp in Resources */,
+				D5BEB2981664325900ACCC15 /* terrain.bmp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +309,9 @@
 				D5E588CB163F266C005DEF0A /* Geometry.cpp in Sources */,
 				D58D7FA91641DCD30082B92D /* GameCamera.cpp in Sources */,
 				D51D7D39164C3A8E006470AC /* GameEngine.cpp in Sources */,
+				D579F2EB1663E7B100B6C7CD /* WorldScene.cpp in Sources */,
+				D579F2F21663E86C00B6C7CD /* GLUtil.cpp in Sources */,
+				D579F2F4166412FA00B6C7CD /* BattleScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,7 +406,10 @@
 				GCC_PREFIX_HEADER = "Triumph/Triumph-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = "Triumph/Triumph-Info.plist";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/usr/lib,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-lglfw";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -397,7 +426,10 @@
 				GCC_PREFIX_HEADER = "Triumph/Triumph-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = "Triumph/Triumph-Info.plist";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/usr/lib,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-lglfw";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -5,6 +5,7 @@ int main(void)
 {
     
     GameEngine *engine = GameEngine::getInstance();
+	engine->setDebug(GameEngine::Mode::debug);
     Game *game = new TriumphGame();
     
     if (engine->init(game) == INIT_SUCCESS)

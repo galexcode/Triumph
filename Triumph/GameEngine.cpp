@@ -7,8 +7,9 @@
 //
 
 #include "GameEngine.h"
-#include <GL/glfw.h>
 
+#include <GL/glfw.h>
+#include "GLUtil.h"
 #include "Console.h"
 
 GameEngine* GameEngine::m_pInstance = NULL;
@@ -25,6 +26,16 @@ GameEngine* GameEngine::getInstance()
 GameEngine::GameEngine()
 {
 	m_input = new InputManager();
+	m_debugMode = release;
+}
+
+void GameEngine::setDebug(Mode mode)
+{
+	m_debugMode = mode;
+}
+
+GameEngine::Mode GameEngine::getDebug() {
+	return m_debugMode;
 }
 
 int GameEngine::init(Game *game)
@@ -66,6 +77,10 @@ int GameEngine::init(Game *game)
     glShadeModel(GL_SMOOTH);
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
     
+	// init the debug font
+	m_debugFont = new Font("courier.bmp");
+	m_debugFont->init();
+
     if (game == NULL || game->init() == INIT_FAIL)
     {
         Console::getInstance()->message(CONSOLE_MSG_SYS, "Game not initialized");
@@ -103,33 +118,29 @@ void GameEngine::registerScene(Scene *s) {
 void GameEngine::mouseMove(int x, int y)
 {
     m_game->mouseMove(x, y);
-	for (size_t i = 0; i < m_registered_scenes.size(); ++i) {
-		m_registered_scenes[i]->mouseMove(x, y);
-	}
+	for (auto s : m_registered_scenes)
+		s->mouseMove(x, y);
 }
 
 void GameEngine::keyEvent(int key, int state)
 {
     m_game->keyEvent(key, state);
-	for (size_t i = 0; i < m_registered_scenes.size(); ++i) {
-		m_registered_scenes[i]->keyEvent(key, state);
-	}
+	for (auto s : m_registered_scenes)
+		s->keyEvent(key, state);
 }
 
 void GameEngine::mouseButtonEvent(int button, int state)
 {
     m_game->mouseButtonEvent(button, state);
-	for (size_t i = 0; i < m_registered_scenes.size(); ++i) {
-		m_registered_scenes[i]->mouseButtonEvent(button, state);
-	}
+	for (auto s : m_registered_scenes)
+		s->mouseButtonEvent(button, state);
 }
 
 void GameEngine::mouseWheelEvent(int dir)
 {
     m_game->mouseWheelEvent(dir);
-	for (size_t i = 0; i < m_registered_scenes.size(); ++i) {
-		m_registered_scenes[i]->mouseWheelEvent(dir);
-	}
+	for (auto s : m_registered_scenes)
+		s->mouseWheelEvent(dir);
 }
 
 
@@ -143,10 +154,15 @@ void GameEngine::update(float dTime)
 void GameEngine::draw(float dTime)
 {
     m_game->draw(dTime);
-    
+
     set2D();
-    m_game->drawUI(dTime);
-    Console::getInstance()->draw(dTime);
+	if (m_debugMode == debug) {
+		char buf[256];
+		sprintf(buf, "%d", (int)m_fps);
+		m_debugFont->print(buf, m_windowWidth - 30, m_windowHeight - 20);
+		Console::getInstance()->draw(dTime);
+	}
+	m_game->drawUI(dTime);
 }
 
 void GameEngine::set3D()

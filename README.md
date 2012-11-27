@@ -9,6 +9,8 @@ Installation
 
 First you need to ensure you have the [glfw](http://www.glfw.org) library installed.
 
+You also need to have [glew](http://glew.sourceforge.net/) installed.
+
 For linux systems, run:
 	
 	make x11

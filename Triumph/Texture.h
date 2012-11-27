@@ -25,7 +25,9 @@ class Texture
 {
 public:
     static Texture * CreateFromFile(const char *file);
-    GLuint gid();
+    GLuint gid() const;
+    void size(int *w, int *h) const;
+    GLubyte * image() const;
     
     ~Texture();
     

@@ -77,9 +77,17 @@ void Texture::loadBMP(const char *filename)
 }
 
 
-GLuint Texture::gid()
-{
+GLuint Texture::gid() const {
     return m_gid;
+}
+
+void Texture::size(int *w, int *h) const {
+    *w = m_width;
+    *h = m_height;
+}
+
+GLubyte * Texture::image() const {
+    return m_pImage;
 }
 
 Texture::~Texture()

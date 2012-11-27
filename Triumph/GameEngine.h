@@ -17,6 +17,7 @@
 #include "Texture.h"
 #include "Game.h"
 #include "Scene.h"
+#include "Font.h"
 
 #include <vector>
 
@@ -35,6 +36,12 @@
 class GameEngine
 {
 public:
+
+	static enum Mode {
+		release,
+		debug
+	};
+
 	InputManager *m_input;
     Game         *m_game;
 	float m_fps;
@@ -60,6 +67,9 @@ public:
     
     void set2D();
     void set3D();
+
+	void setDebug(Mode mode);
+	Mode getDebug();
     
 protected:
     GameEngine();
@@ -67,6 +77,10 @@ protected:
 private:
     static GameEngine *m_pInstance;
     
+	enum Mode m_debugMode;
+
+	Font *m_debugFont;
+
     void update(float dTime);
     void draw(float dTime);
     

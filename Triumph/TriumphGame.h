@@ -12,7 +12,6 @@
 #define __Triumph__TriumphGame__
 
 #include "Game.h"
-#include "Font.h"
 #include "GameEngine.h"
 #include "Scene.h"
 
@@ -29,14 +28,9 @@ public:
     void drawUI(float dTime);
     void draw(float dTime);
     
-	void mouseButtonEvent(int button, int state);
-	void mouseWheelEvent(int dir);
-    
 private:
     
     GameEngine *m_engine;
-
-	Font *m_font;
     
 	enum ENState {
 		world,

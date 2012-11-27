@@ -81,6 +81,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BattleScene.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameCamera.cpp" />
@@ -88,6 +89,7 @@
     <ClCompile Include="GameInput.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="GLUtil.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TriumphGame.cpp" />
     <ClCompile Include="TriumphMain.cpp" />
@@ -104,8 +106,10 @@
     <ClInclude Include="GameInput.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="GLUtil.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TriumphGame.h" />
     <ClInclude Include="WorldScene.h" />
