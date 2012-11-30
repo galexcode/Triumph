@@ -8,7 +8,6 @@
 
 #include "GameEngine.h"
 
-#include <GL/glfw.h>
 #include "GLUtil.h"
 #include "Console.h"
 
@@ -40,26 +39,21 @@ GameEngine::Mode GameEngine::getDebug() {
 
 int GameEngine::init(Game *game)
 {
-    if (!glfwInit())
-    {
+    if (!glfwInit()) {
         Console::getInstance()->message(CONSOLE_MSG_SYS, "Failed to Initialize GLFW");
         return INIT_FAIL;
     }
     
     glfwOpenWindowHint(GLFW_FSAA_SAMPLES, FSAA_SAMPLES);
     
-    if (!glfwOpenWindow(WINDOW_WIDTH, WINDOW_HEIGHT, 8, 8, 8, 8, 8, 8, GLFW_WINDOW))
-    {
+    if (!glfwOpenWindow(WINDOW_WIDTH, WINDOW_HEIGHT, 8, 8, 8, 8, 8, 8, GLFW_WINDOW)) {
         Console::getInstance()->message(CONSOLE_MSG_SYS, "Failed to open GLFW window");
         return INIT_FAIL;
     }
     
-    
-    if (!glfwExtensionSupported("GL_ARB_multisample"))
-    {
-        Console::getInstance()->message(CONSOLE_MSG_SYS, "Context reports GL_ARB_multisample is not supported");
-        return INIT_FAIL;
-    }
+    // get support levels
+    m_fGLSupportedMultisample = glfwExtensionSupported("GL_ARB_multisample");
+    m_fGLSupportedVBO = glfwExtensionSupported("GL_ARB_vertex_buffer_object");
     
     glfwSetWindowTitle(WINDOW_TITLE);
     glfwSwapInterval(1);
@@ -73,10 +67,10 @@ int GameEngine::init(Game *game)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glClearDepth(1.0f);
 	glEnable(GL_BLEND);
-	glEnable (GL_CULL_FACE);
     glShadeModel(GL_SMOOTH);
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-    
+    glEnable (GL_CULL_FACE);
+        
 	// init the debug font
 	m_debugFont = new Font("courier.bmp");
 	m_debugFont->init();
@@ -149,6 +143,8 @@ void GameEngine::update(float dTime)
     m_input->update(dTime);
     m_game->update(dTime);
     Console::getInstance()->update(dTime);
+    
+    m_input->afterUpdate();
 }
 
 void GameEngine::draw(float dTime)

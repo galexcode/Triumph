@@ -35,6 +35,9 @@ public:
     Vector3 & operator+=(const Vector3 &vec);
     Vector3 operator-(const Vector3 &vec) const;
     Vector3 & operator-=(const Vector3 &vec);
+
+	bool operator==(const Vector3 &vec) const;
+	bool operator!=(const Vector3 &vec) const;
     
     friend Vector3 operator*(const Vector3 &vec, const float f);
     friend Vector3 operator*(const float f, const Vector3 &vec);

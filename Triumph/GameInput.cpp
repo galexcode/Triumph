@@ -8,7 +8,7 @@
 
 #include "GameInput.h"
 #include "GameEngine.h"
-#include <GL/glfw.h>
+#include "Gfx.h"
 
 InputManager::InputManager() {
     for (int i = 0; i < NUMBEROFKEYS; ++i) {
@@ -29,14 +29,22 @@ InputManager::InputManager() {
     m_fShift = false;
 }
 
-void InputManager::update(float dTime) {
+void InputManager::afterUpdate() {
     m_lastCursorX = m_cursorX;
     m_lastCursorY = m_cursorY;
     m_lastWheel = m_wheel;
 }
 
+void InputManager::update(float dTime) {
+
+}
+
 void GLFWCALL mouse_position_callback(int x, int y) {
     GameEngine *engine = GameEngine::getInstance();
+    
+    //engine->m_input->m_lastCursorX = engine->m_input->m_cursorX;
+    //engine->m_input->m_lastCursorY = engine->m_input->m_cursorY;
+    
     engine->m_input->m_cursorX = x;
 	engine->m_input->m_cursorY = y;
     
@@ -92,6 +100,7 @@ void GLFWCALL mouse_wheel_callback(int pos)
     GameEngine *engine = GameEngine::getInstance();
     int dir = pos - engine->m_input->m_lastWheel;
     
+    //engine->m_input->m_lastWheel = engine->m_input->m_wheel;
     engine->m_input->m_wheel = pos;
 	engine->mouseWheelEvent(dir);
 }

@@ -8,7 +8,7 @@
 #ifndef __Triumph__Font__
 #define __Triumph__Font__
 
-#include <GL/glfw.h>
+#include "Gfx.h"
 
 class Font
 {

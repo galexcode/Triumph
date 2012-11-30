@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <GL/glfw.h>
+#include "Gfx.h"
 
 #include "GameInput.h"
 #include "Texture.h"
@@ -37,7 +37,10 @@ class GameEngine
 {
 public:
 
-	static enum Mode {
+    bool m_fGLSupportedMultisample;
+    bool m_fGLSupportedVBO;
+    
+    enum Mode {
 		release,
 		debug
 	};

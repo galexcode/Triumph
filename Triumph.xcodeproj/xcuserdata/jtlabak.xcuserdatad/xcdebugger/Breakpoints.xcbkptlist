@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/GameInput.cpp"
-         timestampString = "373591382.85373"
+         timestampString = "375827152.254223"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "47"
-         endingLineNumber = "47"
+         startingLineNumber = "55"
+         endingLineNumber = "55"
          landmarkName = "window_size_callback(int width, int height)"
          landmarkType = "7">
       </FileBreakpoint>
@@ -95,11 +95,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Texture.cpp"
-         timestampString = "374175074.725235"
+         timestampString = "375913348.623647"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "55"
-         endingLineNumber = "55"
+         startingLineNumber = "67"
+         endingLineNumber = "67"
          landmarkName = "Texture::loadBMP(const char *filename)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -108,11 +108,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Texture.cpp"
-         timestampString = "374175074.725235"
+         timestampString = "375913348.623647"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "54"
-         endingLineNumber = "54"
+         startingLineNumber = "66"
+         endingLineNumber = "66"
          landmarkName = "Texture::loadBMP(const char *filename)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -143,11 +143,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Texture.cpp"
-         timestampString = "374175074.725235"
+         timestampString = "375913348.623647"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "51"
-         endingLineNumber = "51"
+         startingLineNumber = "63"
+         endingLineNumber = "63"
          landmarkName = "Texture::loadBMP(const char *filename)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -169,11 +169,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Texture.cpp"
-         timestampString = "374175074.725235"
+         timestampString = "375913348.623647"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "52"
-         endingLineNumber = "52"
+         startingLineNumber = "64"
+         endingLineNumber = "64"
          landmarkName = "Texture::loadBMP(const char *filename)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -193,11 +193,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/GameEngine.cpp"
-         timestampString = "374098600.322343"
+         timestampString = "375911333.787985"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "69"
-         endingLineNumber = "69"
+         startingLineNumber = "64"
+         endingLineNumber = "64"
          landmarkName = "GameEngine::init(Game *game)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -217,37 +217,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/BattleScene.cpp"
-         timestampString = "375672181.903843"
+         timestampString = "375914791.774768"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "195"
-         endingLineNumber = "195"
-         landmarkName = "CMesh :: LoadHeightmap( const char* szPath, float flHeightScale, float flResolution )"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Triumph/BattleScene.cpp"
-         timestampString = "375672181.903843"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "207"
-         endingLineNumber = "207"
-         landmarkName = "CMesh :: LoadHeightmap( const char* szPath, float flHeightScale, float flResolution )"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Triumph/BattleScene.cpp"
-         timestampString = "375672181.903843"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "44"
-         endingLineNumber = "44"
+         startingLineNumber = "34"
+         endingLineNumber = "34"
          landmarkName = "BattleScene::load()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -256,11 +230,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/BattleScene.cpp"
-         timestampString = "375672181.903843"
+         timestampString = "375914791.774768"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "47"
-         endingLineNumber = "47"
+         startingLineNumber = "39"
+         endingLineNumber = "39"
          landmarkName = "BattleScene::load()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -269,11 +243,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/BattleScene.cpp"
-         timestampString = "375672181.903843"
+         timestampString = "375914791.774768"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "52"
-         endingLineNumber = "52"
+         startingLineNumber = "43"
+         endingLineNumber = "43"
          landmarkName = "BattleScene::load()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -282,11 +256,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/BattleScene.cpp"
-         timestampString = "375672181.903843"
+         timestampString = "375914791.774768"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "48"
-         endingLineNumber = "48"
+         startingLineNumber = "40"
+         endingLineNumber = "40"
          landmarkName = "BattleScene::load()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -295,38 +269,101 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/BattleScene.cpp"
-         timestampString = "375672181.903843"
+         timestampString = "375914791.774768"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "37"
+         endingLineNumber = "37"
+         landmarkName = "BattleScene::load()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/BattleScene.cpp"
+         timestampString = "375914791.774768"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "97"
+         endingLineNumber = "97"
+         landmarkName = "BattleScene::update(float dTime)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/GameInput.cpp"
+         timestampString = "375827152.254223"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "45"
          endingLineNumber = "45"
-         landmarkName = "BattleScene::load()"
-         landmarkType = "5">
+         landmarkName = "mouse_position_callback(int x, int y)"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/GameInput.cpp"
+         timestampString = "375827152.254223"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "42"
+         endingLineNumber = "42">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/BattleScene.cpp"
-         timestampString = "375672181.903843"
+         timestampString = "375914791.774768"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "136"
-         endingLineNumber = "136"
-         landmarkName = "CMesh :: BuildVBOs()"
+         startingLineNumber = "114"
+         endingLineNumber = "114"
+         landmarkName = "BattleScene::update(float dTime)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Triumph/BattleScene.cpp"
-         timestampString = "375672181.903843"
+         filePath = "Triumph/Mesh.cpp"
+         timestampString = "375914751.883826"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "86"
-         endingLineNumber = "86"
-         landmarkName = "BattleScene::draw(float dTime)"
+         startingLineNumber = "119"
+         endingLineNumber = "119"
+         landmarkName = "Mesh::draw(float dTime)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/Mesh.cpp"
+         timestampString = "375914860.750878"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "50"
+         endingLineNumber = "50"
+         landmarkName = "Mesh::updateVertices(float* dstVertices, Vert *srcVertices, Vert *srcNormals, int count, float time)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/Mesh.cpp"
+         timestampString = "375915094.108373"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "145"
+         endingLineNumber = "145"
+         landmarkName = "Mesh::buildVBOs()"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

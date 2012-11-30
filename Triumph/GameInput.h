@@ -9,7 +9,7 @@
 #ifndef __Triumph__GameInput__
 #define __Triumph__GameInput__
 
-#include <GL/glfw.h>
+#include "Gfx.h"
 #include "Game.h"
 
 #define INPUTSTATE_PRESS   GLFW_PRESS
@@ -55,6 +55,7 @@ public:
     
     InputManager();
     void update(float dTime);
+    void afterUpdate();
 };
 
 #endif /* defined(__Triumph__Input__) */

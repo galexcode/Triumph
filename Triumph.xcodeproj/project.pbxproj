@@ -10,6 +10,7 @@
 		D503AFBC1639AF5A0019DEFC /* courier.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D503AFB91639AF5A0019DEFC /* courier.bmp */; };
 		D503AFBD1639AF5A0019DEFC /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D503AFBA1639AF5A0019DEFC /* Font.cpp */; };
 		D503AFC2163B501B0019DEFC /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D503AFC0163B501B0019DEFC /* Texture.cpp */; };
+		D50E04F01667FC46006C0656 /* VertMods.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D50E04EE1667FC46006C0656 /* VertMods.cpp */; };
 		D51D7D39164C3A8E006470AC /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D51D7D37164C3A8E006470AC /* GameEngine.cpp */; };
 		D56A7DA0163856C700B563F1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D56A7D9F163856C700B563F1 /* Cocoa.framework */; };
 		D56A7DAA163856C700B563F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D56A7DA8163856C700B563F1 /* InfoPlist.strings */; };
@@ -27,6 +28,7 @@
 		D56D6845164B3132003DB314 /* skyboxhigh_left.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D56D683F164B3132003DB314 /* skyboxhigh_left.bmp */; };
 		D56D6846164B3132003DB314 /* skyboxhigh_right.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D56D6840164B3132003DB314 /* skyboxhigh_right.bmp */; };
 		D56D6847164B3132003DB314 /* skyboxhigh_top.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D56D6841164B3132003DB314 /* skyboxhigh_top.bmp */; };
+		D56E0E7A1666DBD000249D63 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D56E0E781666DBCF00249D63 /* Mesh.cpp */; };
 		D579F2EB1663E7B100B6C7CD /* WorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D579F2EA1663E7B100B6C7CD /* WorldScene.cpp */; };
 		D579F2F21663E86C00B6C7CD /* GLUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D579F2F01663E86C00B6C7CD /* GLUtil.cpp */; };
 		D579F2F4166412FA00B6C7CD /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D579F2F3166412FA00B6C7CD /* BattleScene.cpp */; };
@@ -43,6 +45,9 @@
 		D503AFBB1639AF5A0019DEFC /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
 		D503AFC0163B501B0019DEFC /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		D503AFC1163B501B0019DEFC /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		D50E04EC1667E134006C0656 /* Gfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gfx.h; sourceTree = "<group>"; };
+		D50E04EE1667FC46006C0656 /* VertMods.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VertMods.cpp; sourceTree = "<group>"; };
+		D50E04EF1667FC46006C0656 /* VertMods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertMods.h; sourceTree = "<group>"; };
 		D51D7D37164C3A8E006470AC /* GameEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEngine.cpp; sourceTree = "<group>"; };
 		D51D7D38164C3A8E006470AC /* GameEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngine.h; sourceTree = "<group>"; };
 		D51D7D3C164C3B56006470AC /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
@@ -71,6 +76,8 @@
 		D56D683F164B3132003DB314 /* skyboxhigh_left.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = skyboxhigh_left.bmp; sourceTree = "<group>"; };
 		D56D6840164B3132003DB314 /* skyboxhigh_right.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = skyboxhigh_right.bmp; sourceTree = "<group>"; };
 		D56D6841164B3132003DB314 /* skyboxhigh_top.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = skyboxhigh_top.bmp; sourceTree = "<group>"; };
+		D56E0E781666DBCF00249D63 /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
+		D56E0E791666DBD000249D63 /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
 		D579F2EA1663E7B100B6C7CD /* WorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorldScene.cpp; sourceTree = "<group>"; };
 		D579F2ED1663E7BD00B6C7CD /* WorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldScene.h; sourceTree = "<group>"; };
 		D579F2EE1663E7BD00B6C7CD /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleScene.h; sourceTree = "<group>"; };
@@ -186,6 +193,9 @@
 		D5E588C3163EF029005DEF0A /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				D50E04EF1667FC46006C0656 /* VertMods.h */,
+				D50E04EC1667E134006C0656 /* Gfx.h */,
+				D56E0E791666DBD000249D63 /* Mesh.h */,
 				D579F2F11663E86C00B6C7CD /* GLUtil.h */,
 				D579F2ED1663E7BD00B6C7CD /* WorldScene.h */,
 				D579F2EE1663E7BD00B6C7CD /* BattleScene.h */,
@@ -222,6 +232,8 @@
 				D56A7DC21638577000B563F1 /* TriumphMain.cpp */,
 				D579F2F01663E86C00B6C7CD /* GLUtil.cpp */,
 				D579F2F3166412FA00B6C7CD /* BattleScene.cpp */,
+				D56E0E781666DBCF00249D63 /* Mesh.cpp */,
+				D50E04EE1667FC46006C0656 /* VertMods.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -312,6 +324,8 @@
 				D579F2EB1663E7B100B6C7CD /* WorldScene.cpp in Sources */,
 				D579F2F21663E86C00B6C7CD /* GLUtil.cpp in Sources */,
 				D579F2F4166412FA00B6C7CD /* BattleScene.cpp in Sources */,
+				D56E0E7A1666DBD000249D63 /* Mesh.cpp in Sources */,
+				D50E04F01667FC46006C0656 /* VertMods.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

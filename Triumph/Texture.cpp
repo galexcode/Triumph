@@ -43,6 +43,18 @@ Texture * Texture::CreateFromFile(const char *file)
     return tex;
 }
 
+float Texture::height( int x, int y ) {
+    // Calculate The Position In The Texture, Careful Not To Overflow
+    int nPos = ( ( x % m_width )  + ( ( y % m_height ) * m_width ) ) * 3;
+    
+    float flR = (float) m_pImage[ nPos ];        
+    float flG = (float) m_pImage[ nPos + 1 ];
+    float flB = (float) m_pImage[ nPos + 2 ];
+    
+    // Calculate The Height Using The Luminance Algorithm
+    return ( 0.299f * flR + 0.587f * flG + 0.114f * flB );
+}
+
 // currently assumes 24bit bitmaps
 void Texture::loadBMP(const char *filename)
 {   

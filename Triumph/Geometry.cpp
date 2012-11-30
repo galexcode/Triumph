@@ -77,46 +77,47 @@ Vector3 Vector3::operator+(const Vector3 &vec) const
     return v;
 }
 
-Vector3 Vector3::operator-(const Vector3 &vec) const
-{
+Vector3 Vector3::operator-(const Vector3 &vec) const {
     Vector3 v = *this;
     v -= vec;
     return v;
 }
 
-Vector3 & Vector3::operator-=(const Vector3 &vec)
-{
+Vector3 & Vector3::operator-=(const Vector3 &vec) {
     this->m_x -= vec.m_x;
     this->m_y -= vec.m_y;
     this->m_z -= vec.m_z;
     return *this;
 }
 
-Vector3 & Vector3::operator+=(const Vector3 &vec)
-{
+Vector3 & Vector3::operator+=(const Vector3 &vec) {
     this->m_x += vec.m_x;
     this->m_y += vec.m_y;
     this->m_z += vec.m_z;
     return *this;
 }
 
-Vector3 operator*(const Vector3 &vec, const float f)
-{
+bool Vector3::operator==(const Vector3 &vec) const {
+	return this->m_x == vec.m_x && this->m_y == vec.m_y && this->m_z == vec.m_z;
+}
+
+bool Vector3::operator!=(const Vector3 &vec) const {
+	return !(*this == vec);
+}
+
+Vector3 operator*(const Vector3 &vec, const float f) {
     return Vector3(vec.m_x * f, vec.m_y * f, vec.m_z * f);
 }
 
-Vector3 operator*(const float f, const Vector3 &vec)
-{
+Vector3 operator*(const float f, const Vector3 &vec) {
     return vec * f;
 }
 
-bool Vector3::equals(const Vector3 &vec) const
-{
+bool Vector3::equals(const Vector3 &vec) const {
     return m_x == vec.m_x && m_y == vec.m_y && m_z == vec.m_z;
 }
 
-float Vector3::angleBetween(const Vector3 &vec) const
-{
+float Vector3::angleBetween(const Vector3 &vec) const {
     float sqrMag1 = sqrMagnitude();
     float sqrMag2 = vec.sqrMagnitude();
     if (sqrMag1 == 0 || sqrMag2 == 0)
@@ -124,8 +125,7 @@ float Vector3::angleBetween(const Vector3 &vec) const
     return acosf(dot(vec) / (sqrt(sqrMag1) * sqrt(sqrMag2)));
 }
 
-float Vector3::dot(const Vector3 &vec) const
-{
+float Vector3::dot(const Vector3 &vec) const {
     return m_x * vec.m_x + m_y * vec.m_y + m_z * vec.m_z;
 }
 

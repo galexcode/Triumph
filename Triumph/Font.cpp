@@ -1,5 +1,4 @@
 #include "Font.h"
-#include <GL/glfw.h>
 #include <cstring>
 
 const GLubyte Font::rasters[95][13] = {

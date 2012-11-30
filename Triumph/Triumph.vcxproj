@@ -90,9 +90,11 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="GLUtil.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TriumphGame.cpp" />
     <ClCompile Include="TriumphMain.cpp" />
+    <ClCompile Include="VertMods.cpp" />
     <ClCompile Include="WorldScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -106,12 +108,15 @@
     <ClInclude Include="GameInput.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="Gfx.h" />
     <ClInclude Include="GLUtil.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TriumphGame.h" />
+    <ClInclude Include="VertMods.h" />
     <ClInclude Include="WorldScene.h" />
   </ItemGroup>
   <ItemGroup>

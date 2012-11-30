@@ -9,7 +9,7 @@
 #ifndef __Triumph__Texture__
 #define __Triumph__Texture__
 
-#include <GL/glfw.h>
+#include "Gfx.h"
 
 #include "Platform.h"
 
@@ -25,6 +25,8 @@ class Texture
 {
 public:
     static Texture * CreateFromFile(const char *file);
+    
+    float height( int x, int y );
     GLuint gid() const;
     void size(int *w, int *h) const;
     GLubyte * image() const;
