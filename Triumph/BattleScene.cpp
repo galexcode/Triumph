@@ -32,9 +32,9 @@ int BattleScene::load() {
     // Load The Mesh Data
     m_water = new Mesh();
     m_water->setMemHint(GL_STREAM_DRAW_ARB); // make sure GL knows that this will update every frame
-    m_water->setVertModFunc(FUNC_SIN);
+    m_water->setVertMod(new VertMod(FUNC_WAVES));
     
-    if( !m_water->loadHeightmap( "terrain.bmp",              // Load Our Heightmap
+    if( !m_water->loadHeightmap( "flat1024.bmp",              // Load Our Heightmap
                                 MESH_HEIGHTSCALE, MESH_RESOLUTION ) ) {
         Console::getInstance()->message(0, "Error Loading Water mesh.");
         return INIT_FAIL;
@@ -58,7 +58,9 @@ void BattleScene::draw(float dTime) {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
     
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     m_water->draw(dTime);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void BattleScene::keyEvent(int key, int state) {

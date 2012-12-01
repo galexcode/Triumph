@@ -9,13 +9,24 @@
 #ifndef __Triumph__VertMods__
 #define __Triumph__VertMods__
 
+#include "Geometry.h"
+
 enum VertModFunc       // various periodic functions
 {
     FUNC_NONE = 0,
-    FUNC_SIN,
-    FUNC_TRIANGLE,
-    FUNC_SQUARE,
-    FUNC_SAWTOOTH
+    FUNC_WAVES
+};
+
+struct Wave
+{
+    float amp;
+    float freq;
+    float speed;
+    float phase;
+    float offset;
+    float exp;
+    Vector3 dir;
+    float decay;
 };
 
 //=============================================================================
@@ -24,17 +35,19 @@ enum VertModFunc       // various periodic functions
 struct VertMod
 {
     VertModFunc func;
-    float    amp;       // amplitude
-    float    freq;      // frequency
-    float    phase;     // horizontal shift
-    float    offset;    // vertical shift
-    float    output;    // result at given time
     
-    // default constructor, initialize all members
-    VertMod() : func(FUNC_NONE), amp(1.0f), freq(1.0f), phase(0.0f), offset(0.0f), output(0.0f) {}
+    Wave *waves;
+    int nWaves;
+    Wave minWave;
+    Wave maxWave;
     
-    // compute the position at the current time(sec)
-    float update(float time);
+    VertMod(VertModFunc func);
+    ~VertMod();
+    
+    Wave newWave();
+    
+    void update(float dTime);
+    float mod(float time, float x, float y, float z);
 };
 
 #endif /* defined(__Triumph__VertMods__) */

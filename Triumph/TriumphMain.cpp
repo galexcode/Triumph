@@ -13,6 +13,8 @@ int main(void)
         engine->run();
     }
     engine->clean();
+
+	delete game;
     
 	exit(EXIT_SUCCESS);
 }

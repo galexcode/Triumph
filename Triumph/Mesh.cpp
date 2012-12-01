@@ -10,11 +10,13 @@
 #include "GameEngine.h"
 #include "VertMods.h"
 
+#include <math.h>
+
 // GPU has VBO at this point
 Mesh::Mesh() {
     
     m_memHint = GL_STATIC_DRAW_ARB;
-    m_vertModFunc = FUNC_NONE;
+    m_vertMod = NULL;
 
 	m_pWVertices = NULL;
     
@@ -31,8 +33,8 @@ void Mesh::setMemHint(int hint) {
     m_memHint = hint;
 }
 
-void Mesh::setVertModFunc(int mod) {
-    m_vertModFunc = (VertModFunc)mod;
+void Mesh::setVertMod(VertMod *mod) {
+    m_vertMod = mod;
 }
 
 Mesh::~Mesh() {
@@ -47,17 +49,11 @@ Mesh::~Mesh() {
 void Mesh::updateVertices(float* dstVertices, Vert *srcVertices, Vert *srcNormals, int count) {	
 	if(!dstVertices || !srcVertices || !srcNormals)
         return;
-    
-    VertMod wave;
-    wave.func = m_vertModFunc;  // sine wave function
-    wave.amp = 0.08f;           // amplitude
-    wave.freq = 1.0f;           // cycles/sec
-    wave.phase = 0;             // horizontal shift
-    wave.offset = 0;            // vertical shift
-    
-    float waveLength = 1.5f;
+
     float height;
     float x, y, z;
+    
+    float time = GameEngine::getInstance()->getElapsedTime();
     
     for(int i=0; i < count; ++i) {
         // get source from original vertex array
@@ -66,10 +62,7 @@ void Mesh::updateVertices(float* dstVertices, Vert *srcVertices, Vert *srcNormal
         z = srcVertices->z;
 		++srcVertices;
         
-        // compute phase (horizontal shift)
-        wave.phase = (x + y + z) / waveLength;
-        
-		height = wave.update(GameEngine::getInstance()->getElapsedTime());
+        height = m_vertMod->mod(time, x, y, z);
         
         // update vertex coords
 		/*
@@ -82,7 +75,7 @@ void Mesh::updateVertices(float* dstVertices, Vert *srcVertices, Vert *srcNormal
          */
 		//*dstVertices = x;
 		++dstVertices;
-		*dstVertices = y + height * 100;
+		*dstVertices = y + height;
 		++dstVertices;
 		//*dstVertices = z;
 		++dstVertices;
@@ -103,12 +96,15 @@ void Mesh::draw(float dTime) {
         // Note that glMapBufferARB() causes sync issue.
         // If GPU is working with this buffer, glMapBufferARB() will wait(stall)
         // for GPU to finish its job.
-        float *ptr = (float *)glMapBufferARB(GL_ARRAY_BUFFER_ARB, GL_READ_WRITE_ARB);
-        if(ptr)
-        {
-            // wobble vertex in and out along normal
-            updateVertices(ptr, m_pVertices, m_pVertices, m_nVertexCount);
-            glUnmapBufferARB(GL_ARRAY_BUFFER_ARB); // release pointer to mapping buffer
+        if (m_vertMod != NULL) {
+            float *ptr = (float *)glMapBufferARB(GL_ARRAY_BUFFER_ARB, GL_READ_WRITE_ARB);
+            if(ptr)
+            {
+                // wobble vertex in and out along normal
+                m_vertMod->update(dTime);
+                updateVertices(ptr, m_pVertices, m_pVertices, m_nVertexCount);
+                glUnmapBufferARB(GL_ARRAY_BUFFER_ARB); // release pointer to mapping buffer
+            }
         }
 
         glVertexPointer( 3, GL_FLOAT, 0, (char *) NULL );       // Set The Vertex Pointer To The Vertex Buffer
@@ -117,7 +113,10 @@ void Mesh::draw(float dTime) {
         
     } else {
         
-		updateVertices((float*)m_pWVertices, m_pVertices, m_pVertices, m_nVertexCount);
+        if (m_vertMod != NULL) {
+            m_vertMod->update(dTime);
+            updateVertices((float*)m_pWVertices, m_pVertices, m_pVertices, m_nVertexCount);
+        }
         glVertexPointer( 3, GL_FLOAT, 0, m_pWVertices ); // Set The Vertex Pointer To Our Vertex Data
         glTexCoordPointer( 2, GL_FLOAT, 0, m_pTexCoords );  // Set The Vertex Pointer To Our TexCoord Data
     
@@ -201,7 +200,7 @@ bool Mesh::loadHeightmap( const char* szPath, float flHeightScale, float flResol
         buildVBOs();
     } else {
 		m_pWVertices = new Vert[m_nVertexCount];
-		memcpy(m_pWVertices, m_pVertices, m_nVertexCount * sizeof(float*) * 3);
+		memcpy(m_pWVertices, m_pVertices, m_nVertexCount * sizeof(Vert));
 	}
     
     return true;

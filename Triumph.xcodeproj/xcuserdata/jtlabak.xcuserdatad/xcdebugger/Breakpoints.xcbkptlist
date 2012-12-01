@@ -282,11 +282,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/BattleScene.cpp"
-         timestampString = "375914791.774768"
+         timestampString = "376008875.227023"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "97"
-         endingLineNumber = "97"
+         startingLineNumber = "99"
+         endingLineNumber = "99"
          landmarkName = "BattleScene::update(float dTime)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -319,11 +319,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/BattleScene.cpp"
-         timestampString = "375914791.774768"
+         timestampString = "376008875.227023"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "114"
-         endingLineNumber = "114"
+         startingLineNumber = "116"
+         endingLineNumber = "116"
          landmarkName = "BattleScene::update(float dTime)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -332,11 +332,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Mesh.cpp"
-         timestampString = "375914751.883826"
+         timestampString = "376014383.346043"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "119"
-         endingLineNumber = "119"
+         startingLineNumber = "115"
+         endingLineNumber = "115"
          landmarkName = "Mesh::draw(float dTime)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -345,12 +345,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Mesh.cpp"
-         timestampString = "375914860.750878"
+         timestampString = "376014383.346043"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "50"
-         endingLineNumber = "50"
-         landmarkName = "Mesh::updateVertices(float* dstVertices, Vert *srcVertices, Vert *srcNormals, int count, float time)"
+         startingLineNumber = "51"
+         endingLineNumber = "51"
+         landmarkName = "Mesh::updateVertices(float* dstVertices, Vert *srcVertices, Vert *srcNormals, int count)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -358,12 +358,51 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Mesh.cpp"
-         timestampString = "375915094.108373"
+         timestampString = "376014863.527556"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "145"
-         endingLineNumber = "145"
+         startingLineNumber = "144"
+         endingLineNumber = "144"
          landmarkName = "Mesh::buildVBOs()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/VertMods.cpp"
+         timestampString = "376016807.360658"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "98"
+         endingLineNumber = "98"
+         landmarkName = "VertMod::mod(float time, float x, float y, float z)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/VertMods.cpp"
+         timestampString = "376016807.360658"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "103"
+         endingLineNumber = "103"
+         landmarkName = "VertMod::mod(float time, float x, float y, float z)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/VertMods.cpp"
+         timestampString = "376016404.537652"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "77"
+         endingLineNumber = "77"
+         landmarkName = "VertMod::update(float dTime)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -53,7 +53,7 @@ int GameEngine::init(Game *game)
     
     // get support levels
     m_fGLSupportedMultisample = glfwExtensionSupported("GL_ARB_multisample");
-    m_fGLSupportedVBO = glfwExtensionSupported("GL_ARB_vertex_buffer_object");
+    m_fGLSupportedVBO = !glfwExtensionSupported("GL_ARB_vertex_buffer_object");
     
     glfwSetWindowTitle(WINDOW_TITLE);
     glfwSwapInterval(1);
@@ -215,7 +215,6 @@ float GameEngine::getElapsedTime()
 void GameEngine::clean()
 {
     m_game->clean();
-    delete m_game;
     
     glfwTerminate();
     

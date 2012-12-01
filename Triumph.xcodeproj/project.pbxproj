@@ -12,6 +12,7 @@
 		D503AFC2163B501B0019DEFC /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D503AFC0163B501B0019DEFC /* Texture.cpp */; };
 		D50E04F01667FC46006C0656 /* VertMods.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D50E04EE1667FC46006C0656 /* VertMods.cpp */; };
 		D51D7D39164C3A8E006470AC /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D51D7D37164C3A8E006470AC /* GameEngine.cpp */; };
+		D541170716697000005E1915 /* flat1024.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D541170616697000005E1915 /* flat1024.bmp */; };
 		D56A7DA0163856C700B563F1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D56A7D9F163856C700B563F1 /* Cocoa.framework */; };
 		D56A7DAA163856C700B563F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D56A7DA8163856C700B563F1 /* InfoPlist.strings */; };
 		D56A7DB0163856C700B563F1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D56A7DAE163856C700B563F1 /* Credits.rtf */; };
@@ -51,6 +52,7 @@
 		D51D7D37164C3A8E006470AC /* GameEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEngine.cpp; sourceTree = "<group>"; };
 		D51D7D38164C3A8E006470AC /* GameEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngine.h; sourceTree = "<group>"; };
 		D51D7D3C164C3B56006470AC /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		D541170616697000005E1915 /* flat1024.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = flat1024.bmp; sourceTree = "<group>"; };
 		D56A7D9B163856C700B563F1 /* Triumph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Triumph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D56A7D9F163856C700B563F1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D56A7DA2163856C700B563F1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -115,6 +117,7 @@
 		D503AFBF1639AF760019DEFC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D541170616697000005E1915 /* flat1024.bmp */,
 				D5BEB2971664325900ACCC15 /* terrain.bmp */,
 				D503AFB91639AF5A0019DEFC /* courier.bmp */,
 				D5E588C0163EF01D005DEF0A /* earth_hires.bmp */,
@@ -301,6 +304,7 @@
 				D56D6846164B3132003DB314 /* skyboxhigh_right.bmp in Resources */,
 				D56D6847164B3132003DB314 /* skyboxhigh_top.bmp in Resources */,
 				D5BEB2981664325900ACCC15 /* terrain.bmp in Resources */,
+				D541170716697000005E1915 /* flat1024.bmp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,54 +7,102 @@
 //
 
 #include "VertMods.h"
-
-#define _USE_MATH_DEFINES
+#include "Geometry.h"
 #include <math.h>
+#include <stdlib.h>
 
-#define M_2PI M_PI * 2
+float RandomFloat(float a, float b) {
+    float random = ((float) rand()) / (float) RAND_MAX;
+    float diff = b - a;
+    float r = random * diff;
+    return a + r;
+}
 
-///////////////////////////////////////////////////////////////////////////////
-// compute the position at the current time(sec)
-// Equation: amp * FUNC(freq*(t - phase)) + offset
-///////////////////////////////////////////////////////////////////////////////
-float VertMod::update(float time)
-{
-    // compute time factor between 0 and 1 from (freq*(time - phase))
-    float timeFact = freq * (time - phase);
-    timeFact -= (int)timeFact;
+Wave VertMod::newWave() {
+    Wave w;
+    
+    w.amp = RandomFloat(minWave.amp, maxWave.amp);
+    w.freq = RandomFloat(minWave.freq, maxWave.freq);
+    w.speed = RandomFloat(minWave.freq, maxWave.freq);
+    w.phase = w.speed * w.freq;
+    w.dir = Vector3(rand() % 1000 / 1000.0f, 0, rand() % 1000 / 1000.0f);
+    w.dir.normalize();
+    w.exp = (int)RandomFloat(minWave.exp, maxWave.exp);
+    w.decay = RandomFloat(minWave.decay, maxWave.decay);
+    
+    return w;
+}
+
+VertMod::VertMod(VertModFunc f) {
+    func = f;
+    
+    switch (func)
+    {
+        case FUNC_WAVES:
+        {
+            minWave.amp = 2.0f; // 2
+            minWave.freq = 0.3f; // .3
+            minWave.speed = 50.0f; // 50
+            minWave.exp = 2;
+            minWave.decay = 0.001f;
+            
+            maxWave.amp = 3.0f; // 3
+            maxWave.freq = 0.5f; // .5
+            maxWave.speed = 150.0f; // 150
+            maxWave.exp = 2;
+            maxWave.decay = 0.009f;
+            
+            nWaves = 3;
+            waves = new Wave[nWaves];
+            
+            for (int i = 0; i < nWaves; ++i) {
+                waves[i] = newWave();
+            }
+            
+        }
+        break;
+        default:
+            nWaves = 0;
+            break;
+    }
+}
+
+VertMod::~VertMod() {
+    delete [] waves;
+}
+
+void VertMod::update(float dTime) {
+    for (int i = 0; i < nWaves; ++i) {
+        Wave w = waves[i];
+        
+        waves[i].amp -= waves[i].decay;
+        if (waves[i].amp <= 0) {
+            waves[i] = newWave();
+            waves[i].amp = 0;
+            waves[i].decay *= -1;
+        }
+        else if (waves[i].amp >= maxWave.amp)
+            waves[i].decay *= -1;
+         
+    }
+}
+
+float VertMod::mod(float time, float x, float y, float z) {
+    float output = 0;
     
     switch(func)
     {
-        case FUNC_SIN:
-            output = sinf(M_2PI * timeFact);
-            break;
+        case FUNC_WAVES:
             
-        case FUNC_TRIANGLE:
-            if(timeFact < 0.25f)            // 0 ~ 0.25
-                output = 4 * timeFact;
-            else if(timeFact < 0.75f)       // 0.25 ~ 0.75
-                output = 2 - (4 * timeFact);
-            else                            // 0.75 ~ 1
-                output = 4 * timeFact - 4;
-            break;
+            for (int i = 0; i < nWaves; ++i)
+                output += 2 * waves[i].amp * powf(sinf(waves[i].dir.dot(Vector3(x, y, z)) * waves[i].freq + time * waves[i].phase) / 2, waves[i].exp);
             
-        case FUNC_SQUARE:
-            if(timeFact < 0.5f)
-                output = 1;
-            else
-                output = -1;
-            break;
-            
-        case FUNC_SAWTOOTH:
-            output = 2 * timeFact - 1;
             break;
             
         default:
             output = 1; // no function defined
+            break;
     }
-    
-    // apply amplitude and offset
-    output = amp * output + offset;
     
     return output;
 }

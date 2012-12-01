@@ -33,7 +33,7 @@ class Mesh
 private:
     
     int m_memHint;
-    VertModFunc m_vertModFunc;
+    VertMod *m_vertMod;
     
     // Mesh Data
     int     m_nVertexCount; // Vertex Count
@@ -64,7 +64,7 @@ public:
     ~Mesh();
     
     void setMemHint(int hint);
-    void setVertModFunc(int mod);
+    void setVertMod(VertMod *mod);
     
     bool loadHeightmap( const char* szPath, float flHeightScale, float flResolution );
     
