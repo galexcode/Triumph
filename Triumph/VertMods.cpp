@@ -73,8 +73,6 @@ VertMod::~VertMod() {
 
 void VertMod::update(float dTime) {
     for (int i = 0; i < nWaves; ++i) {
-        Wave w = waves[i];
-        
         waves[i].amp -= waves[i].decay;
         if (waves[i].amp <= 0) {
             waves[i] = newWave();
@@ -83,7 +81,6 @@ void VertMod::update(float dTime) {
         }
         else if (waves[i].amp >= maxWave.amp)
             waves[i].decay *= -1;
-         
     }
 }
 

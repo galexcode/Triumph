@@ -31,10 +31,15 @@ int BattleScene::load() {
     
     // Load The Mesh Data
     m_water = new Mesh();
-    m_water->setMemHint(GL_STREAM_DRAW_ARB); // make sure GL knows that this will update every frame
-    m_water->setVertMod(new VertMod(FUNC_WAVES));
     
-    if( !m_water->loadHeightmap( "flat1024.bmp",              // Load Our Heightmap
+    const char *files[2] = {"ambient.vert", "ambient.frag"};
+    GLenum types[2] = {GL_VERTEX_SHADER_ARB, GL_FRAGMENT_SHADER_ARB};
+    m_water->setShaders(files, types, 2);
+    
+    //m_water->setMemHint(GL_STREAM_DRAW_ARB); // make sure GL knows that this will update every frame
+    //m_water->setVertMod(new VertMod(FUNC_WAVES));
+    
+    if( !m_water->loadHeightmap( "terrain.bmp",              // Load Our Heightmap
                                 MESH_HEIGHTSCALE, MESH_RESOLUTION ) ) {
         Console::getInstance()->message(0, "Error Loading Water mesh.");
         return INIT_FAIL;
@@ -58,9 +63,9 @@ void BattleScene::draw(float dTime) {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
     
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     m_water->draw(dTime);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void BattleScene::keyEvent(int key, int state) {

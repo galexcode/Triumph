@@ -10,15 +10,16 @@
 
 #include "Console.h"
 #include "BattleScene.h"
-
+#include "WorldScene.h"
 
 TriumphGame::TriumphGame()
 {
     Console::getInstance()->message(CONSOLE_MSG_SYS, "Starting Triumph");
 
 	m_state = world;
-	m_scene = new BattleScene();
-
+    m_scene = new BattleScene();
+    //m_scene = new WorldScene();
+    
     m_engine = GameEngine::getInstance();
 }
 

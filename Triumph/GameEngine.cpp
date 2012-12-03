@@ -39,21 +39,29 @@ GameEngine::Mode GameEngine::getDebug() {
 
 int GameEngine::init(Game *game)
 {
+    
     if (!glfwInit()) {
         Console::getInstance()->message(CONSOLE_MSG_SYS, "Failed to Initialize GLFW");
         return INIT_FAIL;
     }
-    
+
     glfwOpenWindowHint(GLFW_FSAA_SAMPLES, FSAA_SAMPLES);
     
     if (!glfwOpenWindow(WINDOW_WIDTH, WINDOW_HEIGHT, 8, 8, 8, 8, 8, 8, GLFW_WINDOW)) {
         Console::getInstance()->message(CONSOLE_MSG_SYS, "Failed to open GLFW window");
         return INIT_FAIL;
     }
+
+    if (glewInit() != GLEW_OK) {
+        Console::getInstance()->message(CONSOLE_MSG_SYS, "GLEW Failed to load.");
+        return INIT_FAIL;
+    }
+    
+    Console::getInstance()->message(CONSOLE_MSG_SYS, "GLSL Version: %s", glGetString(GL_SHADING_LANGUAGE_VERSION));
     
     // get support levels
     m_fGLSupportedMultisample = glfwExtensionSupported("GL_ARB_multisample");
-    m_fGLSupportedVBO = !glfwExtensionSupported("GL_ARB_vertex_buffer_object");
+    m_fGLSupportedVBO = glfwExtensionSupported("GL_ARB_vertex_buffer_object");
     
     glfwSetWindowTitle(WINDOW_TITLE);
     glfwSwapInterval(1);
@@ -69,7 +77,7 @@ int GameEngine::init(Game *game)
 	glEnable(GL_BLEND);
     glShadeModel(GL_SMOOTH);
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-    glEnable (GL_CULL_FACE);
+    //glEnable (GL_CULL_FACE);
         
 	// init the debug font
 	m_debugFont = new Font("courier.bmp");

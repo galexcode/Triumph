@@ -13,12 +13,17 @@
 #include "Texture.h"
 #include "Geometry.h"
 #include "VertMods.h"
+#include <vector>
 
 typedef struct
 {
 	float x;
 	float y;
 	float z;
+    
+    float nx;
+    float ny;
+    float nz;
 } Vert;
 
 class TexCoord                           
@@ -35,6 +40,12 @@ private:
     int m_memHint;
     VertMod *m_vertMod;
     
+    // Shader source
+    GLuint m_shaderProgram;
+    
+    GLuint m_attrPosition;
+    GLuint m_attrNormal;
+    
     // Mesh Data
     int     m_nVertexCount; // Vertex Count
     Vert*      m_pVertices; // Vertex Data
@@ -49,15 +60,16 @@ private:
     // Temporary Data
     Texture *m_pTextureImage; // Heightmap Data
     
-    // Pointers To The GL VBO Functions
-    PFNGLGENBUFFERSARBPROC glGenBuffersARB;
-    PFNGLBINDBUFFERARBPROC glBindBufferARB;
-    PFNGLBUFFERDATAARBPROC glBufferDataARB;
-    PFNGLDELETEBUFFERSARBPROC glDeleteBuffersARB;
-	PFNGLMAPBUFFERARBPROC glMapBufferARB;
-	PFNGLUNMAPBUFFERARBPROC glUnmapBufferARB;
-    
     void updateVertices(float* dstVertices, Vert *srcVertices, Vert *srcNormals, int count);
+    
+    void buildVBOs();
+    
+    char * loadTxtSource(const char *source);
+    
+    void createShaderProgram(GLuint *program, const std::vector<GLuint> shaderList);
+    GLuint createShader(GLenum type, const char *source);
+    
+    //void setShader(char *source, GLenum *shader, GLenum type);
     
 public:
     Mesh();
@@ -65,10 +77,9 @@ public:
     
     void setMemHint(int hint);
     void setVertMod(VertMod *mod);
+    void setShaders(const char **files, const GLenum *types, int nShaders);
     
     bool loadHeightmap( const char* szPath, float flHeightScale, float flResolution );
-    
-    void buildVBOs();
     
     void draw(float dTime);
 };
