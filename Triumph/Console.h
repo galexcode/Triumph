@@ -16,7 +16,7 @@
 
 #define LOG_FONTFILE "courer.bmp"
 #define LOG_BUFFER_SIZE 6
-#define LOG_MSG_LIMIT 256
+#define LOG_MSG_LIMIT 1000
 
 #define CONSOLE_MSG_SYS 0
 #define CONSOLE_MSG_USER 1

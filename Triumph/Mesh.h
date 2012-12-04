@@ -47,15 +47,21 @@ private:
     GLuint m_attrNormal;
     
     // Mesh Data
-    int     m_nVertexCount; // Vertex Count
-    Vert*      m_pVertices; // Vertex Data
-	Vert*	   m_pWVertices; // Writable Vertex Data when VBO not available
-    TexCoord*  m_pTexCoords; // Texture Coordinates
+    int             m_nVertexCount; // Vertex Count
+    int             m_nIndexCount;
+    
+    Vert*           m_pVertices; // Vertex Data
+    unsigned short  *m_pIndices;
+    
+	Vert*           m_pWVertices; // Writable Vertex Data when VBO not available
+    
+    TexCoord*       m_pTexCoords; // Texture Coordinates
     unsigned int    m_nTextureId; // Texture ID
     
     // Vertex Buffer Object Names
     unsigned int    m_nVBOVertices; // Vertex VBO Name
     unsigned int    m_nVBOTexCoords; // Texture Coordinate VBO Name
+    unsigned int    m_idVBOIndices;
     
     // Temporary Data
     Texture *m_pTextureImage; // Heightmap Data

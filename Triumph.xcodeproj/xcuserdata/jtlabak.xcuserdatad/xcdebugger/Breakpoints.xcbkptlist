@@ -282,11 +282,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/BattleScene.cpp"
-         timestampString = "376043820.007345"
+         timestampString = "376291591.167885"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "101"
-         endingLineNumber = "101"
+         startingLineNumber = "103"
+         endingLineNumber = "103"
          landmarkName = "BattleScene::update(float dTime)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -319,11 +319,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/BattleScene.cpp"
-         timestampString = "376043820.007345"
+         timestampString = "376291591.167885"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "118"
-         endingLineNumber = "118"
+         startingLineNumber = "120"
+         endingLineNumber = "120"
          landmarkName = "BattleScene::update(float dTime)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -332,11 +332,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Mesh.cpp"
-         timestampString = "376216898.107115"
+         timestampString = "376276480.390109"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "142"
-         endingLineNumber = "142"
+         startingLineNumber = "149"
+         endingLineNumber = "149"
          landmarkName = "Mesh::updateVertices(float* dstVertices, Vert *srcVertices, Vert *srcNormals, int count)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -345,11 +345,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Mesh.cpp"
-         timestampString = "376216898.107115"
+         timestampString = "376276480.390109"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "174"
-         endingLineNumber = "174"
+         startingLineNumber = "184"
+         endingLineNumber = "184"
          landmarkName = "Mesh::draw(float dTime)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -410,11 +410,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Mesh.cpp"
-         timestampString = "376215197.643035"
+         timestampString = "376276480.390109"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "103"
-         endingLineNumber = "103"
+         startingLineNumber = "106"
+         endingLineNumber = "106"
          landmarkName = "Mesh::createShaderProgram(GLuint *program, const std::vector&lt;GLuint&gt; shaderList)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -423,11 +423,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Mesh.cpp"
-         timestampString = "376215197.643035"
+         timestampString = "376276480.390109"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "99"
-         endingLineNumber = "99"
+         startingLineNumber = "102"
+         endingLineNumber = "102"
          landmarkName = "Mesh::createShaderProgram(GLuint *program, const std::vector&lt;GLuint&gt; shaderList)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -436,7 +436,20 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Mesh.cpp"
-         timestampString = "376122460.301835"
+         timestampString = "376276480.390109"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "72"
+         endingLineNumber = "72"
+         landmarkName = "Mesh::createShader(GLenum eShaderType, const char *source)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/Mesh.cpp"
+         timestampString = "376276480.390109"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "69"
@@ -449,37 +462,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Mesh.cpp"
-         timestampString = "376122460.301835"
+         timestampString = "376295144.595207"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "66"
-         endingLineNumber = "66"
-         landmarkName = "Mesh::createShader(GLenum eShaderType, const char *source)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Triumph/Mesh.cpp"
-         timestampString = "376216898.107115"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "175"
-         endingLineNumber = "175"
-         landmarkName = "Mesh::draw(float dTime)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Triumph/Mesh.cpp"
-         timestampString = "376217278.166757"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "272"
-         endingLineNumber = "272"
+         startingLineNumber = "307"
+         endingLineNumber = "307"
          landmarkName = "Mesh::loadHeightmap( const char* szPath, float flHeightScale, float flResolution )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -501,11 +488,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Mesh.cpp"
-         timestampString = "376217278.166757"
+         timestampString = "376295144.595207"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "307"
-         endingLineNumber = "307"
+         startingLineNumber = "379"
+         endingLineNumber = "379"
          landmarkName = "Mesh::loadHeightmap( const char* szPath, float flHeightScale, float flResolution )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -514,24 +501,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Mesh.cpp"
-         timestampString = "376216898.107115"
+         timestampString = "376276480.390109"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "223"
-         endingLineNumber = "223"
-         landmarkName = "Mesh::draw(float dTime)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Triumph/Mesh.cpp"
-         timestampString = "376217278.166757"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "247"
-         endingLineNumber = "247"
+         startingLineNumber = "269"
+         endingLineNumber = "269"
          landmarkName = "Mesh::buildVBOs()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -540,11 +514,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Mesh.cpp"
-         timestampString = "376217278.166757"
+         timestampString = "376276480.390109"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "245"
-         endingLineNumber = "245"
+         startingLineNumber = "267"
+         endingLineNumber = "267"
          landmarkName = "Mesh::buildVBOs()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -553,24 +527,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Mesh.cpp"
-         timestampString = "376216898.107115"
+         timestampString = "376276480.390109"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "188"
-         endingLineNumber = "188"
-         landmarkName = "Mesh::draw(float dTime)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Triumph/Mesh.cpp"
-         timestampString = "376217278.166757"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "246"
-         endingLineNumber = "246"
+         startingLineNumber = "268"
+         endingLineNumber = "268"
          landmarkName = "Mesh::buildVBOs()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -579,12 +540,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Mesh.cpp"
-         timestampString = "376216898.107115"
+         timestampString = "376276480.390109"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "189"
-         endingLineNumber = "189"
-         landmarkName = "Mesh::draw(float dTime)"
+         startingLineNumber = "131"
+         endingLineNumber = "131"
+         landmarkName = "Mesh::setShaders(const char **files, const GLenum *types, int nShaders)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -592,12 +553,142 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Triumph/Mesh.cpp"
-         timestampString = "376216898.107115"
+         timestampString = "376276480.390109"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "206"
-         endingLineNumber = "206"
-         landmarkName = "Mesh::draw(float dTime)"
+         startingLineNumber = "134"
+         endingLineNumber = "134"
+         landmarkName = "Mesh::setShaders(const char **files, const GLenum *types, int nShaders)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/Mesh.cpp"
+         timestampString = "376276480.390109"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "66"
+         endingLineNumber = "66"
+         landmarkName = "Mesh::createShader(GLenum eShaderType, const char *source)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/Console.cpp"
+         timestampString = "376256852.641263"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "50"
+         endingLineNumber = "50"
+         landmarkName = "Console::message(int type, const char *fmt, ...)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/Mesh.cpp"
+         timestampString = "376276480.390109"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "88"
+         endingLineNumber = "88"
+         landmarkName = "Mesh::createShader(GLenum eShaderType, const char *source)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/Mesh.cpp"
+         timestampString = "376276627.558738"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "302"
+         endingLineNumber = "302"
+         landmarkName = "Mesh::loadHeightmap( const char* szPath, float flHeightScale, float flResolution )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/Mesh.cpp"
+         timestampString = "376276480.390109"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "273"
+         endingLineNumber = "273"
+         landmarkName = "Mesh::buildVBOs()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/Mesh.cpp"
+         timestampString = "376295144.595207"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "313"
+         endingLineNumber = "313"
+         landmarkName = "Mesh::loadHeightmap( const char* szPath, float flHeightScale, float flResolution )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/Mesh.cpp"
+         timestampString = "376295144.595207"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "332"
+         endingLineNumber = "332"
+         landmarkName = "Mesh::loadHeightmap( const char* szPath, float flHeightScale, float flResolution )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/Mesh.cpp"
+         timestampString = "376295172.42687"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "361"
+         endingLineNumber = "361"
+         landmarkName = "Mesh::loadHeightmap( const char* szPath, float flHeightScale, float flResolution )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/Mesh.cpp"
+         timestampString = "376295190.455649"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "350"
+         endingLineNumber = "350"
+         landmarkName = "Mesh::loadHeightmap( const char* szPath, float flHeightScale, float flResolution )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Triumph/Mesh.cpp"
+         timestampString = "376296268.204451"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "360"
+         endingLineNumber = "360"
+         landmarkName = "Mesh::loadHeightmap( const char* szPath, float flHeightScale, float flResolution )"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

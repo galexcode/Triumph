@@ -32,7 +32,7 @@ int BattleScene::load() {
     // Load The Mesh Data
     m_water = new Mesh();
     
-    const char *files[2] = {"ambient.vert", "ambient.frag"};
+    const char *files[2] = {"lighting.vert", "lighting.frag"};
     GLenum types[2] = {GL_VERTEX_SHADER_ARB, GL_FRAGMENT_SHADER_ARB};
     m_water->setShaders(files, types, 2);
     
@@ -64,7 +64,9 @@ void BattleScene::draw(float dTime) {
 	}
     
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    //glEnable(GL_CULL_FACE);
     m_water->draw(dTime);
+    //glDisable(GL_CULL_FACE);
     //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
