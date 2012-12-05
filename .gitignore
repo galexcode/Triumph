@@ -2,12 +2,12 @@
 ## Other
 #################
 *.dropbox
+"Icon\r"
 
 #################
 ## Built Output
 #################
 *.o
-triumph
 
 #################
 ## Eclipse
