@@ -23,9 +23,9 @@ Wave VertMod::newWave() {
     
     w.amp = RandomFloat(minWave.amp, maxWave.amp);
     w.freq = RandomFloat(minWave.freq, maxWave.freq);
-    w.speed = RandomFloat(minWave.freq, maxWave.freq);
+    w.speed = RandomFloat(minWave.speed, maxWave.speed);
     w.phase = w.speed * w.freq;
-    w.dir = Vector3(rand() % 1000 / 1000.0f, 0, rand() % 1000 / 1000.0f);
+    w.dir = Vector3(rand() % 1000 - 500, 0, rand() % 1000 - 500);
     w.dir.normalize();
     w.exp = (int)RandomFloat(minWave.exp, maxWave.exp);
     w.decay = RandomFloat(minWave.decay, maxWave.decay);
@@ -40,19 +40,19 @@ VertMod::VertMod(VertModFunc f) {
     {
         case FUNC_WAVES:
         {
-            minWave.amp = 2.0f; // 2
-            minWave.freq = 0.3f; // .3
-            minWave.speed = 50.0f; // 50
+            minWave.amp = 1.0f; // 2
+            minWave.freq = 0.05f; // .3
+            minWave.speed = 3.0f; // 50
             minWave.exp = 2;
             minWave.decay = 0.001f;
             
-            maxWave.amp = 3.0f; // 3
-            maxWave.freq = 0.5f; // .5
-            maxWave.speed = 150.0f; // 150
-            maxWave.exp = 2;
+            maxWave.amp = 1.5f; // 3
+            maxWave.freq = 0.1f; // .5
+            maxWave.speed = 30.0f; // 150
+            maxWave.exp = 4;
             maxWave.decay = 0.009f;
             
-            nWaves = 3;
+            nWaves = 15;
             waves = new Wave[nWaves];
             
             for (int i = 0; i < nWaves; ++i) {
@@ -82,24 +82,4 @@ void VertMod::update(float dTime) {
         else if (waves[i].amp >= maxWave.amp)
             waves[i].decay *= -1;
     }
-}
-
-float VertMod::mod(float time, float x, float y, float z) {
-    float output = 0;
-    
-    switch(func)
-    {
-        case FUNC_WAVES:
-            
-            for (int i = 0; i < nWaves; ++i)
-                output += 2 * waves[i].amp * powf(sinf(waves[i].dir.dot(Vector3(x, y, z)) * waves[i].freq + time * waves[i].phase) / 2, waves[i].exp);
-            
-            break;
-            
-        default:
-            output = 1; // no function defined
-            break;
-    }
-    
-    return output;
 }

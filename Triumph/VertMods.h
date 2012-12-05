@@ -47,7 +47,6 @@ struct VertMod
     Wave newWave();
     
     void update(float dTime);
-    float mod(float time, float x, float y, float z);
 };
 
 #endif /* defined(__Triumph__VertMods__) */

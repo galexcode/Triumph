@@ -14,6 +14,7 @@
 #include <math.h>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include "GLUtil.h"
 
@@ -26,14 +27,12 @@ Mesh::Mesh() {
     m_shaderProgram = 0;
 
 	m_pWVertices = NULL;
+    
+    m_vertMod = new VertMod(FUNC_WAVES);
 }
 
 void Mesh::setMemHint(int hint) {
     m_memHint = hint;
-}
-
-void Mesh::setVertMod(VertMod *mod) {
-    m_vertMod = mod;
 }
 
 Mesh::~Mesh() {
@@ -43,6 +42,8 @@ Mesh::~Mesh() {
 	delete[] m_pWVertices; m_pWVertices = NULL;
 
     delete[] m_pIndices; m_pIndices = NULL;
+    
+    delete m_vertMod;
     
     glDeleteProgramsARB(1, &m_shaderProgram);
     
@@ -142,42 +143,6 @@ void Mesh::setShaders(const char **files, const GLenum *types, int nShaders) {
     createShaderProgram(&m_shaderProgram, shaders);
 }
 
-void Mesh::updateVertices(float* dstVertices, Vert *srcVertices, Vert *srcNormals, int count) {	
-	if(!dstVertices || !srcVertices || !srcNormals)
-        return;
-
-    float height;
-    float x, y, z;
-    
-    float time = GameEngine::getInstance()->getElapsedTime();
-    
-    for(int i=0; i < count; ++i) {
-        // get source from original vertex array
-		x = srcVertices->x;
-        y = srcVertices->y;
-        z = srcVertices->z;
-		++srcVertices;
-        
-        height = m_vertMod->mod(time, x, y, z);
-        
-        // update vertex coords
-		/*
-         *dstVertices = x + (height * *srcNormals);  // x
-         ++dstVertices; ++srcNormals;
-         *dstVertices = y + (height * *srcNormals);  // y
-         ++dstVertices; ++srcNormals;
-         *dstVertices = z + (height * *srcNormals);  // z
-         ++dstVertices; ++srcNormals;
-         */
-		//*dstVertices = x;
-		++dstVertices;
-		*dstVertices = y + height;
-		++dstVertices;
-		//*dstVertices = z;
-		++dstVertices;
-    }
-}
-
 void Mesh::draw(float dTime) {
     
     if (GameEngine::getInstance()->m_fGLSupportedVBO) {
@@ -194,19 +159,6 @@ void Mesh::draw(float dTime) {
         glScaled(10, 10, 10);
         GLUtil::DrawCube();
         glPopMatrix();
-        
-        /*
-        for (int i = 0; i < m_nIndexCount; ++i) {
-            Vert v = m_pVertices[m_pIndices[i]];
-            glBegin(GL_LINES);
-            glColor3d(1,1,1);
-            glVertex3f(v.x, v.y, v.z);
-            glVertex3f(v.x + v.nx * 10,
-                       v.y + v.ny * 10,
-                       v.z + v.nz * 10);
-            glEnd();
-        }
-        */
         
         if (m_shaderProgram > 0) {
             glUseProgramObjectARB(m_shaderProgram);
@@ -231,33 +183,38 @@ void Mesh::draw(float dTime) {
             glUniform1fARB(SpecularIntensity, 0.2f);
             glUniform1fARB(Roughness, 0.5f);
             
-            glUniform1iARB(glGetUniformLocationARB(m_shaderProgram, "NumWaves"), 2);
+            glUniform1iARB(glGetUniformLocationARB(m_shaderProgram, "NumWaves"), m_vertMod->nWaves);
             
-            GLuint w = glGetUniformLocationARB(m_shaderProgram, "Waves[0].amp");
-            glUniform1fARB(w, 5.0f);
-            w = glGetUniformLocationARB(m_shaderProgram, "Waves[0].freq");
-            glUniform1fARB(w, 0.1f);
-            w = glGetUniformLocationARB(m_shaderProgram, "Waves[0].phase");
-            glUniform1fARB(w, 10.0f * 0.1f); // speed * freq
-            w = glGetUniformLocationARB(m_shaderProgram, "Waves[0].exp");
-            glUniform1fARB(w, 2.0f);
-            w = glGetUniformLocationARB(m_shaderProgram, "Waves[0].dir");
-            Vector3 dir = Vector3(1,0,1);
-            dir.normalize();
-            glUniform2fARB(w, dir.m_x, dir.m_z);
+            m_vertMod->update(dTime);
             
-            w = glGetUniformLocationARB(m_shaderProgram, "Waves[1].amp");
-            glUniform1fARB(w, 4.0f);
-            w = glGetUniformLocationARB(m_shaderProgram, "Waves[1].freq");
-            glUniform1fARB(w, 0.2f);
-            w = glGetUniformLocationARB(m_shaderProgram, "Waves[1].phase");
-            glUniform1fARB(w, 10.0f * 0.2f); // speed * freq
-            w = glGetUniformLocationARB(m_shaderProgram, "Waves[1].exp");
-            glUniform1fARB(w, 2.0f);
-            w = glGetUniformLocationARB(m_shaderProgram, "Waves[1].dir");
-            dir = Vector3(0,0,1);
-            dir.normalize();
-            glUniform2fARB(w, dir.m_x, dir.m_z);
+            for (int i = 0; i < m_vertMod->nWaves; ++i) {
+                std::stringstream uniform;
+                GLuint w;
+                
+                uniform << "Waves[" << i << "].amp";
+                w = glGetUniformLocationARB(m_shaderProgram, uniform.str().c_str());
+                glUniform1fARB(w, m_vertMod->waves[i].amp);
+                uniform.str(std::string());
+                
+                uniform << "Waves[" << i << "].freq";
+                w = glGetUniformLocationARB(m_shaderProgram, uniform.str().c_str());
+                glUniform1fARB(w, m_vertMod->waves[i].freq);
+                uniform.str(std::string());
+                
+                uniform << "Waves[" << i << "].phase";
+                w = glGetUniformLocationARB(m_shaderProgram, uniform.str().c_str());
+                glUniform1fARB(w, m_vertMod->waves[i].phase);
+                uniform.str(std::string());
+                
+                uniform << "Waves[" << i << "].exp";
+                w = glGetUniformLocationARB(m_shaderProgram, uniform.str().c_str());
+                glUniform1fARB(w, m_vertMod->waves[i].exp);
+                uniform.str(std::string());
+                
+                uniform << "Waves[" << i << "].dir";
+                w = glGetUniformLocationARB(m_shaderProgram, uniform.str().c_str());
+                glUniform2fARB(w, m_vertMod->waves[i].dir.m_x, m_vertMod->waves[i].dir.m_z);
+            }
         }
         
         glBindBufferARB( GL_ARRAY_BUFFER_ARB, m_nVBOVertices );
@@ -270,30 +227,13 @@ void Mesh::draw(float dTime) {
             glVertexAttribPointerARB(m_attrNormal, 3, GL_FLOAT, GL_FALSE, sizeof(float)*6, ((char*)NULL)+3*sizeof(float));
             glEnableVertexAttribArrayARB(m_attrNormal);
         }
-            
-        // map the buffer object into client's memory
-        // Note that glMapBufferARB() causes sync issue.
-        // If GPU is working with this buffer, glMapBufferARB() will wait(stall)
-        // for GPU to finish its job.
-        if (m_vertMod != NULL) {
-            float *ptr = (float *)glMapBufferARB(GL_ARRAY_BUFFER_ARB, GL_READ_WRITE_ARB);
-            if(ptr)
-            {
-                // wobble vertex in and out along normal
-                m_vertMod->update(dTime);
-                //updateVertices(ptr, m_pVertices, m_pVertices, m_nVertexCount);
-                glUnmapBufferARB(GL_ARRAY_BUFFER_ARB); // release pointer to mapping buffer
-            }
-        }
         
         glBindBufferARB( GL_ELEMENT_ARRAY_BUFFER_ARB, m_idVBOIndices);
         
         // Render
-        //glEnable(GL_TEXTURE_2D);
         glDrawElements(GL_TRIANGLES, m_nIndexCount, GL_UNSIGNED_SHORT, 0);
-        //glDrawArrays( GL_TRIANGLES, 0, m_nVertexCount );        // Draw All Of The Triangles At Once
-        //glDisable(GL_TEXTURE_2D);
         
+        // Cleanup
         glDisableVertexAttribArrayARB(m_attrPosition);
         glDisableVertexAttribArrayARB(m_attrNormal);
         glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, 0);
@@ -301,7 +241,6 @@ void Mesh::draw(float dTime) {
         
         if (m_shaderProgram > 0)
             glUseProgramObjectARB(0);
-        
         
     }
 
