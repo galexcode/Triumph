@@ -15,6 +15,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include "GLUtil.h"
 
 // GPU has VBO at this point
 Mesh::Mesh() {
@@ -123,8 +124,8 @@ void Mesh::createShaderProgram(GLuint *program, const std::vector<GLuint> shader
     for(size_t iLoop = 0; iLoop < shaderList.size(); iLoop++)
         glDetachObjectARB(*program, shaderList[iLoop]);
     
-    m_attrPosition = glGetAttribLocationARB(*program, "position_in");
-    m_attrNormal   = glGetAttribLocationARB(*program, "normal_in");
+    m_attrPosition = glGetAttribLocationARB(*program, "AttrPosition");
+    m_attrNormal   = glGetAttribLocationARB(*program, "AttrNormal");
 }
 
 void Mesh::setShaders(const char **files, const GLenum *types, int nShaders) {
@@ -180,29 +181,83 @@ void Mesh::updateVertices(float* dstVertices, Vert *srcVertices, Vert *srcNormal
 void Mesh::draw(float dTime) {
     
     if (GameEngine::getInstance()->m_fGLSupportedVBO) {
-    
-        static float lightX;
-        if (lightX < 1000) {
-            lightX += 1;
+
+        static Vector3 light = Vector3(-1000, 400, 0);
+        if (light.m_x < 1000) {
+            light.m_x += 1;
         } else {
-            lightX = -1000;
+            light.m_x = -1000;
         }
         
+        glPushMatrix();
+        glTranslated(light.m_x, light.m_y, light.m_z);
+        glScaled(10, 10, 10);
+        GLUtil::DrawCube();
+        glPopMatrix();
+        
+        /*
+        for (int i = 0; i < m_nIndexCount; ++i) {
+            Vert v = m_pVertices[m_pIndices[i]];
+            glBegin(GL_LINES);
+            glColor3d(1,1,1);
+            glVertex3f(v.x, v.y, v.z);
+            glVertex3f(v.x + v.nx * 10,
+                       v.y + v.ny * 10,
+                       v.z + v.nz * 10);
+            glEnd();
+        }
+        */
         
         if (m_shaderProgram > 0) {
             glUseProgramObjectARB(m_shaderProgram);
-            GLuint lightPosition = glGetUniformLocationARB(m_shaderProgram, "lightPosition");
-            GLuint lightDiffuse = glGetUniformLocationARB(m_shaderProgram, "lightDiffuse");
-            GLuint materialDiffuse = glGetUniformLocationARB(m_shaderProgram, "materialDiffuse");
-            GLuint materialAmbient = glGetUniformLocationARB(m_shaderProgram, "materialAmbient");
-            GLuint lightAmbient = glGetUniformLocationARB(m_shaderProgram, "lightAmbient");
-            GLuint globalAmbient = glGetUniformLocationARB(m_shaderProgram, "globalAmbient");
-            glUniform3f(lightPosition, lightX, 400.0f, 0.0f);
-            glUniform4f(lightDiffuse, 1.0f, 1.0f, 1.0f, 1.0f);
-            glUniform4f(materialDiffuse, 1.0f, 0.0f, 0.0f, 1.0f);
-            glUniform4f(materialAmbient, 0.0f, 0.0f, 0.0f, 0.0f);
-            glUniform4f(lightAmbient, 0.0f, 0.0f, 0.0f, 0.0f);
-            glUniform4f(globalAmbient, 0.3f, 0.0f, 0.0f, 1.0f);
+            GLuint LightPosition = glGetUniformLocationARB(m_shaderProgram, "LightPosition");
+            GLuint DiffuseColor = glGetUniformLocationARB(m_shaderProgram, "DiffuseColor");
+            GLuint AmbientColor = glGetUniformLocationARB(m_shaderProgram, "AmbientColor");
+            GLuint SpecularColor = glGetUniformLocationARB(m_shaderProgram, "SpecularColor");
+            GLuint DiffuseIntensity = glGetUniformLocationARB(m_shaderProgram, "DiffuseIntensity");
+            GLuint AmbientIntensity = glGetUniformLocationARB(m_shaderProgram, "AmbientIntensity");
+            GLuint SpecularIntensity = glGetUniformLocationARB(m_shaderProgram, "SpecularIntensity");
+            GLuint Roughness = glGetUniformLocationARB(m_shaderProgram, "Roughness");
+            GLuint Time = glGetUniformLocationARB(m_shaderProgram, "Time");
+            
+            glUniform1fARB(Time, GameEngine::getInstance()->getElapsedTime());
+            
+            glUniform3fARB(LightPosition, light.m_x, light.m_y, light.m_z);
+            glUniform3fARB(DiffuseColor, 1.0f, 0.0f, 0.0f);
+            glUniform3fARB(AmbientColor, 1.0f, 0.0f, 0.0f);
+            glUniform3fARB(SpecularColor, 1.0f, 1.0f, 1.0f);
+            glUniform1fARB(DiffuseIntensity, 0.2f);
+            glUniform1fARB(AmbientIntensity, 0.2f);
+            glUniform1fARB(SpecularIntensity, 0.2f);
+            glUniform1fARB(Roughness, 0.5f);
+            
+            glUniform1iARB(glGetUniformLocationARB(m_shaderProgram, "NumWaves"), 2);
+            
+            GLuint w = glGetUniformLocationARB(m_shaderProgram, "Waves[0].amp");
+            glUniform1fARB(w, 5.0f);
+            w = glGetUniformLocationARB(m_shaderProgram, "Waves[0].freq");
+            glUniform1fARB(w, 0.1f);
+            w = glGetUniformLocationARB(m_shaderProgram, "Waves[0].phase");
+            glUniform1fARB(w, 10.0f * 0.1f); // speed * freq
+            w = glGetUniformLocationARB(m_shaderProgram, "Waves[0].exp");
+            glUniform1fARB(w, 2.0f);
+            w = glGetUniformLocationARB(m_shaderProgram, "Waves[0].dir");
+            Vector3 dir = Vector3(1,0,1);
+            dir.normalize();
+            glUniform2fARB(w, dir.m_x, dir.m_z);
+            
+            w = glGetUniformLocationARB(m_shaderProgram, "Waves[1].amp");
+            glUniform1fARB(w, 4.0f);
+            w = glGetUniformLocationARB(m_shaderProgram, "Waves[1].freq");
+            glUniform1fARB(w, 0.2f);
+            w = glGetUniformLocationARB(m_shaderProgram, "Waves[1].phase");
+            glUniform1fARB(w, 10.0f * 0.2f); // speed * freq
+            w = glGetUniformLocationARB(m_shaderProgram, "Waves[1].exp");
+            glUniform1fARB(w, 2.0f);
+            w = glGetUniformLocationARB(m_shaderProgram, "Waves[1].dir");
+            dir = Vector3(0,0,1);
+            dir.normalize();
+            glUniform2fARB(w, dir.m_x, dir.m_z);
         }
         
         glBindBufferARB( GL_ARRAY_BUFFER_ARB, m_nVBOVertices );
@@ -212,7 +267,7 @@ void Mesh::draw(float dTime) {
             glEnableVertexAttribArrayARB(m_attrPosition);
         }
         if (m_attrNormal != -1) {
-            glVertexAttribPointerARB(m_attrNormal, 3, GL_FLOAT, GL_FALSE, sizeof(float)*6, (void*)3);
+            glVertexAttribPointerARB(m_attrNormal, 3, GL_FLOAT, GL_FALSE, sizeof(float)*6, ((char*)NULL)+3*sizeof(float));
             glEnableVertexAttribArrayARB(m_attrNormal);
         }
             
@@ -247,16 +302,7 @@ void Mesh::draw(float dTime) {
         if (m_shaderProgram > 0)
             glUseProgramObjectARB(0);
         
-        for (int i = 0; i < m_nIndexCount; ++i) {
-            Vert v = m_pVertices[m_pIndices[i]];
-            glBegin(GL_LINES);
-            glColor3d(1,1,1);
-            glVertex3f(v.x, v.y, v.z);
-            glVertex3f(v.x + v.nx * 10,
-                       v.y + v.ny * 10,
-                       v.z + v.nz * 10);
-            glEnd();
-        }
+        
     }
 
 }

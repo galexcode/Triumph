@@ -16,7 +16,7 @@
 #define GL_ARRAY_BUFFER_ARB 0x8892
 #define GL_STATIC_DRAW_ARB 0x88E4
 
-#define MESH_RESOLUTION 16.0f
+#define MESH_RESOLUTION 8.0f
 #define MESH_HEIGHTSCALE 1.0f
 
 int BattleScene::load() {
@@ -24,7 +24,7 @@ int BattleScene::load() {
 	m_engine = GameEngine::getInstance();
 	m_engine->registerScene(this);
 
-    m_cam.m_eye = Vector3(0, 250, -2);
+    m_cam.m_eye = Vector3(0, 400, 300);
     m_cam.m_target = m_cam.m_eye + Vector3::forward;
     
     m_fFreeLook = false;
@@ -32,14 +32,14 @@ int BattleScene::load() {
     // Load The Mesh Data
     m_water = new Mesh();
     
-    const char *files[2] = {"lighting.vert", "lighting.frag"};
+    const char *files[2] = {"blinn.vert", "blinn.frag"};
     GLenum types[2] = {GL_VERTEX_SHADER_ARB, GL_FRAGMENT_SHADER_ARB};
     m_water->setShaders(files, types, 2);
     
     //m_water->setMemHint(GL_STREAM_DRAW_ARB); // make sure GL knows that this will update every frame
     //m_water->setVertMod(new VertMod(FUNC_WAVES));
     
-    if( !m_water->loadHeightmap( "terrain.bmp",              // Load Our Heightmap
+    if( !m_water->loadHeightmap( "flat1024.bmp",              // Load Our Heightmap
                                 MESH_HEIGHTSCALE, MESH_RESOLUTION ) ) {
         Console::getInstance()->message(0, "Error Loading Water mesh.");
         return INIT_FAIL;
