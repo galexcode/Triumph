@@ -12,9 +12,11 @@
 		D503AFC2163B501B0019DEFC /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D503AFC0163B501B0019DEFC /* Texture.cpp */; };
 		D50E04F01667FC46006C0656 /* VertMods.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D50E04EE1667FC46006C0656 /* VertMods.cpp */; };
 		D51D7D39164C3A8E006470AC /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D51D7D37164C3A8E006470AC /* GameEngine.cpp */; };
-		D53FA55B166EF9FC001E7EEB /* wave.vert in Resources */ = {isa = PBXBuildFile; fileRef = D53FA557166EF557001E7EEB /* wave.vert */; };
-		D53FA55C166EF9FC001E7EEB /* wave.frag in Resources */ = {isa = PBXBuildFile; fileRef = D53FA559166EF90C001E7EEB /* wave.frag */; };
+		D53FA55B166EF9FC001E7EEB /* sinwave.vert in Resources */ = {isa = PBXBuildFile; fileRef = D53FA557166EF557001E7EEB /* sinwave.vert */; };
+		D53FA55C166EF9FC001E7EEB /* sinwave.frag in Resources */ = {isa = PBXBuildFile; fileRef = D53FA559166EF90C001E7EEB /* sinwave.frag */; };
 		D541170716697000005E1915 /* flat1024.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D541170616697000005E1915 /* flat1024.bmp */; };
+		D545F43516700BBE00953058 /* Gerstner.vert in Resources */ = {isa = PBXBuildFile; fileRef = D545F43116700B6400953058 /* Gerstner.vert */; };
+		D545F43616700BBE00953058 /* Gerstner.frag in Resources */ = {isa = PBXBuildFile; fileRef = D545F43316700B7300953058 /* Gerstner.frag */; };
 		D56A7DA0163856C700B563F1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D56A7D9F163856C700B563F1 /* Cocoa.framework */; };
 		D56A7DAA163856C700B563F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D56A7DA8163856C700B563F1 /* InfoPlist.strings */; };
 		D56A7DB0163856C700B563F1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D56A7DAE163856C700B563F1 /* Credits.rtf */; };
@@ -59,9 +61,11 @@
 		D51D7D37164C3A8E006470AC /* GameEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEngine.cpp; sourceTree = "<group>"; };
 		D51D7D38164C3A8E006470AC /* GameEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngine.h; sourceTree = "<group>"; };
 		D51D7D3C164C3B56006470AC /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
-		D53FA557166EF557001E7EEB /* wave.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = wave.vert; sourceTree = "<group>"; };
-		D53FA559166EF90C001E7EEB /* wave.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = wave.frag; sourceTree = "<group>"; };
+		D53FA557166EF557001E7EEB /* sinwave.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sinwave.vert; sourceTree = "<group>"; };
+		D53FA559166EF90C001E7EEB /* sinwave.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sinwave.frag; sourceTree = "<group>"; };
 		D541170616697000005E1915 /* flat1024.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = flat1024.bmp; sourceTree = "<group>"; };
+		D545F43116700B6400953058 /* Gerstner.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Gerstner.vert; sourceTree = "<group>"; };
+		D545F43316700B7300953058 /* Gerstner.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Gerstner.frag; sourceTree = "<group>"; };
 		D56A7D9B163856C700B563F1 /* Triumph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Triumph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D56A7D9F163856C700B563F1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D56A7DA2163856C700B563F1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -146,8 +150,10 @@
 				D59E2923166DFB6100558B9B /* blinn.frag */,
 				D59E2927166E81C100558B9B /* phong.vert */,
 				D59E2929166E81CD00558B9B /* phong.frag */,
-				D53FA557166EF557001E7EEB /* wave.vert */,
-				D53FA559166EF90C001E7EEB /* wave.frag */,
+				D53FA557166EF557001E7EEB /* sinwave.vert */,
+				D53FA559166EF90C001E7EEB /* sinwave.frag */,
+				D545F43116700B6400953058 /* Gerstner.vert */,
+				D545F43316700B7300953058 /* Gerstner.frag */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -314,8 +320,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D53FA55B166EF9FC001E7EEB /* wave.vert in Resources */,
-				D53FA55C166EF9FC001E7EEB /* wave.frag in Resources */,
+				D545F43516700BBE00953058 /* Gerstner.vert in Resources */,
+				D545F43616700BBE00953058 /* Gerstner.frag in Resources */,
+				D53FA55B166EF9FC001E7EEB /* sinwave.vert in Resources */,
+				D53FA55C166EF9FC001E7EEB /* sinwave.frag in Resources */,
 				D59E292B166E843F00558B9B /* phong.vert in Resources */,
 				D59E292C166E843F00558B9B /* phong.frag in Resources */,
 				D59E2925166E028300558B9B /* blinn.vert in Resources */,

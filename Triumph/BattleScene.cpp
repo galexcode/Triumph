@@ -16,7 +16,7 @@
 #define GL_ARRAY_BUFFER_ARB 0x8892
 #define GL_STATIC_DRAW_ARB 0x88E4
 
-#define MESH_RESOLUTION 8.0f
+#define MESH_RESOLUTION 16.0f
 #define MESH_HEIGHTSCALE 1.0f
 
 int BattleScene::load() {
@@ -32,7 +32,7 @@ int BattleScene::load() {
     // Load The Mesh Data
     m_water = new Mesh();
     
-    const char *files[2] = {"wave.vert", "wave.frag"};
+    const char *files[2] = {"Gerstner.vert", "Gerstner.frag"};
     GLenum types[2] = {GL_VERTEX_SHADER_ARB, GL_FRAGMENT_SHADER_ARB};
     m_water->setShaders(files, types, 2);
     

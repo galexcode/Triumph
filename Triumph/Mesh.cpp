@@ -28,7 +28,7 @@ Mesh::Mesh() {
 
 	m_pWVertices = NULL;
     
-    m_vertMod = new VertMod(FUNC_WAVES);
+    m_vertMod = new VertMod(FUNC_GERSTNER);
 }
 
 void Mesh::setMemHint(int hint) {
@@ -209,6 +209,11 @@ void Mesh::draw(float dTime) {
                 uniform << "Waves[" << i << "].exp";
                 w = glGetUniformLocationARB(m_shaderProgram, uniform.str().c_str());
                 glUniform1fARB(w, m_vertMod->waves[i].exp);
+                uniform.str(std::string());
+                
+                uniform << "Waves[" << i << "].steepness";
+                w = glGetUniformLocationARB(m_shaderProgram, uniform.str().c_str());
+                glUniform1fARB(w, m_vertMod->waves[i].steepness);
                 uniform.str(std::string());
                 
                 uniform << "Waves[" << i << "].dir";

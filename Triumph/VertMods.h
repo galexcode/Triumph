@@ -14,7 +14,8 @@
 enum VertModFunc       // various periodic functions
 {
     FUNC_NONE = 0,
-    FUNC_WAVES
+    FUNC_WAVES,
+    FUNC_GERSTNER
 };
 
 struct Wave
@@ -24,6 +25,7 @@ struct Wave
     float speed;
     float phase;
     float offset;
+    float steepness;
     float exp;
     Vector3 dir;
     float decay;
@@ -40,6 +42,8 @@ struct VertMod
     int nWaves;
     Wave minWave;
     Wave maxWave;
+    
+    float steepness;
     
     VertMod(VertModFunc func);
     ~VertMod();

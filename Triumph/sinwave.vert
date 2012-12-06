@@ -29,26 +29,21 @@ void main()
     vec3 newPos = AttrPosition;
     vec3 norm = vec3(0, 0, 0);
     for (int i = 0; i < NumWaves; i++) {
-        float frac = (sin(dot(Waves[i].dir, xz) * Waves[i].freq + Time * Waves[i].phase) + 1) / 2;
+        Wave w = Waves[i];
+        float frac = (sin(dot(w.dir, xz) * w.freq + Time * w.phase) + 1) / 2;
 
         // update the height position
-        float y = 2 * Waves[i].amp * pow(frac, Waves[i].exp);
+        float y = 2 * w.amp * pow(frac, w.exp);
         
-        
-        float normFactor = Waves[i].exp * Waves[i].freq * Waves[i].amp * pow(frac, Waves[i].exp - 1) * cos(dot(Waves[i].dir, xz) * Waves[i].freq + Time * Waves[i].phase);
+        float normFactor = w.exp * w.freq * w.amp * pow(frac, w.exp - 1) * cos(dot(w.dir, xz) * w.freq + Time * w.phase);
 
         // update the normal
-        norm = norm + normFactor * vec3(Waves[i].dir.x, 0, Waves[i].dir.y);
+        norm = norm + normFactor * vec3(w.dir.x, 0, w.dir.y);
         newPos = newPos + vec3(0, y, 0);
-        
-        //float angle = (pos.x + Waves[i].phase * Time) * Waves[i].freq;
-        //newPos.y = newPos.y + sin(angle) * Waves[i].amp;
-        //norm = normalize(vec3(-Waves[i].amp * Waves[i].freq * cos(angle), 1.0, 0));
     }
     norm = norm * -1;
     norm.y = 1;
     normalize(norm);
-    //norm = AttrNormal;
 
     // next apply a blinn lighting shader
     N = gl_NormalMatrix * norm;

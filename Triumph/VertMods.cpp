@@ -25,7 +25,8 @@ Wave VertMod::newWave() {
     w.freq = RandomFloat(minWave.freq, maxWave.freq);
     w.speed = RandomFloat(minWave.speed, maxWave.speed);
     w.phase = w.speed * w.freq;
-    w.dir = Vector3(rand() % 1000 - 500, 0, rand() % 1000 - 500);
+    w.steepness = steepness / (w.freq * w.amp * nWaves);
+    w.dir = Vector3(rand() % 1000, 0, rand() % 1000);
     w.dir.normalize();
     w.exp = (int)RandomFloat(minWave.exp, maxWave.exp);
     w.decay = RandomFloat(minWave.decay, maxWave.decay);
@@ -35,6 +36,7 @@ Wave VertMod::newWave() {
 
 VertMod::VertMod(VertModFunc f) {
     func = f;
+    steepness = 0;
     
     switch (func)
     {
@@ -61,6 +63,28 @@ VertMod::VertMod(VertModFunc f) {
             
         }
         break;
+        case FUNC_GERSTNER:
+        {
+            minWave.amp = 2.0f;
+            minWave.freq = 0.025f;
+            minWave.speed = 3.0f;
+            minWave.decay = 0.002f;
+            
+            maxWave.amp = 2.0f;
+            maxWave.freq = 0.05f;
+            maxWave.speed = 6.0f;
+            maxWave.decay = 0.018f;
+            
+            nWaves = 10;
+            waves = new Wave[nWaves];
+            
+            steepness = 0.8;
+            
+            for (int i = 0; i < nWaves; ++i) {
+                waves[i] = newWave();
+            }
+        }
+        break;
         default:
             nWaves = 0;
             break;
@@ -76,10 +100,14 @@ void VertMod::update(float dTime) {
         waves[i].amp -= waves[i].decay;
         if (waves[i].amp <= 0) {
             waves[i] = newWave();
-            waves[i].amp = 0;
+            waves[i].amp = 0.00001;
             waves[i].decay *= -1;
         }
         else if (waves[i].amp >= maxWave.amp)
             waves[i].decay *= -1;
+        
+        if (func == FUNC_GERSTNER) {
+            waves[i].steepness = steepness / (waves[i].freq * waves[i].amp * nWaves);
+        }
     }
 }
