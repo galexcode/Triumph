@@ -8,6 +8,7 @@
 
 #include "GLUtil.h"
 #include "GameEngine.h"
+#include "Console.h"
 
 void GLUtil::DrawCube() {
     glBegin(GL_QUADS);          // Start Drawing Quads
@@ -147,4 +148,69 @@ void GLUtil::DrawSkybox(Vector3 eye, Texture *textures[6]) {
     glEnd();
     
     glDisable(GL_TEXTURE_2D);
+}
+
+
+GLuint GLUtil::CreateShader(GLenum eShaderType, const char *source) {
+    GLuint shader = glCreateShaderObjectARB(eShaderType);
+    glShaderSourceARB(shader, 1, (const char**)&source, NULL);
+    
+    glCompileShaderARB(shader);
+    
+    // debugging
+    if (true)
+    {
+        GLchar *strInfoLog = new GLchar[1000];
+        GLsizei nChars;
+        glGetInfoLogARB(shader, 999, &nChars, strInfoLog);
+        strInfoLog[1000] = '\0';
+        
+        if (nChars != 0) {
+            const char *strShaderType = NULL;
+            switch(eShaderType)
+            {
+                case GL_VERTEX_SHADER: strShaderType = "Vertex"; break;
+                case GL_GEOMETRY_SHADER: strShaderType = "Geometry"; break;
+                case GL_FRAGMENT_SHADER: strShaderType = "Fragment"; break;
+            }
+            
+            Console::getInstance()->message(CONSOLE_MSG_SYS, "%s Shader: %s", strShaderType, strInfoLog);
+        }
+        delete[] strInfoLog;
+    }
+    
+	return shader;
+}
+
+GLuint GLUtil::CreateShaderProgram(GLuint *shaderList, int nShaders) {
+    GLuint program = glCreateProgramObjectARB();
+    
+    // attach list of compiled shaders to the shader program
+    for(size_t iLoop = 0; iLoop < nShaders; iLoop++)
+    	glAttachObjectARB(program, shaderList[iLoop]);
+    
+    //glBindAttribLocationARB(*program, 0, "position");
+    
+    glLinkProgramARB(program);
+    
+    // debugging
+    if (true)
+    {
+        GLchar *strInfoLog = new GLchar[1000];
+        GLsizei nChars;
+        glGetInfoLogARB(program, 999, &nChars, strInfoLog);
+        strInfoLog[1000] = '\0';
+        
+        if (nChars != 0) {
+            Console::getInstance()->message(CONSOLE_MSG_SYS, "GLSL Linker: %s", strInfoLog);
+        }
+        delete[] strInfoLog;
+    }
+    
+    // the shaders are no longer needed by the program once compiled
+    for(size_t iLoop = 0; iLoop < nShaders; iLoop++)
+        glDetachObjectARB(program, shaderList[iLoop]);
+    
+    return program;
+    
 }

@@ -21,9 +21,16 @@
 
 class GLUtil {
 public:
+    // 3d utility functions
     static Ray3 GetMouseRay();
+    
+    // basic drawing functions
     static void DrawSkybox(Vector3 eye, Texture *textures[6]);
 	static void DrawCube();
+    
+    // shader functions
+    static GLuint CreateShader(GLenum eShaderType, const char *source);
+    static GLuint CreateShaderProgram(GLuint *shaderList, int nShaders);
 };
 
 #endif /* defined(__Triumph__GLUtil__) */

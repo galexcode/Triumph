@@ -64,71 +64,6 @@ char * Mesh::loadTxtSource(const char *source) {
     return txt;
 }
 
-GLuint Mesh::createShader(GLenum eShaderType, const char *source) {
-    GLuint shader = glCreateShaderObjectARB(eShaderType);
-    glShaderSourceARB(shader, 1, (const char**)&source, NULL);
-    
-    glCompileShaderARB(shader);
-    
-    // debugging
-    if (true)
-    {
-        GLchar *strInfoLog = new GLchar[1000];
-        GLsizei nChars;
-        glGetInfoLogARB(shader, 999, &nChars, strInfoLog);
-        strInfoLog[1000] = '\0';
-        
-        if (nChars != 0) {
-            const char *strShaderType = NULL;
-            switch(eShaderType)
-            {
-                case GL_VERTEX_SHADER: strShaderType = "Vertex"; break;
-                case GL_GEOMETRY_SHADER: strShaderType = "Geometry"; break;
-                case GL_FRAGMENT_SHADER: strShaderType = "Fragment"; break;
-            }
-            
-            Console::getInstance()->message(CONSOLE_MSG_SYS, "%s Shader: %s", strShaderType, strInfoLog);
-        }
-        delete[] strInfoLog;
-    }
-    
-	return shader;
-}
-
-void Mesh::createShaderProgram(GLuint *program, const std::vector<GLuint> shaderList) {
-    glDeleteProgramsARB(1, program); // clean up last program
-    *program = glCreateProgramObjectARB();
-    
-    // attach list of compiled shaders to the shader program
-    for(size_t iLoop = 0; iLoop < shaderList.size(); iLoop++)
-    	glAttachObjectARB(*program, shaderList[iLoop]);
-    
-    //glBindAttribLocationARB(*program, 0, "position");
-    
-    glLinkProgramARB(*program);
-    
-    // debugging
-    if (true)
-    {
-        GLchar *strInfoLog = new GLchar[1000];
-        GLsizei nChars;
-        glGetInfoLogARB(*program, 999, &nChars, strInfoLog);
-        strInfoLog[1000] = '\0';
-        
-        if (nChars != 0) {
-            Console::getInstance()->message(CONSOLE_MSG_SYS, "GLSL Linker: %s", strInfoLog);
-        }
-        delete[] strInfoLog;
-    }
-        
-    // the shaders are no longer needed by the program once compiled
-    for(size_t iLoop = 0; iLoop < shaderList.size(); iLoop++)
-        glDetachObjectARB(*program, shaderList[iLoop]);
-    
-    m_attrPosition = glGetAttribLocationARB(*program, "AttrPosition");
-    m_attrNormal   = glGetAttribLocationARB(*program, "AttrNormal");
-}
-
 void Mesh::setShaders(const char **files, const GLenum *types, int nShaders) {
     std::vector<GLuint> shaders;
     for (int i = 0; i < nShaders; ++i) {
@@ -136,11 +71,11 @@ void Mesh::setShaders(const char **files, const GLenum *types, int nShaders) {
         if (source == NULL) {
             Console::getInstance()->message(CONSOLE_MSG_SYS, "Failed to load shader %s", files[i]);
         } else {
-            shaders.push_back(createShader(types[i], source));
+            shaders.push_back(GLUtil::CreateShader(types[i], source));
             delete [] source;
         }
     }
-    createShaderProgram(&m_shaderProgram, shaders);
+    m_shaderProgram = GLUtil::CreateShaderProgram(&shaders[0], (int)shaders.size());
 }
 
 void Mesh::draw(float dTime) {
@@ -223,6 +158,9 @@ void Mesh::draw(float dTime) {
         }
         
         glBindBufferARB( GL_ARRAY_BUFFER_ARB, m_nVBOVertices );
+        
+        m_attrPosition = glGetAttribLocationARB(m_shaderProgram, "AttrPosition");
+        m_attrNormal   = glGetAttribLocationARB(m_shaderProgram, "AttrNormal");
         
         if (m_attrPosition != -1) {
             glVertexAttribPointerARB(m_attrPosition, 3, GL_FLOAT, GL_FALSE, sizeof(float)*6, (void*)0);

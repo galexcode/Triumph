@@ -47,15 +47,15 @@ private:
     GLuint m_attrNormal;
     
     // Mesh Data
-    int             m_nVertexCount; // Vertex Count
+    int             m_nVertexCount;
     int             m_nIndexCount;
     
-    Vert*           m_pVertices; // Vertex Data
-    unsigned short  *m_pIndices;
+    Vert            *m_pVertices; // Vertex Data
+    unsigned short  *m_pIndices; // Index Data
     
-	Vert*           m_pWVertices; // Writable Vertex Data when VBO not available
+	Vert            *m_pWVertices; // Writable Vertex Data when VBO not available
     
-    TexCoord*       m_pTexCoords; // Texture Coordinates
+    TexCoord        *m_pTexCoords; // Texture Coordinates
     unsigned int    m_nTextureId; // Texture ID
     
     // Vertex Buffer Object Names
@@ -71,9 +71,6 @@ private:
     void buildVBOs();
     
     char * loadTxtSource(const char *source);
-    
-    void createShaderProgram(GLuint *program, const std::vector<GLuint> shaderList);
-    GLuint createShader(GLenum type, const char *source);
     
     //void setShader(char *source, GLenum *shader, GLenum type);
     
