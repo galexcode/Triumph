@@ -25,6 +25,9 @@ class Texture
 {
 public:
     static Texture * CreateFromFile(const char *file);
+    static Texture * CreateGaussian(int cosAngleResolution, float specularShine);
+    
+    static GLubyte * BuildGaussianData(int cosAngleResolution, float specularShine);
     
     float height( int x, int y );
     GLuint gid() const;

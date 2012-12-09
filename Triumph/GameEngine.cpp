@@ -46,14 +46,18 @@ int GameEngine::init(Game *game)
     }
 
     glfwOpenWindowHint(GLFW_FSAA_SAMPLES, FSAA_SAMPLES);
+	//glfwOpenWindowHint( GLFW_OPENGL_VERSION_MAJOR, 3 );
+    //glfwOpenWindowHint( GLFW_OPENGL_VERSION_MINOR, 2 );
+    //glfwOpenWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
     
     if (!glfwOpenWindow(WINDOW_WIDTH, WINDOW_HEIGHT, 8, 8, 8, 8, 8, 8, GLFW_WINDOW)) {
         Console::getInstance()->message(CONSOLE_MSG_SYS, "Failed to open GLFW window");
         return INIT_FAIL;
     }
 
-    if (glewInit() != GLEW_OK) {
-        Console::getInstance()->message(CONSOLE_MSG_SYS, "GLEW Failed to load.");
+	GLenum err = glewInit();
+    if (err != GLEW_OK) {
+        Console::getInstance()->message(CONSOLE_MSG_SYS, "GLEW Failed to load: %s", glewGetErrorString(err));
         return INIT_FAIL;
     }
     
@@ -221,9 +225,7 @@ float GameEngine::getElapsedTime()
 }
 
 void GameEngine::clean()
-{
-    m_game->clean();
-    
+{    
     glfwTerminate();
     
     // kill singleton

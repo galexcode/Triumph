@@ -3,21 +3,26 @@ all: triumph
 PREFIX=/usr/local
 LIBS=${PREFIX}/lib
 
-CC     = g++
+CC     = gcc
 DEBUG  = -g
-CFLAGS = -Wall -c $(DEBUG)
-LFLAGS = -Wall $(DEBUG) ${LIBS}/libglfw.a -lrt -lX11 -lGLU -lGL -lm
+CFLAGS = -Wall -c -std=c++11 $(DEBUG)
+LFLAGS = -Wall $(DEBUG) -lglfw -lrt -lX11 -lGLU -lGL -lm -lGLEW
 
 OBJS = \
 	TriumphGame.o \
 	Console.o \
 	Font.o \
 	GameInput.o \
-    Texture.o \
-    Geometry.o \
-    GameObject.o \
-    GameCamera.o \
-    GameEngine.o
+	Texture.o \
+	Geometry.o \
+	GameObject.o \
+	GameCamera.o \
+	GameEngine.o \
+	BattleScene.o \
+	WorldScene.o \
+	GLUtil.o \
+	Mesh.o \
+	VertMods.o
     
 ##########################################################################
 # Rule for building triumph
@@ -30,12 +35,17 @@ triumph: TriumphMain.cpp TriumphGame.h $(OBJS)
 # Header Dependencies
 ##########################################################################
 
-GameEngine.h: GameInput.h Texture.h Game.h
-TriumphGame.h: Game.h Texture.h Font.h GameObject.h GameCamera.h GameEngine.h
+GameEngine.h: GameInput.h Texture.h Game.h Scene.h Font.h Gfx.h
+TriumphGame.h: Game.h GameEngine.h Scene.h
 Console.h: Font.h
 GameCamera.h: Geometry.h
 GameObject.h: Geometry.h
-Texture.h: Platform.h
+Texture.h: Platform.h Gfx.h
+BattleScene.h: Scene.h Texture.h GameCamera.h GameEngine.h Geometry.h Mesh.h
+WorldScene.h: Scene.h Texture.h GameCamera.h GameEngine.h Geometry.h GameObject.h
+GLUtil.h: Texture.h Geometry.h
+Mesh.h: Gfx.h Texture.h Geometry.h VertMods.h
+VertMods.h: Geometry.h
 
 ##########################################################################
 # Static Objects
@@ -50,7 +60,7 @@ Console.o: Console.cpp Console.h TriumphGame.h
 Font.o: Font.cpp Font.h
 	$(CC) $(CFLAGS) Font.cpp
 
-GameEngine.o: GameEngine.cpp GameEngine.h Console.h
+GameEngine.o: GameEngine.cpp GameEngine.h Console.h GLUtil.h
 	$(CC) $(CFLAGS) GameEngine.cpp
 
 GameInput.o: GameInput.cpp GameInput.h TriumphGame.h
@@ -67,6 +77,21 @@ Geometry.o: Geometry.cpp Geometry.h
 	
 Texture.o: Texture.cpp Texture.h Bitmap.h
 	$(CC) $(CFLAGS) Texture.cpp
+
+BattleScene.o: BattleScene.cpp Gfx.h GLUtil.h BattleScene.h Console.h GameInput.h
+	$(CC) $(CFLAGS) BattleScene.cpp
+
+WorldScene.o: WorldScene.cpp WorldScene.h GLUtil.h
+	$(CC) $(CFLAGS) WorldScene.cpp
+
+GLUtil.o: GLUtil.cpp GLUtil.h GameEngine.h
+	$(CC) $(CFLAGS) GLUtil.cpp
+
+Mesh.o: Mesh.cpp Mesh.h GameEngine.h VertMods.h Console.h
+	$(CC) $(CFLAGS) Mesh.cpp
+
+VertMods.o: VertMods.cpp VertMods.h Geometry.h
+	$(CC) $(CFLAGS) VertMods.cpp
 
 #TriumphMain.o: TriumphMain.cpp TriumphGame.h
 #	$(CC) $(CFLAGS) TriumphMain.cpp

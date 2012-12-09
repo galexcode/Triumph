@@ -10,8 +10,48 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <math.h>
 
 #include "Bitmap.h"
+
+Texture * Texture::CreateGaussian(int cosAngleResolution, float specularShine)
+{
+    Texture *tex = new Texture();
+	tex->m_fLoaded = true;
+	tex->m_pImage = NULL;
+    
+    tex->m_pImage = BuildGaussianData(cosAngleResolution, specularShine);
+    tex->m_width = cosAngleResolution;
+    tex->m_height = 1;
+    
+    glGenTextures(1, &tex->m_gid);
+    glBindTexture(GL_TEXTURE_1D, tex->m_gid);
+    glTexImage1D(GL_TEXTURE_1D, 0, GL_R8, cosAngleResolution, 0,
+                 GL_RED, GL_UNSIGNED_BYTE, tex->m_pImage);
+    glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_BASE_LEVEL, 0);
+    glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MAX_LEVEL, 0);
+    glBindTexture(GL_TEXTURE_1D, 0); // cleanup
+    
+    return tex;
+}
+
+GLubyte * Texture::BuildGaussianData(int cosAngleResolution, float specularShine)
+{
+    GLubyte *data = new GLubyte[cosAngleResolution];
+    
+    for(int iCosAng = 0; iCosAng < cosAngleResolution; ++iCosAng)
+    {
+        float cosAng = iCosAng / (float)(cosAngleResolution - 1);
+        float angle = acosf(cosAng);
+        float exponent = angle / specularShine;
+        exponent = -(exponent * exponent);
+        float gaussianTerm = exp(exponent);
+        
+        data[iCosAng] = (GLubyte)(gaussianTerm * 255.0f);
+    }
+    
+    return data;
+}
 
 Texture * Texture::CreateFromFile(const char *file)
 {
@@ -37,6 +77,8 @@ Texture * Texture::CreateFromFile(const char *file)
         
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, tex->m_width, tex->m_height, 0, FORMAT_BGR, GL_UNSIGNED_BYTE, tex->m_pImage);
         //gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, tex->m_width, tex->m_height, FORMAT_BGR, GL_UNSIGNED_BYTE, tex->m_pImage);
+        
+        glBindTexture(GL_TEXTURE_2D, 0); // cleanup
 
 	}
     

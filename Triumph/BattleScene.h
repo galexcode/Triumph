@@ -25,6 +25,7 @@ private:
     Mesh *m_water;
     
 	bool m_fFreeLook;
+    bool m_fWireframe;
 
 public:
 	int load();

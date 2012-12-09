@@ -28,6 +28,7 @@ int BattleScene::load() {
     m_cam.m_target = m_cam.m_eye + Vector3::forward;
     
     m_fFreeLook = false;
+    m_fWireframe = false;
     
     // Load The Mesh Data
     m_water = new Mesh();
@@ -60,11 +61,15 @@ void BattleScene::draw(float dTime) {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
     
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    if (m_fWireframe)
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    
     //glEnable(GL_CULL_FACE);
     m_water->draw(dTime);
     //glDisable(GL_CULL_FACE);
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    
+    if (m_fWireframe)
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void BattleScene::keyEvent(int key, int state) {
@@ -75,7 +80,9 @@ void BattleScene::keyEvent(int key, int state) {
         } else {
             glfwEnable(GLFW_MOUSE_CURSOR);
         }
-	}
+	} else if (key == '1' && state == INPUTSTATE_RELEASE) {
+        m_fWireframe = !m_fWireframe;
+    }
 }
 
 void BattleScene::update(float dTime) {

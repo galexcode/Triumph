@@ -210,6 +210,8 @@ bool Mesh::loadHeightmap( const char* szPath, float flHeightScale, float flResol
     
     // Load Texture Data
     m_pTextureImage = Texture::CreateFromFile(szPath);
+	if (m_pTextureImage->image() == NULL)
+		return false;
     m_pTextureImage->size(&sizeX, &sizeY);
     
     // Generate Vertex Field

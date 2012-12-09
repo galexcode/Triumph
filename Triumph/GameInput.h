@@ -48,7 +48,7 @@ public:
     int m_lastWheel;
     int m_wheel;
     
-    bool m_fKeys[256];
+    bool m_fKeys[512];
     
     int m_cursorX, m_cursorY;
 	int m_lastCursorX, m_lastCursorY;

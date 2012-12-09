@@ -43,6 +43,7 @@
 		D59E292B166E843F00558B9B /* phong.vert in Resources */ = {isa = PBXBuildFile; fileRef = D59E2927166E81C100558B9B /* phong.vert */; };
 		D59E292C166E843F00558B9B /* phong.frag in Resources */ = {isa = PBXBuildFile; fileRef = D59E2929166E81CD00558B9B /* phong.frag */; };
 		D5BEB2981664325900ACCC15 /* terrain.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D5BEB2971664325900ACCC15 /* terrain.bmp */; };
+		D5C37862167092880037CEE9 /* TextureGaussian.frag in Sources */ = {isa = PBXBuildFile; fileRef = D5C37861167092880037CEE9 /* TextureGaussian.frag */; };
 		D5C5BDCE166B10EB000120EF /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C5BDCD166B10EB000120EF /* libGLEW.a */; };
 		D5E588C1163EF01D005DEF0A /* earth_hires.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D5E588C0163EF01D005DEF0A /* earth_hires.bmp */; };
 		D5E588C8163EFC16005DEF0A /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E588C6163EFC16005DEF0A /* GameObject.cpp */; };
@@ -108,6 +109,7 @@
 		D59E2929166E81CD00558B9B /* phong.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = phong.frag; sourceTree = "<group>"; };
 		D5BEB2941664225500ACCC15 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/GLUT.framework; sourceTree = DEVELOPER_DIR; };
 		D5BEB2971664325900ACCC15 /* terrain.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = terrain.bmp; sourceTree = "<group>"; };
+		D5C37861167092880037CEE9 /* TextureGaussian.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TextureGaussian.frag; sourceTree = "<group>"; };
 		D5C5BDCD166B10EB000120EF /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGLEW.a; path = ../../../../usr/lib/libGLEW.a; sourceTree = "<group>"; };
 		D5E588BF163EF01D005DEF0A /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
 		D5E588C0163EF01D005DEF0A /* earth_hires.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = earth_hires.bmp; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				D53FA559166EF90C001E7EEB /* sinwave.frag */,
 				D545F43116700B6400953058 /* Gerstner.vert */,
 				D545F43316700B7300953058 /* Gerstner.frag */,
+				D5C37861167092880037CEE9 /* TextureGaussian.frag */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				D579F2F4166412FA00B6C7CD /* BattleScene.cpp in Sources */,
 				D56E0E7A1666DBD000249D63 /* Mesh.cpp in Sources */,
 				D50E04F01667FC46006C0656 /* VertMods.cpp in Sources */,
+				D5C37862167092880037CEE9 /* TextureGaussian.frag in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

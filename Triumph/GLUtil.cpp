@@ -163,7 +163,7 @@ GLuint GLUtil::CreateShader(GLenum eShaderType, const char *source) {
         GLchar *strInfoLog = new GLchar[1000];
         GLsizei nChars;
         glGetInfoLogARB(shader, 999, &nChars, strInfoLog);
-        strInfoLog[1000] = '\0';
+        strInfoLog[999] = '\0';
         
         if (nChars != 0) {
             const char *strShaderType = NULL;
@@ -176,41 +176,44 @@ GLuint GLUtil::CreateShader(GLenum eShaderType, const char *source) {
             
             Console::getInstance()->message(CONSOLE_MSG_SYS, "%s Shader: %s", strShaderType, strInfoLog);
         }
-        delete[] strInfoLog;
+        delete [] strInfoLog;
     }
     
 	return shader;
 }
 
 GLuint GLUtil::CreateShaderProgram(GLuint *shaderList, int nShaders) {
-    GLuint program = glCreateProgramObjectARB();
-    
-    // attach list of compiled shaders to the shader program
-    for(size_t iLoop = 0; iLoop < nShaders; iLoop++)
-    	glAttachObjectARB(program, shaderList[iLoop]);
-    
-    //glBindAttribLocationARB(*program, 0, "position");
-    
-    glLinkProgramARB(program);
-    
-    // debugging
-    if (true)
-    {
-        GLchar *strInfoLog = new GLchar[1000];
-        GLsizei nChars;
-        glGetInfoLogARB(program, 999, &nChars, strInfoLog);
-        strInfoLog[1000] = '\0';
-        
-        if (nChars != 0) {
-            Console::getInstance()->message(CONSOLE_MSG_SYS, "GLSL Linker: %s", strInfoLog);
-        }
-        delete[] strInfoLog;
-    }
-    
-    // the shaders are no longer needed by the program once compiled
-    for(size_t iLoop = 0; iLoop < nShaders; iLoop++)
-        glDetachObjectARB(program, shaderList[iLoop]);
-    
-    return program;
+	if (nShaders > 0) {
+		GLuint program = glCreateProgramObjectARB();
+		
+		// attach list of compiled shaders to the shader program
+		for(size_t iLoop = 0; iLoop < nShaders; iLoop++)
+			glAttachObjectARB(program, shaderList[iLoop]);
+		
+		//glBindAttribLocationARB(*program, 0, "position");
+		
+		glLinkProgramARB(program);
+		
+		// debugging
+		if (true)
+		{
+		    GLchar *strInfoLog = new GLchar[1000];
+		    GLsizei nChars;
+		    glGetInfoLogARB(program, 999, &nChars, strInfoLog);
+		    strInfoLog[999] = '\0';
+		    
+		    if (nChars != 0) {
+		        Console::getInstance()->message(CONSOLE_MSG_SYS, "GLSL Linker: %s", strInfoLog);
+		    }
+		    delete[] strInfoLog;
+		}
+		
+		// the shaders are no longer needed by the program once compiled
+		for(size_t iLoop = 0; iLoop < nShaders; iLoop++)
+		    glDetachObjectARB(program, shaderList[iLoop]);
+		
+		return program;
+	}
+	return 0;
     
 }
