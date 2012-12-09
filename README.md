@@ -1,7 +1,7 @@
 Triumph
 =======
 
-An OpenGL, Cross-platgorm Game Engine project based on GLFW and GLEW.
+An OpenGL, Cross-platform Game Engine project based on GLFW and GLEW.
 
 Installation
 ------------
